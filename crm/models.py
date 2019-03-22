@@ -23,9 +23,9 @@ class Role(models.Model):
 
 class CustomerInfo(models.Model):
     """Customer Follow Up table"""
-    user = models.ForeignKey("UserProfile")
+    user = models.OneToOneField("UserProfile", null=, blank=True)
     name = models.CharField(max_length=64, default=None)
-    compnay = models.CharField(max_length=64, default=None)
+    company = models.CharField(max_length=64, default=None)
     email = models.CharField(max_length=64, unique=True)
     phone = models.CharField(max_length=64, unique=True)
     mobile = models.CharField(max_length=64, unique=True)
@@ -42,6 +42,8 @@ class CustomerInfo(models.Model):
     status_choices = ((0, 'Unregistered'), (1, "Registered"), (2, "Quited"))
     status = models.SmallIntegerField(choices=status_choices)
     consultant = models.ForeignKey("UserProfile", null=True, black=True, on_delete=models.SET_NULL())
+    shipping_address = models.ForeignKey("Address", related_name='shipping', null=True, blank=True, on_delete=models.SET_NULL())
+    billing_address = models.ForeignKey("Address", related_name='billing', null=True, blank=True, on_delete=models.SET_NULL())
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -92,6 +94,10 @@ class Product(models.Model):
     thickness = models.PositiveIntegerField(max_length=2)
     veneer = models.SmallIntegerField(max_length=1)
 
+class Discount(models.Model):
+    """Product Discount"""
+    product  =
+
 
 class ProductList(models.Model):
     """Product list Table """
@@ -112,7 +118,7 @@ class ProductImages(models.Model):
 
 
 class Cart(models.Model):
-    """Cart Table===course reacord"""
+    """Cart Tabl"""
     user = models.ForeignKey("UserProfile", on_delete=models.CASCADE())
     product = models.ManyToManyField("Product")
     quantity = models.PositiveIntegerField(default=1)
@@ -120,16 +126,15 @@ class Cart(models.Model):
 
 class Order(models.Model):
     """ Order Table"""
-    billing_profile = models.ForeignKey("UserInfor", null=True, blank=True, on_delete=models.SET_NULL())
-    shipping_address = models.ForeignKey("Address", related_name='shipping', null=True, blank=True, on_delete=models.SET_NULL())
-    billing_address = models.ForeignKey("Address", related_name='billing', null=True, blank=True, on_delete=models.SET_NULL())
+    user = models.ForeignKey("UserInfor", null=True, blank=True, on_delete=models.SET_NULL())
+
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     PAYMENT_METHOD_CHOICES = (
         (0, "Pay on pickup"),
         (1, "Bank Transfer"),
         (2, "Pay over the phone"),
     )
-    payment_method =
+    payment_method = models.PositiveSmallIntegerField(default='0', choices=PAYMENT_METHOD_CHOICES)
     ORDER_STATUS_CHOICES = (
         ('0', 'Proccessing'),
         ('1', 'Paid'),
@@ -139,6 +144,9 @@ class Order(models.Model):
     status = models.PositiveSmallIntegerField(default='0', choices=ORDER_STATUS_CHOICES)
     ship_total = models.DecimalField(default=5.99, max_digits=200, decimal_places=2)
     total = models.DecimalField(default=5.99, max_digits=200, decimal_places=2)
+    GST = models.DecimalField(default=5.99, max_digits=200, decimal_places=2)
+    stub_total = models.DecimalField(default=5.99, max_digits=200, decimal_places=2)
+
     active = models.BooleanField(default=True)
 
 
