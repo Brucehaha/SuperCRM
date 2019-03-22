@@ -23,7 +23,7 @@ class Role(models.Model):
 
 class CustomerInfo(models.Model):
     """Customer Follow Up table"""
-    user = models.OneToOneField("UserProfile", null=, blank=True)
+    user = models.OneToOneField(User, null=, blank=True)
     name = models.CharField(max_length=64, default=None)
     company = models.CharField(max_length=64, default=None)
     email = models.CharField(max_length=64, unique=True)
@@ -94,9 +94,6 @@ class Product(models.Model):
     thickness = models.PositiveIntegerField(max_length=2)
     veneer = models.SmallIntegerField(max_length=1)
 
-class Discount(models.Model):
-    """Product Discount"""
-    product  =
 
 
 class ProductList(models.Model):
@@ -110,8 +107,12 @@ class ProductList(models.Model):
     def __str__(self):
         return "%smm %s"%(self.length, self.product.name)
 
+class Discount(models.Model):
+    """Product Discount"""
+    product  =
 
-class ProductImages(models.Model):
+
+class Images(models.Model):
     name = models.CharField(max_length=64, unique=True)
     product = models.ManyToManyField("Product")  # foreign key
     image = models.ImageField()
