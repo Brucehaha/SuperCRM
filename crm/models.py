@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+def test(request):
+    request.session.set_expiry()
 class UserProfile(models.Model):
     """User Info Table"""
     user = models.ForeignKey(User, on_delete=models.CASCADE())
@@ -18,11 +19,13 @@ class Role(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
-        return self.name
+     return self.name
 
 
 class CustomerInfo(models.Model):
+
     """Customer Follow Up table"""
+
     user = models.OneToOneField(User, null=, blank=True)
     name = models.CharField(max_length=64, default=None)
     company = models.CharField(max_length=64, default=None)
@@ -93,7 +96,8 @@ class Product(models.Model):
     width = models.PositiveIntegerField(max_length=4)
     thickness = models.PositiveIntegerField(max_length=2)
     veneer = models.SmallIntegerField(max_length=1)
-
+    def __str__(self):
+        return self.name
 
 
 class ProductList(models.Model):
@@ -101,15 +105,20 @@ class ProductList(models.Model):
     product = models.ForeignKey("Product", on_delete=models.CASCADE())  # foreign key
     sku = models.CharField(max_length=16, unique=True)
     pack_size = models.FloatField(max_length=1)
-    length = models.PositiveSMallIntegerField(max_length=4)
+    length = models.PositiveSmallIntegerField(max_length=4)
     stock_level = models.PositiveSmallIntegerField()
 
     def __str__(self):
         return "%smm %s"%(self.length, self.product.name)
 
+
 class Discount(models.Model):
     """Product Discount"""
-    product  =
+    pass
+
+
+class DiscountInterval(models.Model):
+    nid = models.AutoField(primary_key=True)
 
 
 class Images(models.Model):
@@ -120,9 +129,17 @@ class Images(models.Model):
 
 class Cart(models.Model):
     """Cart Tabl"""
-    user = models.ForeignKey("UserProfile", on_delete=models.CASCADE())
-    product = models.ManyToManyField("Product")
-    quantity = models.PositiveIntegerField(default=1)
+    nid = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey('UserProfile', on_delete=models.CASCADE())
+    product = models.ManyToManyField(to='Product',
+                                     related_name='P',
+                                     through='CartProduct',
+                                     through_fields=('cart', ))
+
+class CartProduct(models.Model):
+    cart = models.ForeignKey('Cart', on_delete=models.CASCADE())
+    product = models.ForeignKey('Product', on_delete=models.CASCADE())
+
 
 
 class Order(models.Model):

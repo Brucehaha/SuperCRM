@@ -18,32 +18,32 @@
     <session id="346376293">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3697" />
+          <entry key="py" value="4275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3697" />
+          <entry key="Python" value="4275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="1" />
+          <entry key="py" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="1" />
+          <entry key="Python" value="6" />
         </counts>
       </usages-collector>
     </session>
@@ -63,21 +63,62 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crm/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+            <state relative-caret-position="289">
+              <caret line="132" column="71" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1553272003144" expanded="true" signature="385:387" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="385:388" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="385:390" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="385:391" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="385:394" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="385:395" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="385:397" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="450:455" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="612:617" ph="..." />
-                <marker date="1553272003144" expanded="true" signature="3719:3721" ph="..." />
+                <element signature="e#112#422#0" />
+                <element signature="e#406#422#0" />
+                <element signature="e#455#577#0" />
+                <element signature="e#556#572#0" />
+                <element signature="e#622#2077#0" />
+                <element signature="e#2117#2404#0" />
+                <element signature="e#2440#2976#0" />
+                <element signature="e#3013#3243#0" />
+                <element signature="e#3282#3763#0" />
+                <element signature="e#3809#4218#0" />
+                <element signature="e#4205#4236#0" />
+                <element signature="e#4328#4352#0" />
+                <element signature="e#4275#4421#0" />
+                <marker date="1553493787920" expanded="true" signature="92:126" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="436:438" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="436:439" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="436:441" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="436:442" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="436:445" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="436:446" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="436:448" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="661:666" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="4372:4420" ph="..." />
+                <marker date="1553493787920" expanded="true" signature="5030:5170" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/contrib/sessions/backends/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2398">
+              <caret line="245" column="8" selection-start-line="245" selection-start-column="8" selection-end-line="245" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/db/models/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="749">
+              <caret line="504" column="8" selection-start-line="504" selection-start-column="8" selection-end-line="504" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/db/models/fields/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="1985" column="40" selection-start-line="1985" selection-start-column="33" selection-end-line="1985" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -100,11 +141,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="1759" />
-    <option name="y" value="180" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="261" />
+    <option name="y" value="290" />
+    <option name="width" value="1686" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -188,10 +229,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1759" y="180" width="1936" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17270789" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1748401" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -204,8 +245,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50373137" side_tool="true" visible="true" weight="0.32925472" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49626866" visible="true" weight="0.32925472" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50479746" side_tool="true" weight="0.10122358" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49520257" weight="0.10122358" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4989339" weight="0.32925472" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -213,6 +254,29 @@
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1748401" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50479746" side_tool="true" visible="true" weight="0.10122358" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49520257" visible="true" weight="0.10122358" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4989339" weight="0.32925472" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -221,35 +285,63 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/db/models/fields/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="1035" column="8" selection-start-line="1035" selection-start-column="8" selection-end-line="1035" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SuperCRM/settings.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/SuperCRM/urls.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/db/models/fields/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="1985" column="40" selection-start-line="1985" selection-start-column="33" selection-end-line="1985" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/db/models/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="749">
+          <caret line="504" column="8" selection-start-line="504" selection-start-column="8" selection-end-line="504" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/contrib/sessions/backends/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2398">
+          <caret line="245" column="8" selection-start-line="245" selection-start-column="8" selection-end-line="245" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/crm/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        <state relative-caret-position="289">
+          <caret line="132" column="71" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1553272003144" expanded="true" signature="385:387" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="385:388" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="385:390" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="385:391" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="385:394" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="385:395" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="385:397" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="450:455" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="612:617" ph="..." />
-            <marker date="1553272003144" expanded="true" signature="3719:3721" ph="..." />
+            <element signature="e#112#422#0" />
+            <element signature="e#406#422#0" />
+            <element signature="e#455#577#0" />
+            <element signature="e#556#572#0" />
+            <element signature="e#622#2077#0" />
+            <element signature="e#2117#2404#0" />
+            <element signature="e#2440#2976#0" />
+            <element signature="e#3013#3243#0" />
+            <element signature="e#3282#3763#0" />
+            <element signature="e#3809#4218#0" />
+            <element signature="e#4205#4236#0" />
+            <element signature="e#4328#4352#0" />
+            <element signature="e#4275#4421#0" />
+            <marker date="1553493787920" expanded="true" signature="92:126" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="436:438" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="436:439" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="436:441" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="436:442" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="436:445" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="436:446" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="436:448" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="661:666" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="4372:4420" ph="..." />
+            <marker date="1553493787920" expanded="true" signature="5030:5170" ph="..." />
           </folding>
         </state>
       </provider>
