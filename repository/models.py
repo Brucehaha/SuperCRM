@@ -1,0 +1,226 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+
+class UserProfile(models.Model):
+    """User Info Table"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=64)
+    email = models.CharField(max_length=64, unique=True)
+    role = models.ManyToManyField("Role")
+
+    def __str__(self): #_unicode__
+        return self.name
+
+
+class Role(models.Model):
+    """Role Table"""
+    name = models.CharField(max_length=64, unique=True)
+
+    def __str__(self):
+     return self.name
+
+
+class CustomerInfo(models.Model):
+
+    """Customer Follow Up table"""
+    userprofile = models.OneToOneField(UserProfile, related_name="userprofile", null=True, blank=True, on_delete=models.SET_NULL)
+    level = models.ForeignKey('CustomerLevel', blank=True, null=True, on_delete=models.CASCADE)
+
+    name = models.CharField(max_length=64, default=None)
+    company = models.CharField(max_length=64, default=None)
+    email = models.CharField(max_length=64, unique=True)
+    phone = models.CharField(max_length=64, unique=True)
+    mobile = models.CharField(max_length=64, unique=True)
+    source_choices = ((0, 'Referral'),
+                      (1, 'Web search'),
+                      (2, 'Google Ads'),
+                      (3, 'Bing Ads'),
+                      (4, 'Other'),
+                      )
+    source = models.SmallIntegerField(choices=source_choices)
+    Reference = models.CharField(max_length=20, blank=True, null=True, verbose_name="Refered by")
+    consult_product = models.ManyToManyField("Product", verbose_name="Product")
+    consult_content = models.TextField()
+    status_choices = ((0, 'Unregistered'), (1, "Registered"), (2, "Quited"))
+    status = models.SmallIntegerField(choices=status_choices)
+    consultant = models.ForeignKey("UserProfile", related_name="consultant", null=True, blank=True, on_delete=models.SET_NULL)
+    timestamp = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+class CustomerFollowUp(models.Model):
+    """Customer Follow Up"""
+    customer = models.ForeignKey("CustomerInfo", on_delete=models.CASCADE)
+    content = models.TextField()
+    user = models.ForeignKey("UserProfile", "Sales")
+    timestamp = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.customer
+
+
+class CustomerLevel(models.Model):
+    name = models.CharField(max_length=16)
+    level = models.SmallIntegerField(default=0)
+
+
+class Discount(models.Model):
+
+    """Product Discount"""
+    level = models.ForeignKey('CustomerLevel', on_delete=models.CASCADE)
+    interval = models.ForeignKey('DiscountInterval',  on_delete=models.CASCADE)
+    discount = models.IntegerField(default=0)
+
+
+class DiscountInterval(models.Model):
+    min_quantity = models.IntegerField()
+    max_quantiy = models.IntegerField()
+
+
+class Address(models.Model):
+    customer = models.ForeignKey("UserProfile", on_delete=models.CASCADE)
+    address_type = ((0, 'Billing Address'), (1, "Shipping Address"))
+    status = models.SmallIntegerField(choices=address_type)
+    street_no = models.CharField(max_length=16)
+    street_name = models.CharField(max_length=64)
+    suburb = models.CharField(max_length=64)
+    postcode = models.SmallIntegerField()
+    state_choices = (('0', 'VIC'), (1, "NSW"), (2, "QLD"), (3, "SA"), (3, "WA"), (4, 'TAS'))
+    status = models.SmallIntegerField(choices=state_choices, default=0)
+
+
+class Category(models.Model):
+    """Category Model"""
+    name = models.CharField(max_length=64, unique=True)
+    parent = models.ForeignKey(to="self", blank=True, null=True,  on_delete=models.SET_NULL)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    """Product Table"""
+    name = models.CharField(max_length=64)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)  # foreign key
+    description = models.TextField(blank=True, null=True)
+    color = models.CharField(max_length=16)
+    width = models.PositiveIntegerField( default=0)
+    thickness = models.PositiveIntegerField(default=0)
+    veneer = models.SmallIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+
+class ProductList(models.Model):
+    """Product list Table """
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)  # foreign key
+    sku = models.CharField(max_length=16, unique=True)
+    pack_size = models.FloatField()
+    length = models.PositiveSmallIntegerField(default=0)
+    stock_level = models.PositiveSmallIntegerField(default=0)
+
+    def __str__(self):
+        return "%smm %s"%(self.length, self.product.name)
+
+
+class ProductToImage(models.Model):
+    """Prudct image bridge"""
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    image = models.ForeignKey('Images', on_delete=models.CASCADE)
+
+
+class Images(models.Model):
+    name = models.CharField(max_length=64, unique=True)
+    product = models.ManyToManyField("Product")  # foreign key
+    image = models.ImageField()
+    timestamp = models.DateField(auto_now_add=True)
+
+
+class Cart(models.Model):
+    """Cart Table"""
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+
+class CartToProduct(models.Model):
+    cart = models.ForeignKey('Cart', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    quantity = models.FloatField(default=0)
+    discount = models.IntegerField(default=0)
+
+
+class Order(models.Model):
+    """ Order Table"""
+    user = models.ForeignKey("UserProfile", null=True, blank=True, on_delete=models.SET_NULL)
+
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+
+    DELIVERY_LOCATION_CHOICES = (
+        (0, "Pickup in VIC Depot"),
+        (1, "Pickup in  NSW Depot"),
+        (2, "Delivery to Your Address"),
+    )
+    delivery_location = models.PositiveSmallIntegerField(default=0, choices=DELIVERY_LOCATION_CHOICES)
+    shipping_address = models.ForeignKey('Address', related_name="shipping", null=True, blank=True, on_delete=models.CASCADE)
+    billing_address = models.ForeignKey('Address', related_name="billing", null=True, blank=True, on_delete=models.CASCADE)
+    PAYMENT_METHOD_CHOICES = (
+        (0, "Pay on pickup"),
+        (1, "Bank Transfer"),
+        (2, "Pay over the phone"),
+    )
+    payment_method = models.PositiveSmallIntegerField(default=0, choices=PAYMENT_METHOD_CHOICES)
+    ORDER_STATUS_CHOICES = (
+        (0, 'Proccessing'),
+        (1, 'Paid'),
+        (2, 'Shipped'),
+        (3, 'Picked up'),
+    )
+    status = models.PositiveSmallIntegerField(default=0, choices=ORDER_STATUS_CHOICES)
+    ship_total = models.DecimalField(default="", max_digits=200, decimal_places=2)
+    total = models.DecimalField(default=5.99, max_digits=200, decimal_places=2)
+    GST = models.DecimalField(default=5.99, max_digits=200, decimal_places=2)
+    stub_total = models.DecimalField(default=5.99, max_digits=200, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.id
+
+
+class Ticket(models.Model):
+
+    """Customer question ticket"""
+    claimer = models.ForeignKey(UserProfile, related_name="claimer", on_delete=models.CASCADE)
+    subject = models.CharField(max_length=32)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    processor = models.ForeignKey(UserProfile,  related_name="processor", blank=True, null=True, on_delete=models.SET_NULL)
+    status_choices = [
+        (0, 'open'),
+        (1, 'processing'),
+        (2, 'closed'),
+
+    ]
+    status = models.IntegerField(choices=status_choices, default=0)
+
+    def __str__(self):
+        return str(self.subject)
+
+
+class Reply(models.Model):
+    content = models.TextField()
+    ticket = models.ForeignKey(Ticket,  on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile,  on_delete=models.CASCADE)
+    replyTo = models.ForeignKey(to='self',  on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "%s-%s" %(self.user, self.ticket)
+
