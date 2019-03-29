@@ -16,9 +16,10 @@ class UserProfile(models.Model):
 class Role(models.Model):
     """Role Table"""
     name = models.CharField(max_length=64, unique=True)
+    menu = models.ManyToManyField("Menu")
 
     def __str__(self):
-     return self.name
+        return self.name
 
 
 class CustomerInfo(models.Model):
@@ -26,7 +27,6 @@ class CustomerInfo(models.Model):
     """Customer Follow Up table"""
     userprofile = models.OneToOneField(UserProfile, related_name="userprofile", null=True, blank=True, on_delete=models.SET_NULL)
     level = models.ForeignKey('CustomerLevel', blank=True, null=True, on_delete=models.CASCADE)
-
     name = models.CharField(max_length=64, default=None)
     company = models.CharField(max_length=64, default=None)
     email = models.CharField(max_length=64, unique=True)
@@ -81,15 +81,18 @@ class DiscountInterval(models.Model):
 
 
 class Address(models.Model):
-    customer = models.ForeignKey("UserProfile", on_delete=models.CASCADE)
-    address_type = ((0, 'Billing Address'), (1, "Shipping Address"))
-    status = models.SmallIntegerField(choices=address_type)
+    customer = models.ForeignKey("CustomerInfo", on_delete=models.CASCADE)
+    ADDRESS_TYPE_CHOICES = ((0, 'Billing Address'), (1, "Shipping Address"))
+    address_type = models.SmallIntegerField(choices=ADDRESS_TYPE_CHOICES)
     street_no = models.CharField(max_length=16)
     street_name = models.CharField(max_length=64)
     suburb = models.CharField(max_length=64)
     postcode = models.SmallIntegerField()
-    state_choices = (('0', 'VIC'), (1, "NSW"), (2, "QLD"), (3, "SA"), (3, "WA"), (4, 'TAS'))
-    status = models.SmallIntegerField(choices=state_choices, default=0)
+    STATE_CHOICES = (('0', 'VIC'), (1, "NSW"), (2, "QLD"), (3, "SA"), (3, "WA"), (4, 'TAS'))
+    state = models.SmallIntegerField(choices=STATE_CHOICES, default=0)
+
+    def __str__(self):
+        return "%s %s" % (self.customer.name, self.address_type)
 
 
 class Category(models.Model):
@@ -224,3 +227,17 @@ class Reply(models.Model):
     def __str__(self):
         return "%s-%s" %(self.user, self.ticket)
 
+
+class Menu(models.Model):
+
+    """dynamic menu"""
+    name = models.CharField(max_length=64)
+    URL_TYPE_CHOICES = ((0, 'absolute'), (1, 'dynamic'))
+    url_type = models.SmallIntegerField(choices=URL_TYPE_CHOICES, default=0)
+    url_name = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        unique_together = ('name', 'url_name')

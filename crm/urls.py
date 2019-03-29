@@ -3,4 +3,5 @@ from crm import views
 
 urlpatterns = [
     url(r'^$', views.dashboard),
+
 ]
