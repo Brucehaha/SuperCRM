@@ -1,5 +1,6 @@
-{% extends 'index.html' %}
 
+{% extends 'index.html' %}
+{% load static %}
 {% block css %}
     <style>
         .bd-placeholder-img {
@@ -18,14 +19,14 @@
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="/static/css/signin.css" rel="stylesheet">
+    <link href="{% static "/css/signin.css" %}" rel="stylesheet">
 {% endblock %}
 
 
 {% block body %}
     <form class="form-signin" method="post">
     {% csrf_token %}
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Super CRM</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" name="username" class="form-control" placeholder="username" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>
