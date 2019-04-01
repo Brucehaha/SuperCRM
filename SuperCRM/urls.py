@@ -22,6 +22,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^crm/', include('crm.urls')),
+    url(r'^superadmin/', include('SuperAdmin.urls')),
+
     url(r'^signin/$', views.acc_signin),
     url(r'^logout/$', views.acc_logout),
 

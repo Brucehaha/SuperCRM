@@ -12,9 +12,9 @@ def acc_signin(request):
             login(request, user)
             return redirect('/crm')
         else:
-            return render(request, '../superadmin/templates/index.html', {'error': "Invalid username or password"})
+            return render(request, 'index.html', {'error': "Invalid username or password"})
     else:
-        return render(request, '../superadmin/templates/signin.html')
+        return render(request, 'signin.html')
 
 
 def acc_logout(request):
