@@ -1,7 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django import conf
-import importlib
+from SuperAdmin import app_setup
+
+app_setup.superadmin_auto_discover()
+
+from SuperAdmin.sites import site
+
+
+def apps_index(request):
+    print("registerd:", site.enabled_admins)
+    return render(request, 'superadmin/apps_index.html', {'site': site})
 
 def acc_signin(request):
     error_msg = ''
@@ -23,12 +31,4 @@ def acc_logout(request):
     return redirect('/')
 
 
-def admin_index(request):
-    for app in conf.settings.INSTALLED_APPS:
-        try:
-            mod = importlib.import_module('.superadmin', package=app)
-            print(mod)
-        except ImportError:
-            pass
-    return render(request, 'superadmin/admin_index.html')
 

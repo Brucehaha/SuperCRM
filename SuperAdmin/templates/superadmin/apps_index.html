@@ -1,0 +1,34 @@
+{% extends 'superadmin/index.html' %}
+{% block content-title %}
+    <h1 class="h2">Admin</h1>
+
+
+
+{% endblock %}
+{% block content %}
+    {% for app_name, app_tables in site.enabled_admins.items %}
+
+        <table class="table table-striped table-borderless border-bottom">
+            <thead>
+            <tr>
+                <th>   {{ app_name }}</th>
+
+            </tr>
+            </thead>
+
+        <tbody>
+            {% for model_name in app_tables %}
+                <tr>
+                    <td>{{ model_name }}</td>
+                    <td>Add</td>
+                    <td>Change</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        </div>
+      {{ app_table }}
+    {% endfor %}
+{% endblock %}
