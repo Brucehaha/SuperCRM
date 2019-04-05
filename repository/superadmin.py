@@ -2,8 +2,8 @@ from repository import models
 from SuperAdmin.sites import site
 
 
-class TicketAdmin(object):
-    lsit_display = ['name']
+class ProductAdmin(object):
+    list_display = ['name']
 
 
-site.register(models.Ticket, TicketAdmin)
+site.register(models.Product, ProductAdmin)

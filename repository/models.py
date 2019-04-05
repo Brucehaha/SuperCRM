@@ -125,7 +125,7 @@ class ProductList(models.Model):
     sku = models.CharField(max_length=16, unique=True)
     pack_size = models.FloatField()
     length = models.PositiveSmallIntegerField(default=0)
-    stock_level = models.PositiveSmallIntegerField(default=0)
+    stock_level = models.FloatField(default=0)
 
     def __str__(self):
         return "%smm %s"%(self.length, self.product.name)
@@ -232,9 +232,12 @@ class Menu(models.Model):
 
     """dynamic menu"""
     name = models.CharField(max_length=64)
+
     URL_TYPE_CHOICES = ((0, 'absolute'), (1, 'dynamic'))
     url_type = models.SmallIntegerField(choices=URL_TYPE_CHOICES, default=0)
-    url_name = models.CharField(max_length=64)
+    url_name = models.CharField(max_length=128)
+    icon = models.TextField()
+    order = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.name

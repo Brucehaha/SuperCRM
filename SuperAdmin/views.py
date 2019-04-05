@@ -9,7 +9,11 @@ from SuperAdmin.sites import site
 
 def apps_index(request):
     print("registerd:", site.enabled_admins)
+    print(request.user.userprofile.role.last().menu.all())
     return render(request, 'superadmin/apps_index.html', {'site': site})
+
+def app_list(request, model_class):
+    pass
 
 def acc_signin(request):
     error_msg = ''
