@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+
 from SuperAdmin import app_setup
 
 app_setup.superadmin_auto_discover()
@@ -7,13 +9,22 @@ app_setup.superadmin_auto_discover()
 from SuperAdmin.sites import site
 
 
-def apps_index(request):
+
+@login_required
+def app_index(request):
     print("registerd:", site.enabled_admins)
     print(request.user.userprofile.role.last().menu.all())
-    return render(request, 'superadmin/apps_index.html', {'site': site})
+    return render(request, 'superadmin/app_index.html', {'site': site})
 
-def app_list(request, model_class):
-    pass
+
+
+def table_list(request, app, model):
+    print(request.GET)
+    return HttpResponse("thanks")
+
+
+def app_list(request):
+    return HttpResponse("app_list")
 
 def acc_signin(request):
     error_msg = ''

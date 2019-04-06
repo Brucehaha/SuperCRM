@@ -36,7 +36,7 @@
                         {% for role in request.user.userprofile.role.all %}
                             {% for menu in role.menu.all %}
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{% if menu.url_type == 0 %}{{ menu.url_name }}{% else %}{% url menu.url_name %}{% endif %}">
+                                    <a class="nav-link" href="{% if menu.url_type == 1 %}{{ menu.url_name }}{% else %}{% url menu.url_name %}{% endif %}">
                                         {{ menu.icon|safe }}
                                         {{ menu.name }}
                                     </a>
