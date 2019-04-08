@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1664acb3-7f7a-4848-9a3c-b99b844acc33" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/table_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SuperAdmin/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperAdmin/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/apps_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/app_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperAdmin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/table_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/table_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SuperAdmin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/superadmin.py" beforeDir="false" afterPath="$PROJECT_DIR$/repository/superadmin.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +22,7 @@
     <session id="346376293">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="1" />
@@ -36,7 +33,8 @@
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -45,16 +43,16 @@
           <entry key="dummy" value="1" />
           <entry key="gitingore" value="1" />
           <entry key="hml" value="29" />
-          <entry key="html" value="2447" />
-          <entry key="py" value="10682" />
+          <entry key="html" value="2705" />
+          <entry key="py" value="11518" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="17" />
-          <entry key="HTML" value="2447" />
+          <entry key="HTML" value="2705" />
           <entry key="PLAIN_TEXT" value="31" />
-          <entry key="Python" value="10682" />
+          <entry key="Python" value="11518" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -62,21 +60,21 @@
           <entry key="css" value="12" />
           <entry key="gitingore" value="1" />
           <entry key="hml" value="1" />
-          <entry key="html" value="25" />
+          <entry key="html" value="26" />
           <entry key="jpg" value="1" />
           <entry key="js" value="4" />
-          <entry key="py" value="103" />
+          <entry key="py" value="112" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="12" />
-          <entry key="HTML" value="25" />
+          <entry key="HTML" value="26" />
           <entry key="Image" value="1" />
           <entry key="JavaScript" value="4" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="103" />
+          <entry key="Python" value="112" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
@@ -85,52 +83,26 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/repository/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-                <element signature="e#638#2051#0" />
-                <element signature="e#1206#1379#0" />
-                <element signature="e#2035#2051#0" />
-                <element signature="e#2096#2386#0" />
-                <element signature="e#2366#2386#0" />
-                <element signature="e#2552#2773#0" />
-                <element signature="e#2818#2894#0" />
-                <element signature="e#2930#3589#0" />
-                <element signature="e#3533#3589#0" />
-                <element signature="e#3626#3881#0" />
-                <element signature="e#3865#3881#0" />
-                <element signature="e#3917#4394#0" />
-                <element signature="e#4378#4394#0" />
-                <marker date="1554444258148" expanded="false" signature="7493:7494" ph="..." />
-                <marker date="1554444258148" expanded="true" signature="8514:8519" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+            <state relative-caret-position="323">
+              <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
-                <marker date="1554527053371" expanded="true" signature="327:663" ph="..." />
-                <marker date="1554527053371" expanded="true" signature="543:603" ph="..." />
-                <marker date="1554527053371" expanded="true" signature="625:663" ph="..." />
+                <marker date="1554705461649" expanded="true" signature="327:857" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/app_index.html">
+        <entry file="file://$PROJECT_DIR$/SuperAdmin/sites.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="14" lean-forward="true" selection-end-line="30" selection-end-column="14" />
+            <state relative-caret-position="306">
+              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+              <folding>
+                <marker date="1554687511521" expanded="true" signature="68:73" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="10" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="10" />
+            <state relative-caret-position="119">
+              <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -147,11 +119,59 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+                <marker date="1554706077387" expanded="true" signature="180:225" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SuperCRM/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="39" column="15" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/repository/superadmin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="19" column="85" lean-forward="true" selection-start-line="19" selection-start-column="85" selection-end-line="19" selection-end-column="85" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SuperAdmin/templatetags/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/template/library.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperCRM/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state>
+              <caret column="29" lean-forward="true" selection-start-column="29" selection-end-column="29" />
               <folding>
                 <element signature="e#632#664#0" expanded="true" />
               </folding>
@@ -160,52 +180,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/repository/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" column="55" lean-forward="true" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/repository/superadmin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/table_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/signin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="69" lean-forward="true" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SuperCRM/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="315">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -216,6 +194,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -234,6 +213,8 @@
       <find>https://getbootstrap.com/docs/4.3/examples/dashboard/#</find>
       <find>search</find>
       <find>sidebar</find>
+      <find>simp</find>
+      <find>fo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -266,19 +247,20 @@
         <option value="$PROJECT_DIR$/SuperAdmin/app_setup.py" />
         <option value="$PROJECT_DIR$/SuperAdmin/base.py" />
         <option value="$PROJECT_DIR$/customer/superadmin.py" />
-        <option value="$PROJECT_DIR$/SuperAdmin/sites.py" />
         <option value="$PROJECT_DIR$/SuperCRM/settings.py" />
         <option value="$PROJECT_DIR$/customer/models.py" />
         <option value="$PROJECT_DIR$/repository/admin.py" />
-        <option value="$PROJECT_DIR$/repository/models.py" />
         <option value="$PROJECT_DIR$/SuperCRM/views.py" />
         <option value="$PROJECT_DIR$/SuperCRM/urls.py" />
         <option value="$PROJECT_DIR$/SuperAdmin/templates/superadmin/index.html" />
-        <option value="$PROJECT_DIR$/SuperAdmin/views.py" />
-        <option value="$PROJECT_DIR$/SuperAdmin/urls.py" />
         <option value="$PROJECT_DIR$/SuperAdmin/templates/superadmin/apps_index.html" />
-        <option value="$PROJECT_DIR$/repository/superadmin.py" />
+        <option value="$PROJECT_DIR$/SuperAdmin/sites.py" />
+        <option value="$PROJECT_DIR$/SuperAdmin/urls.py" />
+        <option value="$PROJECT_DIR$/repository/models.py" />
         <option value="$PROJECT_DIR$/SuperAdmin/templates/superadmin/table_list.html" />
+        <option value="$PROJECT_DIR$/SuperAdmin/views.py" />
+        <option value="$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py" />
+        <option value="$PROJECT_DIR$/repository/superadmin.py" />
       </list>
     </option>
   </component>
@@ -289,10 +271,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1926" />
-    <option name="y" value="1" />
+    <option name="x" value="1894" />
     <option name="width" value="1936" />
-    <option name="height" value="1100" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -300,7 +281,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,31 +296,13 @@
             <path>
               <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
-              <item name="statics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
               <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
               <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
-              <item name="statics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
-              <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
-              <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="superadmin" type="462c0819:PsiDirectoryNode" />
+              <item name="templatetags" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
@@ -351,6 +313,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -437,15 +400,37 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1926" y="1" width="1936" height="1100" extended-state="0" />
-    <editor active="true" />
+    <frame x="1894" y="0" width="1936" height="1047" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19402985" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19616205" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3303671" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.005302227" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27078652" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32921347" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50479746" side_tool="true" weight="0.10122358" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49520257" visible="true" weight="0.32921347" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4989339" weight="0.32925472" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19616205" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3303671" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.004494382" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -454,14 +439,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50479746" side_tool="true" weight="0.10122358" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49520257" weight="0.21633086" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49520257" weight="0.0" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4989339" weight="0.32925472" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -509,18 +494,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/repository/models.py</url>
-          <line>77</line>
-          <option name="timeStamp" value="17" />
+          <line>82</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/repository/models.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/repository/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html" />
-    <entry file="file://$PROJECT_DIR$/statics/js/bootstrap.min.js" />
     <entry file="file://$PROJECT_DIR$/statics/js/popper.min.js" />
     <entry file="file://$PROJECT_DIR$/SuperAdmin/statics/superadmin/css/dashboard.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -595,9 +580,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/urls.py" />
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/admin.py" />
     <entry file="file://$PROJECT_DIR$/SuperAdmin/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -645,23 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/sites.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding>
-            <marker date="1554429959659" expanded="true" signature="68:73" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SuperCRM/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -724,7 +690,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuperCRM/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state relative-caret-position="17">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
@@ -732,69 +698,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/repository/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/signin.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
-          <caret line="28" column="69" lean-forward="true" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
+          <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/app_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repository/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="140" column="55" lean-forward="true" selection-start-line="140" selection-start-column="55" selection-end-line="140" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#112#400#0" />
+            <element signature="e#433#596#0" />
+            <element signature="e#580#596#0" />
+            <element signature="e#638#2051#0" />
+            <element signature="e#1206#1379#0" />
+            <element signature="e#2035#2051#0" />
+            <element signature="e#2096#2386#0" />
+            <element signature="e#2366#2386#0" />
+            <element signature="e#2428#2514#0" />
+            <element signature="e#2552#2773#0" />
+            <element signature="e#2818#2894#0" />
+            <element signature="e#2930#3589#0" />
+            <element signature="e#3626#3881#0" />
+            <element signature="e#3917#4394#0" />
+            <element signature="e#4378#4394#0" />
+            <element signature="e#4434#4820#0" />
+            <marker date="1554693523605" expanded="false" signature="7493:7494" ph="..." />
+            <marker date="1554693523605" expanded="true" signature="8514:8519" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templatetags/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperCRM/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="39" column="15" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/be_challenge/env/Lib/site-packages/django/template/library.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuperCRM/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state>
+          <caret column="29" lean-forward="true" selection-start-column="29" selection-end-column="29" />
           <folding>
             <element signature="e#632#664#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/repository/models.py">
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/table_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <element signature="e#638#2051#0" />
-            <element signature="e#1206#1379#0" />
-            <element signature="e#2035#2051#0" />
-            <element signature="e#2096#2386#0" />
-            <element signature="e#2366#2386#0" />
-            <element signature="e#2552#2773#0" />
-            <element signature="e#2818#2894#0" />
-            <element signature="e#2930#3589#0" />
-            <element signature="e#3533#3589#0" />
-            <element signature="e#3626#3881#0" />
-            <element signature="e#3865#3881#0" />
-            <element signature="e#3917#4394#0" />
-            <element signature="e#4378#4394#0" />
-            <marker date="1554444258148" expanded="false" signature="7493:7494" ph="..." />
-            <marker date="1554444258148" expanded="true" signature="8514:8519" ph="..." />
-          </folding>
+        <state relative-caret-position="315">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/repository/admin.py">
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/sites.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="55" lean-forward="true" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/repository/superadmin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="306">
+          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1554687511521" expanded="true" signature="68:73" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuperAdmin/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="10" />
+        <state relative-caret-position="119">
+          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -803,28 +803,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuperAdmin/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+        <state relative-caret-position="323">
+          <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
-            <marker date="1554527053371" expanded="true" signature="327:663" ph="..." />
-            <marker date="1554527053371" expanded="true" signature="543:603" ph="..." />
-            <marker date="1554527053371" expanded="true" signature="625:663" ph="..." />
+            <marker date="1554705461649" expanded="true" signature="327:857" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/app_index.html">
+    <entry file="file://$PROJECT_DIR$/repository/superadmin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="14" lean-forward="true" selection-end-line="30" selection-end-column="14" />
+        <state relative-caret-position="119">
+          <caret line="19" column="85" lean-forward="true" selection-start-line="19" selection-start-column="85" selection-end-line="19" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/table_list.html">
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="102">
+          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+            <marker date="1554706077387" expanded="true" signature="180:225" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

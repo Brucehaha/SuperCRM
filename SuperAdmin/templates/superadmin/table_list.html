@@ -1,4 +1,6 @@
 {% extends 'superadmin/index.html' %}
+{% load list_display %}
+
 {% block content-title %}
     <h1 class="h2">{{ model_name }}</h1>
 
@@ -7,20 +9,27 @@
 {% endblock %}
 {% block content %}
 
-        <table class="table table-striped table-borderless border-bottom">
-            <thead>
-            <tr>
-                <th> {{ app_name }}</th>
-            </tr>
-            </thead>
+    <table class="table table-striped table-borderless border-bottom">
+        <thead>
+        <tr>{% for data in admin_class.list_display %}
+            <th>{{ data }}  </th>
+        {% endfor %}
+        </tr>
+        </thead>
 
         <tbody>
+        {% for obj in queryset %}
 
-                <tr>
+            <tr>
+                {% for col in admin_class.list_display %}
+                        {% table_list col obj %}
+                {% endfor %}
 
 
-                </tr>
+            </tr>
+        {% endfor %}
+
 
         </tbody>
-        </table>
+    </table>
 {% endblock %}

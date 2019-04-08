@@ -17,10 +17,11 @@ def app_index(request):
     return render(request, 'superadmin/app_index.html', {'site': site})
 
 
+def table_list(request, app_name, model_name):
 
-def table_list(request, app, model):
-    print(request.GET)
-    return HttpResponse("thanks")
+    admin_class = site.enabled_admins[app_name][model_name]
+    queryset = admin_class.model.objects.all()
+    return render(request, 'superadmin/table_list.html', {'queryset': queryset, 'admin_class': admin_class, 'model_name':model_name})
 
 
 def app_list(request):
