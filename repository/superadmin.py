@@ -6,15 +6,20 @@ from SuperAdmin.base import  BaseAdminSite
 class ProductAdmin(BaseAdminSite):
     list_display = [
         'name',
+        'productlist__sku',
+        'productlist__length',
         'width',
-        'width',
+        'veneer',
+        'productlist__pack_size',
+        'productlist__stock_level',
         'thickness',
         'category',
         ]
 
 
+
 class CustomerAdmin(BaseAdminSite):
-    list_display = ['name', 'company', 'email','mobile', 'source', 'consultant', 'status']
+    list_display = ['name', 'company', 'email', 'mobile', 'source', 'consultant', 'status']
     list_filter = ['name', 'company', 'status', 'consultant']
 
 
