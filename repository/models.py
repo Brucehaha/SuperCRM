@@ -119,6 +119,7 @@ class Product(models.Model):
         return self.name
 
 
+
 class ProductList(models.Model):
     """Product list Table """
     product = models.ForeignKey("Product", on_delete=models.CASCADE)  # foreign key

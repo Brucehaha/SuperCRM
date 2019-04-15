@@ -1,9 +1,10 @@
 
 
 class BaseAdminSite(object):
-    pass
+    verbose_name = None
 
 
 class InlineModelAdmin(BaseAdminSite):
     model = None
+
 
