@@ -12,16 +12,23 @@ from SuperAdmin.sites import site
 
 @login_required
 def app_index(request):
-    print("registerd:", site.enabled_admins)
-    print(request.user.userprofile.role.last().menu.all())
     return render(request, 'superadmin/app_index.html', {'site': site})
 
+def table_filter(request, queryset):
+    filter_conditions = {}
+    for k, v in request.GET.items():
+        if v:
+            filter_conditions[k] = v
+    return queryset.filter(**filter_conditions), filter_conditions
 
 def table_list(request, app_name, model_name):
 
     admin_class = site.enabled_admins[app_name][model_name]
     queryset = admin_class.model.objects.all()
-    return render(request, 'superadmin/table_list.html', {'queryset': queryset, 'admin_class': admin_class, 'model_name':model_name})
+    res, filter_conditions = table_filter(request, queryset)
+    admin_class.filter_conditions = filter_conditions
+
+    return render(request, 'superadmin/table_list.html', {'queryset': res, 'admin_class': admin_class})
 
 
 def app_list(request):

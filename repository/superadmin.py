@@ -19,10 +19,10 @@ class ProductAdmin(BaseAdminSite):
 
 class CustomerAdmin(BaseAdminSite):
     list_display = ['name', 'company', 'email', 'mobile', 'source', 'consultant', 'status']
-    list_filter = ['name', 'company', 'status', 'consultant']
-    search_fields =['status']
+    list_filter = ['name', 'company', 'status', 'consultant', 'timestamp']
     verbose_name = "Customers"
 
 
 site.register(models.Product, ProductAdmin)
 site.register(models.CustomerInfo, CustomerAdmin)
+site.register(models.Menu)

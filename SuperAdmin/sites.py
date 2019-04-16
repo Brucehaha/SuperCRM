@@ -6,7 +6,6 @@ class AdminSite(object):
         self.enabled_admins = {}
 
     def register(self, model_class, admin_class=None):
-        print(model_class, admin_class)
         app_name = model_class._meta.app_label
         model_name = model_class._meta.model_name
         if admin_class == None:
