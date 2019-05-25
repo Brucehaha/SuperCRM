@@ -38,7 +38,7 @@ class MyPaginator(object):
             if first < 1:
                 first = 1
             if last > self.total_pages():
-                last = self.total_pages()
+                last = self.total_pages()  
         return list(range(first, last+1))
 
     def paginator(self):
@@ -70,8 +70,11 @@ class MyPaginator(object):
             self.current_page,  self.total_pages()
         )
 
-        if self.max_num_pages <= 1:
-            return ""
+        if self.total_pages() <= 1:
+            return "%s Page of %s" % (
+            self.current_page,  self.total_pages()
+        )
+
         return mark_safe(_html)
 
 

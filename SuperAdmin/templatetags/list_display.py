@@ -101,6 +101,26 @@ def list_filter(f, kls):
 
     return mark_safe(_html)
 
+
 @register.simple_tag
 def get_model_name(admin_class):
     return admin_class.model._meta.model_name.upper()
+
+
+@register.simple_tag
+def sort_by_column(admin_class, column):
+    if hasattr(admin_class, 'order_by'):
+        order_id = admin_class.order_by.get('_o')
+        if order_id == str(column):
+            return "-%s" % column
+    return column
+
+@register.simple_tag
+def render_filter_icon(admin_class, column):
+    if hasattr(admin_class, 'order_by'):
+        order_id = admin_class.order_by.get('_o')
+        if order_id == "-%s" % column:
+            return mark_safe('<i class ="fas fa-sort-up"> </i>')
+        else:
+            return mark_safe('<i class ="fas fa-sort-down"> </i>')
+    return ''

@@ -114,23 +114,27 @@ class Product(models.Model):
     width = models.PositiveIntegerField( default=0)
     thickness = models.PositiveIntegerField(default=0)
     veneer = models.SmallIntegerField(default=0)
-
-    def __str__(self):
-        return self.name
-
-
-
-class ProductList(models.Model):
-    """Product list Table """
-    product = models.ForeignKey("Product", on_delete=models.CASCADE)  # foreign key
-    sku = models.CharField(max_length=16, unique=True)
+    sku = models.CharField(max_length=16, null=True, blank=True, unique=True)
     pack_size = models.FloatField()
     length = models.PositiveSmallIntegerField(default=0)
     stock_level = models.FloatField(default=0)
 
     def __str__(self):
-        return "%smm %s"%(self.length, self.product.name)
+        return self.name
 
+# #
+# #
+# class ProductList(models.Model):
+#     """Product list Table """
+#     product = models.ForeignKey("Product", on_delete=models.CASCADE)  # foreign key
+#     sku = models.CharField(max_length=16, unique=True)
+#     pack_size = models.FloatField()
+#     length = models.PositiveSmallIntegerField(default=0)
+#     stock_level = models.FloatField(default=0)
+#
+#     def __str__(self):
+#         return "%smm %s"%(self.length, self.product.name)
+#
 
 class ProductToImage(models.Model):
     """Prudct image bridge"""
