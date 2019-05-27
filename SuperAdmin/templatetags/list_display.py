@@ -87,6 +87,9 @@ def list_filter(f, kls):
                 (time_obj - datetime.timedelta(180), 'YearToDay'),
             ]
         )
+    elif column_obj.get_internal_type() == "ForeignKey":
+        new_opts = column_obj.related_model.objects.values_list('id', 'name')
+        options.extend(list(new_opts))
     else:
         return ''
 
@@ -111,8 +114,9 @@ def get_model_name(admin_class):
 def sort_by_column(admin_class, column):
     if hasattr(admin_class, 'order_by'):
         order_id = admin_class.order_by.get('_o')
-        if order_id == str(column):
-            return "-%s" % column
+        if order_id is not None:
+            if str(column) in order_id or order_id in str(column):
+                return order_id
     return column
 
 @register.simple_tag
@@ -120,7 +124,8 @@ def render_filter_icon(admin_class, column):
     if hasattr(admin_class, 'order_by'):
         order_id = admin_class.order_by.get('_o')
         if order_id == "-%s" % column:
+            return mark_safe('<i class ="fas fa-sort-down"> </i>')
+        elif order_id == str(column):
             return mark_safe('<i class ="fas fa-sort-up"> </i>')
         else:
-            return mark_safe('<i class ="fas fa-sort-down"> </i>')
-    return ''
+            return ''
