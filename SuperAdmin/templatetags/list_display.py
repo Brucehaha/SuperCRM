@@ -111,21 +111,28 @@ def get_model_name(admin_class):
 
 
 @register.simple_tag
-def sort_by_column(admin_class, column):
-    if hasattr(admin_class, 'order_by'):
-        order_id = admin_class.order_by.get('_o')
-        if order_id is not None:
-            if str(column) in order_id or order_id in str(column):
-                return order_id
-    return column
+def sort_by_column(column, curr_column, count0):
+    if column in curr_column:
+        # need to get the order(acs dcs)
+        last_sorted_index = curr_column[column]
+        if last_sorted_index.startswith('-'):
+            curr_sorted_index = last_sorted_index.strip('-')
+
+        else:
+            curr_sorted_index = '-%s' % last_sorted_index
+        return curr_sorted_index
+    else:
+        return count0
 
 @register.simple_tag
-def render_filter_icon(admin_class, column):
-    if hasattr(admin_class, 'order_by'):
-        order_id = admin_class.order_by.get('_o')
-        if order_id == "-%s" % column:
-            return mark_safe('<i class ="fas fa-sort-down"> </i>')
-        elif order_id == str(column):
-            return mark_safe('<i class ="fas fa-sort-up"> </i>')
+def render_filter_icon(column, curr_column):
+    if column in curr_column:  # column been sorted,
+        last_sort_index = curr_column[column]
+        if last_sort_index.startswith('-'):
+            arrow_direction = 'bottom'
         else:
-            return ''
+            arrow_direction = 'top'
+        ele = '''<i class ="fas fa-sort-%s"> </i"></span>''' % arrow_direction
+        return mark_safe(ele)
+    return ''
+

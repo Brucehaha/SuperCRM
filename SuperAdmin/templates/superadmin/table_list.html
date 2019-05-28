@@ -23,7 +23,7 @@
         <tr>
         {% if  admin_class.list_display %}
             {% for data in admin_class.list_display %}
-                <th><a href="?_o={% sort_by_column admin_class forloop.counter0 %} ">{% list_display data|title %} {% render_filter_icon admin_class forloop.counter0 %}</a></th>
+                <th><a href="?_o={% sort_by_column column curr_column forloop.counter0 %} ">{% list_display data|title %} {% render_filter_icon column curr_column %}</a></th>
 
             {% endfor %}
         {% else %}
