@@ -28,6 +28,7 @@ class ProductAdmin(BaseAdminSite):
         'category',
         ]
     list_filter = ['category']
+    search_fields = ['sku', 'name']
 
 
 

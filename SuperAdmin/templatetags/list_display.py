@@ -124,15 +124,29 @@ def sort_by_column(column, curr_column, count0):
     else:
         return count0
 
+
 @register.simple_tag
 def render_filter_icon(column, curr_column):
+    """render filter icon """
     if column in curr_column:  # column been sorted,
         last_sort_index = curr_column[column]
         if last_sort_index.startswith('-'):
-            arrow_direction = 'bottom'
+            arrow_direction = 'down'
         else:
-            arrow_direction = 'top'
+            arrow_direction = 'up'
         ele = '''<i class ="fas fa-sort-%s"> </i"></span>''' % arrow_direction
         return mark_safe(ele)
     return ''
 
+
+@register.simple_tag
+def render_filtered_args(admin_class, render_html=True):
+    """ concat link """
+    if admin_class.filter_conditions:
+        ele = ''
+        for k, v in admin_class.filter_conditions.items():
+            ele += '&%s=%s' %(k, v)
+        if render_html:
+            return mark_safe(ele)
+    else:
+        return ''
