@@ -38,13 +38,19 @@ def table_list(obj, admin_class):
                         colNameList.append(getattr(x, col_name))
                 if any(colNameList):
                     cell = "/".join([str(x) for x in colNameList])
-
             else:
                 cell = getattr(obj, col)
                 choice = obj._meta.get_field(col).choices
                 if any(choice):
                     cell = getattr(obj, "get_%s_display" % col)()
-            _html += "<td>%s</td>" % cell
+
+            if admin_class.list_display.index(col) == 0:
+                 app_name = admin_class.model._meta.app_label
+                 model_name = admin_class.model._meta.model_name
+                 _html += "<td><a href='/superadmin/%s/%s/%s/edit'>%s</a></td>" % (app_name, model_name, obj.id, cell)
+
+            else:
+                _html += "<td>%s</td>" % cell
     else:
         _html = "<td>%s</td>" % obj
 

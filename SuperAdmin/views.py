@@ -2,14 +2,12 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-
 from .utils.paginator import MyPaginator
 from SuperAdmin import app_setup
-
+from .forms import dynamic_form_generator
 app_setup.superadmin_auto_discover()
 
 from SuperAdmin.sites import site
-
 
 
 @login_required
@@ -46,7 +44,6 @@ def get_search_result(request, querysets, admin_class):
         q.connector = 'OR'
         for s in admin_class.search_fields:
             q.children.append(("%s__contains"% s, search_key))
-            print(q.children)
         return querysets.filter(q)
     return querysets
 
@@ -63,9 +60,9 @@ def table_list(request, app_name, model_name):
     queryset, curr_column = get_order_result(request, queryset, admin_class)
     queryset = get_search_result(request, queryset, admin_class)
     # pagenate the pages
+    total = admin_class.model.objects.count()
+    page = MyPaginator(current_page=int(p), total_items=total, num_per_page=50)
     if queryset.last() is not None:
-        total = admin_class.model.objects.count()
-        page = MyPaginator(current_page=int(p), total_items=total, num_per_page=50)
         queryset = queryset[page.start:page.end]
 
     return render(request, 'superadmin/table_list.html', {
@@ -75,8 +72,19 @@ def table_list(request, app_name, model_name):
         'curr_column': curr_column})
 
 
-def app_list(request):
-    return HttpResponse("app_list")
+def edit_object(request, app_name, model_name, obj_id):
+    admin_class = site.enabled_admins[app_name][model_name]
+    obj = admin_class.model.objects.get(id=obj_id)
+    model_form = dynamic_form_generator(admin_class)
+    if request.method == 'POST':
+        form = model_form(data=request.POST, instance=obj)
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/superadmin/%s/%s/" %(app_name,model_name))
+    else:
+        form = model_form(instance=obj)
+    return render(request, 'superadmin/edit.html', {'form': form})
 
 
 def acc_signin(request):

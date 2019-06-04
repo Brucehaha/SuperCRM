@@ -13,7 +13,9 @@
     <form>
         <input type='search' placeholder="{% for s in admin_class.search_fields %}{{ s }}, {% endfor %}" name="_q" value="{{ admin_class.search_key }}">
         <input type="submit" value="Search" >
-
+        {% for k, v in admin_class.filter_conditions.items %}
+            <input type="hidden" name="{{ k }}" value="{{ v }}">
+        {% endfor %}
     </form>
     {% endif  %}
     <div>
@@ -44,7 +46,7 @@
         {% for obj in queryset %}
 
             <tr>
-                   {% table_list obj admin_class%}
+                   {% table_list obj admin_class %}
             </tr>
         {% endfor %}
 

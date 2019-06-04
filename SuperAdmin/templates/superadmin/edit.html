@@ -1,0 +1,16 @@
+{% extends 'superadmin/index.html' %}
+{% load list_display %}
+
+{% block content-title %}
+    <h1 class="h2"> App</h1>
+
+
+
+{% endblock %}
+{% block content %}
+    <form  method="post">
+        {% csrf_token %}
+       {{ form }}
+    <button type="submit" class="button button-success"> Save</button>
+    </form>
+{% endblock %}
