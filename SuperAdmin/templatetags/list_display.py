@@ -22,7 +22,6 @@ def table_list(obj, admin_class):
                 obj_id = obj.id
                 # filer condition to get he instance set by id
                 condition = {'%s_id' % obj._meta.model_name: obj_id}
-
                 # get the tables which have foreign key point to obj model class
                 for m in obj._meta._relation_tree:
                     if m.model._meta.model_name == model_name:
@@ -48,7 +47,6 @@ def table_list(obj, admin_class):
                  app_name = admin_class.model._meta.app_label
                  model_name = admin_class.model._meta.model_name
                  _html += "<td><a href='/superadmin/%s/%s/%s/edit'>%s</a></td>" % (app_name, model_name, obj.id, cell)
-
             else:
                 _html += "<td>%s</td>" % cell
     else:
@@ -156,3 +154,8 @@ def render_filtered_args(admin_class, render_html=True):
             return mark_safe(ele)
     else:
         return ''
+
+@register.simple_tag
+def render_form_field(f):
+    return type(f.field.widget).__name__
+

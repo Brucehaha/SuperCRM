@@ -66,6 +66,9 @@ class CustomerLevel(models.Model):
     name = models.CharField(max_length=16)
     level = models.SmallIntegerField(default=0)
 
+    def __str__(self):
+        return self.name
+
 
 class Discount(models.Model):
 
