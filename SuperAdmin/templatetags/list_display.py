@@ -8,7 +8,12 @@ register = template.Library()
 
 @register.simple_tag
 def table_list(obj, admin_class):
-    # get the fk relate model and filter the related data set
+    '''
+    get the fk relate model and filter the related data set
+    :param obj:
+    :param admin_class:
+    :return:
+    '''
     _html = ''
     cell = ''
     if admin_class.list_display:
@@ -159,3 +164,28 @@ def render_filtered_args(admin_class, render_html=True):
 def render_form_field(f):
     return type(f.field.widget).__name__
 
+@register.simple_tag
+def get_m2m_avalaible_data(field_name, form_obj,  admin_class):
+    """
+    find all the m2m available values of that field
+    :param field: form field object
+    :param form_obj: django modelform instance
+    :param admin_class: admin_class with model object
+    :return: value list the related m2m value not selected
+    """
+    field_obj = admin_class.model._meta.get_field(field_name)
+    obj_list = set(field_obj.related_model.objects.all())
+    selected_data = set(getattr(form_obj.instance, field_name).all())
+    return obj_list - selected_data
+
+@register.simple_tag
+def get_selected_m2m_data(field_name, form_obj,  admin_class):
+    """
+    find all the m2m available values of that field
+    :param field: form field object
+    :param form_obj: django modelform instance
+    :param admin_class: admin_class with model object
+    :return: value list the related m2m value selected
+    """
+    selected_data = set(getattr(form_obj.instance, field_name).all())
+    return selected_data

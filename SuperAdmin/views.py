@@ -84,7 +84,7 @@ def edit_object(request, app_name, model_name, obj_id):
             return redirect("/superadmin/%s/%s/" %(app_name,model_name))
     else:
         form = model_form(instance=obj)
-    return render(request, 'superadmin/edit.html', {'form': form})
+    return render(request, 'superadmin/edit.html', {'form': form, 'admin_class': admin_class})
 
 
 def acc_signin(request):

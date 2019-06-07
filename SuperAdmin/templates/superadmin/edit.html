@@ -13,14 +13,25 @@
     {% for field in form %}
         <div class="form-group">
         <label class="col-sm-2 control-label">{{ field.label }}</label>
-        <div class="col-sm-10">
+        <div class="row">
             {% render_form_field field as f %}
             {% if f == "SelectMultiple" %}
                 <div class="col-lg-5">
-                    <select type=""
+                    <select id="id_{{ field.name }}_from" multiple class="form-control">
+                        {% get_m2m_avalaible_data field.name form admin_class as avl_data %}
+                        {% for v in avl_data %}
+                          <option ondblclick="MoveOption(this, 'id_{{ field.name }}_to')" value="{{ v.id }}">{{ v }}</option>
+                        {% endfor %}
+
+                    </select>
                 </div>
                 <div class="col-lg-5">
-                    ok
+                    <select name="{{ field.name }}" id="id_{{ field.name }}_to" multiple class="form-control">
+                    {% get_selected_m2m_data field.name form admin_class as selected_data %}
+                     {% for v in selected_data %}
+                      <option ondblclick="MoveOption(this, 'id_{{ field.name }}_from')"  value="{{ v.id }}">{{ v }}</option>
+                    {% endfor %}
+                    </select>
                 </div>
             {% else %}
                 {{ field }}
@@ -30,4 +41,18 @@
     {% endfor %}
     <button type="submit" class="button button-success"> Save</button>
     </form>
+
+    <script>
+        function MoveOption(that, id) {
+            var to_parent_id = $(that).parent().attr('id');
+            console.log(to_parent_id)
+            var option = "<option value='" + $(that).val() +"'ondblclick=MoveOption(this,'"+ to_parent_id +"') >" + $(that).text() +"</option>";
+
+            $('#'+ id).append(option);
+            $(that).remove();
+
+
+        }
+    </script>
 {% endblock %}
+
