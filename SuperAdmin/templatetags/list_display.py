@@ -189,3 +189,14 @@ def get_selected_m2m_data(field_name, form_obj,  admin_class):
     """
     selected_data = set(getattr(form_obj.instance, field_name).all())
     return selected_data
+
+@register.simple_tag
+def get_readonly_value(form, field_name):
+    """
+    render instance field value to template
+    :param form:
+    :param field_name:
+    :return: field value
+    """
+    v = getattr(form.instance, field_name)
+    return v
