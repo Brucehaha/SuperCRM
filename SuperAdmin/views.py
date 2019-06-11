@@ -75,6 +75,7 @@ def table_list(request, app_name, model_name):
 def add_instance(request, app_name, model_name):
     admin_class = site.enabled_admins[app_name][model_name]
     model_form = dynamic_form_generator(admin_class, form_add=True)
+    admin_class.form_add = True
     if request.method == 'POST':
         form = model_form(data=request.POST)
         if form.is_valid():
@@ -89,6 +90,8 @@ def edit_instance(request, app_name, model_name, obj_id):
     admin_class = site.enabled_admins[app_name][model_name]
     obj = admin_class.model.objects.get(id=obj_id)
     model_form = dynamic_form_generator(admin_class)
+    admin_class.form_add = False
+
     if request.method == 'POST':
         form = model_form(data=request.POST, instance=obj)
         print(request.POST)

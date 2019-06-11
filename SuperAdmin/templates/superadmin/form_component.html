@@ -1,7 +1,17 @@
 {% load list_display %}
     <form method="post" onsubmit="SelectOption()">{% csrf_token %}
     {{ form.errors }}
+    {% if not admin_class.form_add %}
+    {% for field_name in admin_class.readonly_fields %}
+        <div class="form-group">
+        <label for="id_{{ field_name }}">{{ field_name|title }}</label>
+        <input class="form-control" disabled id= "id_{{ field_name }}" value="{% get_readonly_value form field_name %}"/>
+
+    {% endfor %}
+   {% endif %}
+
     {% for field in form %}
+
         <div class="form-group">
         <label for="id_{{ field.name }}">{{ field.label }}</label>
             {% render_form_field field as f %}
@@ -27,16 +37,12 @@
                 </div>
                 </div>
             {% else %}
-                {% if not admin_class.form_add %}
-                    {% if field in admin_class.readonly_fields %}
-                        <p>{% get_readonly_value form field %}</p>
-                    {% endif %}
-                {% else  %}
-                    {{ field }}
-                {% endif %}
+
+             {{ field }}
             {% endif %}
         </div>
     {% endfor %}
+
   <div class="form-group">
     <div class="col-sm-offset-11 col-sm-2">
       <button type="submit" class="btn btn-info">Save</button>

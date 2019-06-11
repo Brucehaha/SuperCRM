@@ -192,11 +192,8 @@ def get_selected_m2m_data(field_name, form_obj,  admin_class):
 
 @register.simple_tag
 def get_readonly_value(form, field_name):
-    """
-    render instance field value to template
-    :param form:
-    :param field_name:
-    :return: field value
-    """
+
     v = getattr(form.instance, field_name)
+    # field_type = form.instance._meta.get_field(field_name).get_internal_type()
+
     return v

@@ -29,7 +29,7 @@ class ProductAdmin(BaseAdminSite):
         ]
     list_filter = ['category']
     search_fields = ['sku', 'name']
-    readonly_fields = ['sku']
+    readonly_fields = ['name', 'description']
 
 
 
