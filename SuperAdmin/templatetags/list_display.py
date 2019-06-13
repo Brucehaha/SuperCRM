@@ -160,9 +160,11 @@ def render_filtered_args(admin_class, render_html=True):
     else:
         return ''
 
+
 @register.simple_tag
 def render_form_field(f):
     return type(f.field.widget).__name__
+
 
 @register.simple_tag
 def get_m2m_avalaible_data(field_name, form_obj,  admin_class):
@@ -178,6 +180,7 @@ def get_m2m_avalaible_data(field_name, form_obj,  admin_class):
     selected_data = set(getattr(form_obj.instance, field_name).all())
     return obj_list - selected_data
 
+
 @register.simple_tag
 def get_selected_m2m_data(field_name, form_obj,  admin_class):
     """
@@ -190,10 +193,15 @@ def get_selected_m2m_data(field_name, form_obj,  admin_class):
     selected_data = set(getattr(form_obj.instance, field_name).all())
     return selected_data
 
+
 @register.simple_tag
 def get_readonly_value(form, field_name):
-
+    """
+    :param form: form from edit view
+    :param field_name: field name in readonly_field
+    :return: instance field value
+    """
     v = getattr(form.instance, field_name)
     # field_type = form.instance._meta.get_field(field_name).get_internal_type()
-
     return v
+

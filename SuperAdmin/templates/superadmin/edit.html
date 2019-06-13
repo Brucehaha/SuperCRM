@@ -2,7 +2,18 @@
 {% load list_display %}
 
 {% block content-title %}
-    <h1 class="h2"> App</h1>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
+
+    <h1 class="h2">EDIT</h1>
+</div>
+<nav aria-label="breadcrumb" class=" pb-2 mb-3 border-bottom">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/superadmin">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="/superadmin/{{ app_name }}">{{ app_name|title }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ model_name|title }}</li>
+
+  </ol>
+</nav>
 
 {% endblock %}
 {% block content %}

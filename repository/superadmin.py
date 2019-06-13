@@ -32,8 +32,6 @@ class ProductAdmin(BaseAdminSite):
     readonly_fields = ['name', 'description']
 
 
-
-
 class CustomerAdmin(BaseAdminSite):
     list_display = ['name', 'company', 'email', 'mobile', 'source', 'consultant', 'status']
     list_filter = ['name', 'company', 'status', 'consultant', 'timestamp']

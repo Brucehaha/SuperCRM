@@ -1,7 +1,9 @@
 {% extends 'superadmin/index.html' %}
 {% block content-title %}
-    <h1 class="h2">Admin</h1>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
+    <h1 class="h2">Dashboard</h1>
+</div>
 
 
 {% endblock %}
@@ -19,8 +21,8 @@
             {% for model_name in app_tables %}
                 <tr>
                     <td><a href="{% url  'table_list' app_name model_name %}">{{ model_name }}</a></td>
-                    <td>Add</td>
-                    <td>Change</td>
+                    <td><a href="{% url  'add_instance' app_name model_name %}"> Add </a></td>
+                    <td > <a href="{% url  'table_list' app_name model_name %}">Change</a></td>
                 </tr>
             {% endfor %}
 

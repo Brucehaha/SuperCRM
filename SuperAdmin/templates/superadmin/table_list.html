@@ -2,8 +2,14 @@
 {% load list_display %}
 
 {% block content-title %}
-    <h1 class="h2"> App</h1>
+<nav aria-label="breadcrumb" class="pt-3 pb-2 mb-3 border-bottom">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/superadmin">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="/superadmin/{{ app_name }}">{{ app_name|title }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ model_name|title }}</li>
 
+  </ol>
+</nav>
 
 
 {% endblock %}
@@ -54,4 +60,25 @@
         </tbody>
     </table>
     {{ page.paginator }}
+{% endblock %}
+
+
+{% block css %}
+<style>
+input[type=search], input[type=text], select{
+    padding: 3px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+ input[type=submit], input[type=text], select{
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+</style>
+
 {% endblock %}

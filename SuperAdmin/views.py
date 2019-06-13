@@ -11,8 +11,16 @@ from SuperAdmin.sites import site
 
 
 @login_required
-def app_index(request):
-    return render(request, 'superadmin/app_index.html', {'site': site})
+def apps_list(request):
+    ''' return all the models of each apps '''
+    return render(request, 'superadmin/apps_list.html', {'site': site})
+
+
+def app_models_list(request, app_name):
+    ''' return model list of app '''
+    models_list = site.enabled_admins[app_name]
+    print(models_list)
+    return render(request, 'superadmin/models_list.html', {'models_list': models_list, 'app_name': app_name})
 
 
 def get_filter_result(request, queryset):
@@ -49,12 +57,15 @@ def get_search_result(request, querysets, admin_class):
 
 
 def table_list(request, app_name, model_name):
+    ''' return all the instances given model name and app_name'''
     admin_class = site.enabled_admins[app_name][model_name]
     p = request.GET.get('p', 1)
     # get query set
     queryset = admin_class.model.objects.all()
     #filter the queryset
     queryset, filter_conditions = get_filter_result(request, queryset)
+    # filter condition will be used in the template tags function which
+    # render it to template again for next order or search
     admin_class.filter_conditions = filter_conditions
     # sort the queryset
     queryset, curr_column = get_order_result(request, queryset, admin_class)
@@ -69,7 +80,9 @@ def table_list(request, app_name, model_name):
         'queryset': queryset,
         'admin_class': admin_class,
         'page': page,
-        'curr_column': curr_column})
+        'curr_column': curr_column,
+        'app_name': app_name,
+        'model_name': model_name})
 
 
 def add_instance(request, app_name, model_name):
@@ -83,7 +96,7 @@ def add_instance(request, app_name, model_name):
             return redirect("/superadmin/%s/%s/" %(app_name, model_name))
     else:
         form = model_form()
-    return render(request, 'superadmin/add.html', {'form': form, 'admin_class': admin_class})
+    return render(request, 'superadmin/add.html', {'form': form, 'admin_class': admin_class, 'app_name':app_name, 'model_name': model_name})
 
 
 def edit_instance(request, app_name, model_name, obj_id):
@@ -97,10 +110,10 @@ def edit_instance(request, app_name, model_name, obj_id):
         print(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/superadmin/%s/%s/" %(app_name,model_name))
+            return redirect("/superadmin/%s/%s/" %(app_name, model_name))
     else:
         form = model_form(instance=obj)
-    return render(request, 'superadmin/edit.html', {'form': form, 'admin_class': admin_class})
+    return render(request, 'superadmin/edit.html', {'form': form, 'admin_class': admin_class, 'app_name':app_name,'model_name': model_name})
 
 
 def acc_signin(request):
