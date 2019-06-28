@@ -12,14 +12,13 @@ from SuperAdmin.sites import site
 
 @login_required
 def apps_list(request):
-    ''' return all the models of each apps '''
+    """ return all the models of each apps """
     return render(request, 'superadmin/apps_list.html', {'site': site})
 
 
 def app_models_list(request, app_name):
-    ''' return model list of app '''
+    """ return model list of app """
     models_list = site.enabled_admins[app_name]
-    print(models_list)
     return render(request, 'superadmin/models_list.html', {'models_list': models_list, 'app_name': app_name})
 
 

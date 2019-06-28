@@ -111,6 +111,7 @@ class Category(models.Model):
 class Product(models.Model):
     """Product Table"""
     name = models.CharField(max_length=64)
+    image = models.ManyToManyField('Image', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)  # foreign key
     description = models.TextField(blank=True, null=True)
     color = models.CharField(max_length=16)
@@ -125,29 +126,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# #
-# #
-# class ProductList(models.Model):
-#     """Product list Table """
-#     product = models.ForeignKey("Product", on_delete=models.CASCADE)  # foreign key
-#     sku = models.CharField(max_length=16, unique=True)
-#     pack_size = models.FloatField()
-#     length = models.PositiveSmallIntegerField(default=0)
-#     stock_level = models.FloatField(default=0)
-#
-#     def __str__(self):
-#         return "%smm %s"%(self.length, self.product.name)
-#
 
-class ProductToImage(models.Model):
-    """Prudct image bridge"""
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
-    image = models.ForeignKey('Images', on_delete=models.CASCADE)
-
-
-class Images(models.Model):
+class Image(models.Model):
+    ''' images storage'''
     name = models.CharField(max_length=64, unique=True)
-    product = models.ManyToManyField("Product")  # foreign key
     image = models.ImageField()
     timestamp = models.DateField(auto_now_add=True)
 

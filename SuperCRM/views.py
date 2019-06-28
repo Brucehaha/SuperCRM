@@ -4,7 +4,6 @@ from django.contrib.auth import login, authenticate, logout
 
 def acc_signin(request):
     if request.method == "POST":
-        print(request.POST)
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)

@@ -1,17 +1,19 @@
-from django.conf.urls import url
+from django.conf.urls import url, re_path
 from SuperAdmin import views
 
 
 urlpatterns = [
-    url(r'^$', views.apps_list, name='dashboard'),
-    url(r'^(\w+)/$', views.app_models_list, name='models_list'),
+    re_path(r'^$', views.apps_list, name='dashboard'),
+    re_path(r'^signin/', views.acc_signin),
+    re_path(r'^logout/$', views.acc_logout),
 
-    url(r'^(\w+)/(\w+)/(\d+)/edit/$', views.edit_instance, name='edit_instance'),
-    url(r'^(\w+)/(\w+)/add/$', views.add_instance, name='add_instance'),
+    re_path(r'^(\w+)/$', views.app_models_list, name='models_list'),
 
-    url(r'^(\w+)/(\w+)/$', views.table_list, name='table_list'),
+    re_path(r'^(\w+)/(\w+)/(\d+)/edit/$', views.edit_instance, name='edit_instance'),
+    re_path(r'^(\w+)/(\w+)/add/$', views.add_instance, name='add_instance'),
 
-    url(r'^signin/', views.acc_signin),
-    url(r'^logout/$', views.acc_logout),
+    re_path(r'^(\w+)/(\w+)/$', views.table_list, name='table_list'),
+
+
 
 ]

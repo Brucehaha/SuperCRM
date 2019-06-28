@@ -17,12 +17,8 @@ admin.site.register(models.CustomerLevel)
 admin.site.register(models.Discount)
 admin.site.register(models.DiscountInterval)
 
-
-
 admin.site.register(models.Category)
 admin.site.register(models.Product)
-admin.site.register(models.ProductToImage)
-admin.site.register(models.Images)
 
 admin.site.register(models.Cart)
 admin.site.register(models.CartToProduct)

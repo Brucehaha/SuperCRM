@@ -2,19 +2,6 @@ from repository import models
 from SuperAdmin.sites import site
 from SuperAdmin.base import  BaseAdminSite
 
-
-# class ProductAdmin(BaseAdminSite):
-#     list_display = [
-#         'name',
-#         'productlist__sku',
-#         'productlist__length',
-#         'width',
-#         'veneer',
-#         'productlist__pack_size',
-#         'productlist__stock_level',
-#         'thickness',
-#         'category',
-#         ]
 class ProductAdmin(BaseAdminSite):
     list_display = [
         'name',
