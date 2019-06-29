@@ -28,6 +28,8 @@
     {% if admin_class.list_filter %}
         <form>
             {% for i in admin_class.list_filter %}
+                <label>{{ i|title }}: </label>
+
                 {% list_filter i admin_class %}
             {% endfor %}
                 <input type="submit" value="Filter">

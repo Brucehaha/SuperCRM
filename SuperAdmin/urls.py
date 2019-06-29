@@ -14,6 +14,4 @@ urlpatterns = [
 
     re_path(r'^(\w+)/(\w+)/$', views.table_list, name='table_list'),
 
-
-
 ]

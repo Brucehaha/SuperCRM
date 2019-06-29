@@ -176,16 +176,17 @@ def get_m2m_avalaible_data(field_name, form_obj,  admin_class):
     :return: value list the related m2m value not selected
     """
     field_obj = admin_class.model._meta.get_field(field_name)
+    obj_list = set(field_obj.related_model.objects.all())
     try:
-        obj_list = set(field_obj.related_model.objects.all())
         selected_data = set(getattr(form_obj.instance, field_name).all())
-    except Exception:
-        return []
+    except TypeError:
+        selected_data = set()
+
     return obj_list - selected_data
 
 
 @register.simple_tag
-def get_selected_m2m_data(field_name, form_obj,  admin_class):
+def get_selected_m2m_data(field_name, form_obj):
     """
     find all the m2m available values of that field
     :param field: form field object
@@ -195,8 +196,8 @@ def get_selected_m2m_data(field_name, form_obj,  admin_class):
     """
     try:
         selected_data = set(getattr(form_obj.instance, field_name).all())
-    except Exception:
-        return []
+    except TypeError:
+        selected_data = set()
     return selected_data
 
 

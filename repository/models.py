@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.html import mark_safe
 
 
 class UserProfile(models.Model):
@@ -133,6 +134,12 @@ class Image(models.Model):
     image = models.ImageField()
     timestamp = models.DateField(auto_now_add=True)
 
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="150" height="150" />' % self.image.url)
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
+    def __str__(self):
+        return self.name
 
 class Cart(models.Model):
     """Cart Table"""
