@@ -8,7 +8,6 @@ class CustomerAdmin(admin.ModelAdmin):
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['image_tag', 'name']
-
     fields = ('image_tag', 'name', 'image')
     readonly_fields = ('image_tag',)
 

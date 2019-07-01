@@ -4,57 +4,56 @@
             {% if not admin_class.form_add %}
             {% for field_name in admin_class.readonly_fields %}
                 <div class="form-group">
-
                 <div class="row">
                 <div class="col-lg-4">
                     <label for="id_{{ field_name }}">{{ field_name|title }}</label>
-                    <input class="form-control" disabled id= "id_{{ field_name }}" value="{% get_readonly_value form field_name %}"/>
+                    <input class="form-control" disabled id= "id_{{ field_name }}" value="{% get_readonly_value form_obj field_name %}"/>
                  </div>
                 </div>
 
             {% endfor %}
-           {% endif %}
+            {% endif %}
 
-            {% for field in form %}
-                {% render_form_field field as f %}
-                {% if f == "SelectMultiple" %}
-                <div class="form-group">
-                    <label for="id_{{ field.name }}">{{ field.label }}</label>
+            {% for field in form_obj %}
+                {% if field.name in admin_class.filter_horizontal %}
+                    <div class="form-group">
+                        <label for="id_{{ field.name }}">{{ field.label }}</label>
 
-                    <div class="row">
+                        <div class="row">
 
-                        <div class="col-lg-5">
-                            <select id="id_{{ field.name }}_from" multiple class="form-control">
-                                {% get_m2m_avalaible_data field.name form admin_class as avl_data %}
-                                {% for v in avl_data %}
-                                  <option ondblclick="MoveOption(this, 'id_{{ field.name }}_to')" value="{{ v.id }}">{{ v }}</option>
+                            <div class="col-lg-5">
+                                <select id="id_{{ field.name }}_from" multiple class="form-control">
+                                    {% get_m2m_avalaible_data field.name form_obj admin_class as avl_data %}
+                                    {% for v in avl_data %}
+                                      <option ondblclick="MoveOption(this, 'id_{{ field.name }}_to')" value="{{ v.id }}">{{ v }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            <div class="col-lg-5">
+                                <select tag="selected_value" name="{{ field.name }}" id="id_{{ field.name }}_to" multiple class="form-control">
+                                {% get_selected_m2m_data field.name form_obj as selected_data %}
+                                 {% for v in selected_data %}
+                                  <option ondblclick="MoveOption(this, 'id_{{ field.name }}_from')"  value="{{ v.id }}">{{ v }}</option>
                                 {% endfor %}
-
-                            </select>
-                        </div>
-                        <div class="col-lg-5">
-                            <select tag="selected_value" name="{{ field.name }}" id="id_{{ field.name }}_to" multiple class="form-control">
-                            {% get_selected_m2m_data field.name form as selected_data %}
-                             {% for v in selected_data %}
-                              <option ondblclick="MoveOption(this, 'id_{{ field.name }}_from')"  value="{{ v.id }}">{{ v }}</option>
-                            {% endfor %}
-                            </select>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                    {% else %}
+                {% else %}
                     <div class="form-group">
+                        <div class="row">
+                        <div class="col-lg-4">
 
-                            <div class="row">
-                            <div class="col-lg-4">
-
-                                <label for="id_{{ field.name }}">{{ field.label }}</label>
-                                    {{ field }}
-                            </div>
-                            </div>
+                            <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                {{ field }}
+                        </div>
+                        </div>
                      </div>
-                    {% endif %}
+                {% endif %}
+                    <span style="color: red">{{ field.errors.0 }} </span>
+
 
             {% endfor %}
 
