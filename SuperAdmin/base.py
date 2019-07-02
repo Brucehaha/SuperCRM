@@ -7,6 +7,7 @@ class BaseAdminSite(object):
     readonly_fields = []
     filter_horizontal = []
     image_fields = []
-
+    field_order = []
+    form_type = None
 
 

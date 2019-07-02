@@ -1,17 +1,20 @@
 {% load list_display %}
-    <form method="post" onsubmit="SelectOption()">{% csrf_token %}
+{% load static %}
+
+    <form method="post" onsubmit="SelectOption()" enctype="multipart/form-data" target="img-preview">{% csrf_token %}
             {{ form.errors }}
             {% if not admin_class.form_add %}
-            {% for field_name in admin_class.readonly_fields %}
-                <div class="form-group">
-                <div class="row">
-                <div class="col-lg-4">
-                    <label for="id_{{ field_name }}">{{ field_name|title }}</label>
-                    <input class="form-control" disabled id= "id_{{ field_name }}" value="{% get_readonly_value form_obj field_name %}"/>
-                 </div>
-                </div>
+                {% for field_name in admin_class.readonly_fields %}
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="id_{{ field_name }}">{{ field_name|title }}</label>
+                                <input class="form-control" disabled id= "id_{{ field_name }}" value="{% get_readonly_value form_obj field_name %}"/>
+                             </div>
+                        </div>
+                    </div>
 
-            {% endfor %}
+                {% endfor %}
             {% endif %}
 
             {% for field in form_obj %}
@@ -41,11 +44,34 @@
                         </div>
                     </div>
 
+                {% elif field.name in admin_class.image_fields %}
+                    {% render_image form_obj field.name as url %}
+                    {% if url %}
+                    <div class="check-pic">
+
+
+                    <div class="show-img">
+                        <div class="reupload-hover">
+                            <a href="javscript:void(0)" class="reupdate">
+                            <img class='pic' src="{{ url }}">
+
+                            </a>
+                        </div>
+                   </div>
+                   </div>
+                    {% endif %}
+                    <div class="upload-file">
+
+                        <label for="id-{{ field.name }}" class="upload-label">
+                            <input type="file" name="{{ field.name }}" id="id-{{field.name}}" style="display:none">
+                         </label>
+
+                    </div>
+
                 {% else %}
-                    <div class="form-group">
+                    <div class="form-group"  style="clear:left;">
                         <div class="row">
                         <div class="col-lg-4">
-
                             <label for="id_{{ field.name }}">{{ field.label }}</label>
                                 {{ field }}
                         </div>
@@ -53,18 +79,67 @@
                      </div>
                 {% endif %}
                     <span style="color: red">{{ field.errors.0 }} </span>
-
-
             {% endfor %}
+                    <div class="form-group">
 
-              <div class="form-group">
-            <div class="col-sm-offset-11 col-sm-2">
+            <div class="col-sm-offset-4 col-sm-2" style="clear:left;">
               <button type="submit" class="btn btn-info">Save</button>
             </div>
-          </div>
+            </div>
+   </form>
+    <style>
+    .check-pic {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    float: left;
+    margin-right: 6px;
+    }
+     .upload-file {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        float:left;
+        margin-right: 6px;
+        background: url(/static/superadmin/imgs/upload.png) no-repeat center #f5f5f5;
+        background-size: 42px;
 
-    </form>
 
+     }
+     .upload-label {
+        position: absolute;
+        top:0;
+        left:0;
+        width: 140px;
+        height: 140px;
+        float:left;
+     }
+     .show-img {
+         box-sizing: border-box;
+
+     }
+     .reupload-hover {
+         width: 140px;
+    height: 140px;
+    display: block;
+     }
+     .reupdate {
+         width: 140px;
+    height: 140px;
+    display: block;
+    background-color: #f5f5f5;
+     }
+     .pic {
+         width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+     }
+    </style>
     <script>
         function MoveOption(that, id) {
             var to_parent_id = $(that).parent().attr('id');

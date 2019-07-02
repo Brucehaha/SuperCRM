@@ -87,8 +87,10 @@ def table_list(request, app_name, model_name):
 def add_instance(request, app_name, model_name):
     admin_class = site.enabled_admins[app_name][model_name]
     model_form = dynamic_form_generator(admin_class, form_add=True)
+    print(request.FILES)
+
     if request.method == 'POST':
-        form_obj = model_form(data=request.POST)
+        form_obj = model_form(request.POST, request.FILES)
         if form_obj.is_valid():
             form_obj.save()
             return redirect("/superadmin/%s/%s/" %(app_name, model_name))
@@ -103,7 +105,7 @@ def edit_instance(request, app_name, model_name, obj_id):
     model_form = dynamic_form_generator(admin_class)
 
     if request.method == 'POST':
-        form_obj = model_form(data=request.POST, instance=obj)
+        form_obj = model_form(request.POST, request.FILES, instance=obj)
         if form_obj.is_valid():
             form_obj.save()
             return redirect("/superadmin/%s/%s/" %(app_name, model_name))

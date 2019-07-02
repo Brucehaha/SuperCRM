@@ -29,8 +29,9 @@ class CustomerAdmin(BaseAdminSite):
 
 class ImageAdmin(BaseAdminSite):
     list_display = ['image_tag', 'name']
-    fields = ('image_tag', 'name', 'image')
-    readonly_fields = ('image_tag',)
+    field_order = ['image', 'name']
+    image_fields = ['image']
+    form_type = 'media'
 
 
 site.register(models.Product, ProductAdmin)

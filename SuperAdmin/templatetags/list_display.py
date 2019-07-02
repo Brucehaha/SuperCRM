@@ -2,7 +2,6 @@ import datetime
 
 from django import template
 from django.utils.safestring import mark_safe
-import types
 register = template.Library()
 
 
@@ -46,7 +45,7 @@ def table_list(obj, admin_class):
                         colNameList.append(getattr(x, col_name))
                 if any(colNameList):
                     cell = "/".join([str(x) for x in colNameList])
-            elif hasattr(obj, col) and type(getattr(obj, col)) == types.MethodType:
+            elif col == 'image_tag':
                 cell = getattr(obj, col)()
 
             else:
@@ -60,7 +59,7 @@ def table_list(obj, admin_class):
 
                  _html += "<td><a href='/superadmin/%s/%s/%s/edit'>%s</a></td>" % (app_name, model_name, obj.id, cell)
             else:
-                _html += "<td>%s</td>" % cell
+                _html += "<td class='align-middle'>%s</td>" % cell
     else:
         _html = "<td><a href='/superadmin/%s/%s/%s/edit'>%s</a></td>" % (app_name, model_name, obj.id, obj)
 
@@ -68,11 +67,13 @@ def table_list(obj, admin_class):
 
 
 @register.simple_tag
-def list_display(data):
-    res = data
-    if '__' in data:
-        res = data.split('__')[1]
-    if "_" in res:
+def list_display(col, admin_class=None):
+    res = col
+    if '__' in col:
+        res = col.split('__')[1]
+    elif col == "image_tag":
+        res =admin_class.model.image_tag.short_description
+    elif "_" in res:
         res = res.replace('_', ' ')
     return res
 
@@ -220,3 +221,14 @@ def get_readonly_value(form, field_name):
     # field_type = form.instance._meta.get_field(field_name).get_internal_type()
     return v
 
+
+@register.simple_tag
+def render_image(form_obj, field_name):
+    url = None
+    try:
+        v = getattr(form_obj.instance, field_name)
+        url = v.url
+    except KeyError:
+        pass
+
+    return url

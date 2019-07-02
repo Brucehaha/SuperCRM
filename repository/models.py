@@ -135,7 +135,7 @@ class Image(models.Model):
     timestamp = models.DateField(auto_now_add=True)
 
     def image_tag(self):
-        return mark_safe('<img src="%s" width="150" height="150" />' % self.image.url)
+        return mark_safe('<img src="%s" width="50" height="50" />' % self.image.url)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
     def __str__(self):
