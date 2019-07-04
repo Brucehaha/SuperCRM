@@ -5,10 +5,48 @@ from django.db.models import Q
 from .utils.paginator import MyPaginator
 from SuperAdmin import app_setup
 from .forms import dynamic_form_generator
+import uuid
+import os
+import json
+from django.conf import settings
+from datetime import datetime
+
+
 app_setup.superadmin_auto_discover()
 
 from SuperAdmin.sites import site
 
+
+def ajaxUpload(request):
+    res = {
+    }
+    today = datetime.now()
+    stoday = today.strftime("%Y-%m-%d")
+    root = settings.MEDIA_ROOT
+    key, file = list(request.FILES.items())[0]
+    file_name = file.name
+    file_des = os.path.join(str(request.user),stoday, str(uuid.uuid4())+file_name)
+    file_path = os.path.join(root, file_des)
+
+    if not os.path.exists(os.path.dirname(file_path)):
+        try:
+            os.makedirs(os.path.dirname(file_path))
+        except OSError as exc:  # Guard against race condition
+            pass
+    file_url = os.path.join('media', file_des)
+    request.session['file_path'] = file_path
+    with open(file_path, 'wb') as f:
+        for line in file.chunks():
+            f.write(line)
+
+
+    res = {
+        'file_name': file_name,
+        'data': file_url,
+        'key' : key
+    }
+
+    return HttpResponse(json.dumps(res))
 
 @login_required
 def apps_list(request):

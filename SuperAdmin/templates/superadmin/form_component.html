@@ -1,7 +1,7 @@
 {% load list_display %}
 {% load static %}
 
-    <form method="post" onsubmit="SelectOption()" enctype="multipart/form-data" target="img-preview">{% csrf_token %}
+    <form id="fm" method="post" onsubmit="SelectOption()" enctype="multipart/form-data" target="img-preview">{% csrf_token %}
             {{ form.errors }}
             {% if not admin_class.form_add %}
                 {% for field_name in admin_class.readonly_fields %}
@@ -45,70 +45,112 @@
                     </div>
 
                 {% elif field.name in admin_class.image_fields %}
-                    <div class="all-pic">
+                <div class="pic-postion">
                     {% render_image form_obj field.name as url %}
-                        {% if url %}
-                        <div class="initLoading" style="display:none;">
-                            <img src="/static/superadmin/imgs/im_loading.gif" alt="" class="releaseImg">
-                        </div>
-                        <div class="check-pic">
+                    {% if url %}
+                        <div class="check">
+                            <div class="initLoading" style="display:none;">
+                                <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
+                            </div>
                             <div class="show-img">
-                                <div class="reupload-hover">
-                                    <a href="javscript:void(0)" class="reupdate">
-                                    <img class='pic' src="{{ url }}">
-
+                                    <a class="remove" href="javscript:void(0)" onclick="removeImg(this)" >
+                                        <img src="/static/superadmin/imgs/removeUpload.png" alt="">
                                     </a>
-                                </div>
-                           </div>
-                        </div>{% endif %}
-                        <div class="upload-file">
+                                    <div class="reupload-hover" onmouseover="displayElement(this)" onmouseout="hideElement(this)">
+                                        <a href="javascript:void(0)" class="release-dialog-update" >
+                                            <img class='pic' src="{{ url }}">
+                                        </a>
+                                        <div class="reupload" style="display:none;">
+                                          <label for="id-{{ field.name }}" class="upload-label" >
+                                            <input type="file" name="{{ field.name }}" id="id-{{field.name}} show-input" style="display:none">
+                                          </label>
+                                          <span class="reupload-text"onclick="triggerInput(this)">Change</span>
+                                        </div>
+
+                                    </div>
+                            </div>
+                         </div>
+                        {% endif %}
+                        <div class="upload-file" style="display:none;">
 
                             <label for="id-{{ field.name }}" class="upload-label">
-                                <input type="file" name="{{ field.name }}" id="id-{{field.name}}" style="display:none" onchange="updateImage()">
+                                <input type="file" name="{{ field.name }}" id="id-{{field.name}}" style="display:none" onchange="updateImage(this)">
                              </label>
 
                         </div>
+                </div>
 
-                   </div>
-
-
-                {% else %}
-                    <div class="form-group"  style="clear:left;">
-                        <div class="row">
-                        <div class="col-lg-4">
-                            <label for="id_{{ field.name }}">{{ field.label }}</label>
-                                {{ field }}
-                        </div>
-                        </div>
-                     </div>
-                {% endif %}
-                    <span style="color: red">{{ field.errors.0 }} </span>
-            {% endfor %}
-                    <div class="form-group">
+        {% else %}
+            <div class="form-group"  style="clear:left;">
+                <div class="row">
+                <div class="col-lg-4">
+                    <label for="id_{{ field.name }}">{{ field.label }}</label>
+                        {{ field }}
+                </div>
+                </div>
+             </div>
+        {% endif %}
+            <span style="color: red">{{ field.errors.0 }} </span>
+        {% endfor %}
+        <div class="form-group">
 
             <div class="col-sm-offset-4 col-sm-2" style="clear:left;">
               <button type="submit" class="btn btn-info">Save</button>
             </div>
-            </div>
-   </form>
+        </div>
+    </form>
     <style>
-    .check-pic {
+    .remove img {
+        width:18px;
+        height: 18px;
+    }
+    .release-dialog-update .reupload-hover{
+        width: 140px;
+        height: 140px;
+        display: block;
+    }
+    .release-dialog-update {
+    background-color: #f5f5f5;
+    }
+
+    .check {
         width: 140px;
         height: 140px;
         position: relative;
         float: left;
         margin-right: 6px;
     }
+
+    .remove {
+        position: absolute;
+        right: -3px;
+        top: -6px;
+        z-index: 5;
+    }
+
      .upload-file {
         position: relative;
         width: 140px;
         height: 140px;
         float:left;
         margin-right: 6px;
-        background: url(/static/superadmin/imgs/upload.png) no-repeat center #f5f5f5;
+        background: url('/static/superadmin/imgs/upload.png') no-repeat center #f5f5f5;
         background-size: 42px;
 
 
+     }
+     .pic .loading-img {
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin: auto;
+     }
+     .pic{
+        width:100%;
+        height: 100%;
      }
      .upload-label {
         display: block;
@@ -121,17 +163,11 @@
          box-sizing: border-box;
 
      }
-     .reupload-hover {
+      .reupload-hover {
          width: 140px;
         height: 140px;
         display: block;
-     }
-     .reupdate {
-        width: 140px;
-        height: 140px;
-        display: block;
-        background-color: #f5f5f5;
-     }
+    }
      .initLoading .pic {
         display:block;
         width: 100%;
@@ -143,8 +179,87 @@
         top: 0;
         margin: auto;
         }
+        .reupload {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 140px;
+        height: 140px;
+        background: rgba(0,0,0,.7);
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+       }
+       .reupload-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 140px;
+        color: #fff;
+        text-align: center;
+        line-height: 140px;
+        cursor: pointer;
+       }
+
+
     </style>
+
     <script>
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function updateImage(ths) {
+
+        var file = ths.files[0];
+        var key = ths.getAttribute('name')
+        var formData = new FormData(document.querySelector('form'))
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4) {
+                console.log(xhr.responseText)
+            }
+        }
+        xhr.open('POST', '/superadmin/ajax-upload.html/');
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+
+        xhr.send(formData)
+    }
+        function removeImg(ths) {
+
+            var pic=$(ths).parent().parent();
+            $(pic).parent().find('.upload-file').css({'display':'block'})
+            $(pic).remove();
+
+
+        }
+        function triggerInput(ths) {
+            var label = $(ths).parent().find('.upload-label')
+            $(label).find('input').trigger('click');
+
+
+        }
+        function displayElement(ths) {
+            $(ths).find('.reupload').css({'display':'block'});
+        }
+        function hideElement(ths) {
+            $(ths).find('.reupload').css({'display':'none'});
+        }
+
         function MoveOption(that, id) {
             var to_parent_id = $(that).parent().attr('id');
             console.log(to_parent_id)
