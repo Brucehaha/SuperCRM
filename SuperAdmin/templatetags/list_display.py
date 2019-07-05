@@ -228,7 +228,11 @@ def render_image(form_obj, field_name):
     try:
         v = getattr(form_obj.instance, field_name)
         url = v.url
-    except KeyError:
-        pass
-
-    return url
+    except KeyError as e:
+        print(e)
+    except ValueError as e:
+        print(e)
+    else:
+        print('some thing wrong')
+    finally:
+        return url
