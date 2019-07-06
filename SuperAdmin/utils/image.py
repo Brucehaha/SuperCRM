@@ -1,8 +1,8 @@
 import os
-
+import uuid
 
 class ImageHandler(object):
-
+    """ accept image upload from ajax for preview in web page """
     def __init__(self):
         self.paths = []
         self.request = None
@@ -14,8 +14,10 @@ class ImageHandler(object):
         self.request = request
         self.root = root
         self.folder = folder
+        self.id = uuid.uuid4()
         self.media_root = media_root
-        print(self.paths)
+        if not hasattr(self, str(request.user)):
+            setattr(self, str(request.user), [])
 
     def get_file(self):
         _, file = list(self.request.FILES.items())[0]
@@ -28,12 +30,14 @@ class ImageHandler(object):
         return self.get_file().name
 
     def get_file_path(self):
-        file_path = os.path.join(self.root, str(self.request.user), self.folder, self.get_file_name())
+        file_path = os.path.join(self.root, str(self.request.user), self.folder, str(self.id)+'-'+self.get_file_name())
         self.paths.append(file_path)
         return file_path
 
     def create_file(self):
         file_path = self.get_file_path()
+        self.add_ospath_to_list(file_path)
+        print(getattr(self, str(self.request.user)))
         if not os.path.exists(os.path.dirname(file_path)):
             try:
                 os.makedirs(os.path.dirname(file_path))
@@ -42,22 +46,29 @@ class ImageHandler(object):
         with open(file_path, 'wb') as f:
             for line in self.get_file().chunks():
                 f.write(line)
+        self.remove_last_pic()
 
     def get_media_url(self):
-        file_url = os.path.join(self.media_root, str(self.request.user), self.folder, self.get_file_name())
+        file_url = os.path.join(self.media_root, str(self.request.user), self.folder, str(self.id)+'-'+self.get_file_name())
         print(file_url)
         return file_url
 
-    def remove_prepic(self):
-            if len(self.paths) > 1:
-                file = self.paths.pop(0)
+    def add_ospath_to_list(self, path):
+        if hasattr(self, str(self.request.user)):
+            getattr(self, str(self.request.user)).append(path)
+
+    def remove_last_pic(self):
+        if hasattr(self, str(self.request.user)):
+            url_list = getattr(self, str(self.request.user))
+            while len(url_list) > 1:
+                file = url_list.pop(0)
                 if os.path.exists(file):
                     try:
                         os.remove(file)
                     except OSError as exc:
                         print('file is not found or not accessible')
 
-
+#Singleton
 handelImage = ImageHandler()
 
 

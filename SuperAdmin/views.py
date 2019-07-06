@@ -6,7 +6,6 @@ from .utils.paginator import MyPaginator
 from SuperAdmin import app_setup
 from .forms import dynamic_form_generator
 from .utils.image import handelImage
-import os
 import json
 from django.conf import settings
 
@@ -43,14 +42,17 @@ from SuperAdmin.sites import site
 #     return HttpResponse(json.dumps(res))
 
 def ajaxUpload(request):
-    handelImage.register(request, settings.MEDIA_ROOT, settings.MEDIA_URL, 'delete')
-    handelImage.create_file()
+    if request.is_ajax():  # 'X-Requested-With' = 'XMLHttpRequest'
+        handelImage.register(request, settings.MEDIA_ROOT, settings.MEDIA_URL, 'delete')
+        handelImage.create_file()
 
-    res = {
-        'file_name': handelImage.get_file_name(),
-        'data': handelImage.get_media_url(),
-    }
-    return HttpResponse(json.dumps(res))
+        res = {
+            'file_name': handelImage.get_file_name(),
+            'data': handelImage.get_media_url(),
+        }
+        return HttpResponse(json.dumps(res))
+    else:
+        return redirect('/')
 
 @login_required
 def apps_list(request):

@@ -53,7 +53,7 @@
                                 <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
                             </div>
                             <div class="show-img">
-                                    <a class="remove" href="javscript:void(0)" onclick="removeImg(this)" >
+                                    <a class="remove" href="javascript:void(0)" onclick="removeImg(this)" >
                                         <img src="/static/superadmin/imgs/removeUpload.png" alt="">
                                     </a>
                                     <div class="reupload-hover" onmouseover="displayElement(this)" onmouseout="hideElement(this)">
@@ -81,7 +81,7 @@
                                 <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
                             </div>
                             <div class="show-img">
-                                    <a class="remove" href="javscript:void(0)" onclick="removeImg(this)" >
+                                    <a class="remove" href="javascript:void(0)" onclick="removeImg(this)" >
                                         <img src="/static/superadmin/imgs/removeUpload.png" alt="">
                                     </a>
                                     <div class="reupload-hover" onmouseover="displayElement(this)" onmouseout="hideElement(this)">
@@ -99,7 +99,7 @@
                         <div class="upload-file" style="display:block;">
 
                             <label for="id-{{ field.name }}" class="upload-label">
-                                <input type="file" name="{{ field.name }}" id="id-{{field.name}}" style="display:none" onchange="updateImage(this)">
+                                <input type="file" name="{{ field.name }}" id="id-{{field.name}}" style="display:none"  onchange="updateImage(this)">
                              </label>
 
                         </div>
@@ -258,11 +258,11 @@
         xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
 
         xhr.send(formData)
+
      }
 
 
     function updateImage(ths) {
-
         var loading = document.getElementsByClassName('initLoading')[0]
         loading.style.display = 'block';
         ajaxCall()
@@ -270,38 +270,38 @@
             loading.style.display = 'none';
 
         }, 1000)
+    }
+    function removeImg(ths) {
+
+        var pic=$(ths).parent().parent();
+        $(pic).parent().find('.upload-file').css({'display':'block'});
+        $(pic).parent().find('input').val('')
+        $(pic).css({'display':'none'});
+
+
 
     }
-        function removeImg(ths) {
-
-            var pic=$(ths).parent().parent();
-            $(pic).parent().find('.upload-file').css({'display':'block'});
-            $(pic).css({'display':'none'});
+    function triggerInput() {
+        $('.upload-file').find('input').trigger('click');
 
 
+    }
+    function displayElement(ths) {
+        $(ths).find('.reupload').css({'display':'block'});
+    }
+    function hideElement(ths) {
+        $(ths).find('.reupload').css({'display':'none'});
+    }
 
-        }
-        function triggerInput() {
-            $('.upload-file').find('input').trigger('click');
-
-
-        }
-        function displayElement(ths) {
-            $(ths).find('.reupload').css({'display':'block'});
-        }
-        function hideElement(ths) {
-            $(ths).find('.reupload').css({'display':'none'});
-        }
-
-        function MoveOption(that, id) {
-            var to_parent_id = $(that).parent().attr('id');
-            console.log(to_parent_id)
-            var option = "<option value='" + $(that).val() +"'ondblclick=MoveOption(this,'"+ to_parent_id +"') >" + $(that).text() +"</option>";
-            $('#'+ id).append(option);
-            $(that).remove();
-        }
-        function SelectOption() {
-            $("select[tag] option").prop('selected', true);
-        }
+    function MoveOption(that, id) {
+        var to_parent_id = $(that).parent().attr('id');
+        console.log(to_parent_id)
+        var option = "<option value='" + $(that).val() +"'ondblclick=MoveOption(this,'"+ to_parent_id +"') >" + $(that).text() +"</option>";
+        $('#'+ id).append(option);
+        $(that).remove();
+    }
+    function SelectOption() {
+        $("select[tag] option").prop('selected', true);
+    }
 
     </script>
