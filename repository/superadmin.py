@@ -18,11 +18,13 @@ class ProductAdmin(BaseAdminSite):
     list_filter = ['category']
     search_fields = ['sku', 'name']
     readonly_fields = ['name', 'description']
+    image_fields = ['image']
+
 
 
 class CustomerAdmin(BaseAdminSite):
     list_display = ['name', 'company', 'email', 'mobile', 'source', 'consultant', 'status']
-    list_filter = ['name', 'company', 'status', 'consultant', 'timestamp']
+    list_filter = ['consultant', 'timestamp']
     filter_horizontal = ['consult_product']
     verbose_name = "Customers"
 

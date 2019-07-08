@@ -16,8 +16,9 @@ def dynamic_form_generator(admin_class, form_add=False):
     def __new__(cls, *args, **kwargs):
         for field_name in cls.base_fields:
             field_obj = cls.base_fields[field_name]
-            input_type = field_obj.widget.input_type
-            if input_type != 'file':
+
+            input_type = getattr(field_obj.widget, 'input-type', None)
+            if input_type != 'file' or input_type == None:
                 field_obj.widget.attrs.update({'class': 'form-control', "id": 'id-%s' % field_name})
         return ModelForm.__new__(cls)
 

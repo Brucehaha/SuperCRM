@@ -7,31 +7,12 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="Bruce Li">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Dashboard</title>
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{% static "/superadmin/plugins/bootstrap-4.3.1/css/bootstrap.min.css" %}">
-    <link href='{% static "/superadmin/css/dashboard.css" %}' rel="stylesheet">
-    <link href='{% static "/superadmin/plugins/fontawsome-5.8.2-web/css/all.css" %}' rel="stylesheet">
-
+     {% include './components/header.html' %}
     {% block css %} {% endblock %}
 </head>
 <body>
@@ -39,10 +20,8 @@
    {% endblock %}
 
 {% block js %} {% endblock %}
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="{% static "/superadmin/js/jquery-3.3.1.slim.min.js" %}"></script>
 
-<script src="{% static "/superadmin/plugins/bootstrap-4.3.1/js/bootstrap.bundle.min.js" %}"></script>
+
+{% include './components/footer.html' %}
+
 </body>

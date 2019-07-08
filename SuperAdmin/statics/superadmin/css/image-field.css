@@ -1,0 +1,86 @@
+ .remove img {
+        width:18px;
+        height: 18px;
+    }
+.release-dialog-update .reupload-hover{
+    width: 140px;
+    height: 140px;
+    display: block;
+}
+.release-dialog-update {
+background-color: #f5f5f5;
+}
+
+.check {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    float: left;
+    margin-right: 6px;
+}
+
+.remove {
+    position: absolute;
+    right: -3px;
+    top: -6px;
+    z-index: 5;
+}
+
+ .upload-file {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    float:left;
+    margin-right: 6px;
+    background: url('/static/superadmin/imgs/upload.png') no-repeat center #f5f5f5;
+    background-size: 42px;
+
+
+ }
+
+ #pic{
+    width:100%;
+    height: 100%;
+ }
+ .upload-label {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+ }
+
+ .show-img {
+     box-sizing: border-box;
+
+ }
+  .reupload-hover {
+     width: 140px;
+    height: 140px;
+    display: block;
+}
+
+.reupload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 140px;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+   }
+.reupload-text, .initLoading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    color: #fff;
+    text-align: center;
+    line-height: 140px;
+    cursor: pointer;
+   }
+  .initLoading {
+    background: rgba(0,0,0,.7);
+
+  }
