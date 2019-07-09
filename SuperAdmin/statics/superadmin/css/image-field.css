@@ -1,4 +1,7 @@
- .remove img {
+.image-choices {
+    display: none;
+}
+.remove img, #remove img {
         width:18px;
         height: 18px;
     }
@@ -8,7 +11,7 @@
     display: block;
 }
 .release-dialog-update {
-background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .check {
@@ -19,14 +22,14 @@ background-color: #f5f5f5;
     margin-right: 6px;
 }
 
-.remove {
+.remove, #remove {
     position: absolute;
     right: -3px;
     top: -6px;
     z-index: 5;
 }
 
- .upload-file {
+ .upload-file, #upload-file {
     position: relative;
     width: 140px;
     height: 140px;
@@ -70,7 +73,7 @@ background-color: #f5f5f5;
     text-align: center;
     cursor: pointer;
    }
-.reupload-text, .initLoading {
+#change, .initLoading {
     position: absolute;
     top: 0;
     left: 0;
@@ -84,3 +87,5 @@ background-color: #f5f5f5;
     background: rgba(0,0,0,.7);
 
   }
+
+  

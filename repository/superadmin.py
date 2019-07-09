@@ -21,7 +21,6 @@ class ProductAdmin(BaseAdminSite):
     image_fields = ['image']
 
 
-
 class CustomerAdmin(BaseAdminSite):
     list_display = ['name', 'company', 'email', 'mobile', 'source', 'consultant', 'status']
     list_filter = ['consultant', 'timestamp']

@@ -1,0 +1,31 @@
+{% load list_display %}
+<div class="pic-postion">
+    {% for id, url in result.1 %}
+        <div class="check" style="display:block;">
+            <div class="initLoading" style="display:none;">
+                <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
+            </div>
+            <div class="show-img">
+                    <a class="remove" href="javascript:void(0)" tag="image-{{ id }}">
+                        <img src="/static/superadmin/imgs/removeUpload.png" alt="">
+                    </a>
+                    <div class="reupload-hover">
+                        <a href="javascript:void(0)" class="release-dialog-update" >
+                            <img id='pic' src="{{ url }}">
+                        </a>
+                    </div>
+            </div>
+         </div>
+    {% endfor %}
+
+   <div id="upload-file">
+   </div>
+   <div class="image-choices">
+
+        <select name="{{ field.name }}" id="id_{{ field.name }}_from" multiple class="form-control" style="display: none;" >
+           {% for id, _ in result.1 %}
+              <option selected='true' id='image-{{ id }}' value="{{ id }}">{{ id }}</option>
+            {% endfor %}
+        </select>
+   </div>
+</div>

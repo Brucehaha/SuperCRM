@@ -1,0 +1,61 @@
+{% load list_display %}
+
+<div class="pic-postion">
+    {% render_image form_obj field.name as url %}
+    {% if url %}
+        <div class="check" style="display:block;">
+            <div class="initLoading" style="display:none;">
+                <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
+            </div>
+            <div class="show-img">
+                    <a id="remove" href="javascript:void(0)" >
+                        <img src="/static/superadmin/imgs/removeUpload.png" alt="">
+                    </a>
+                    <div class="reupload-hover" onmouseover="displayElement(this)" onmouseout="hideElement(this)">
+                        <a href="javascript:void(0)" class="release-dialog-update" >
+                            <img id='pic' src="{{ url }}">
+                        </a>
+                        <div class="reupload" style="display:none;">
+                                   <!–– input box ––>
+                          <span id="change">Change</span>
+                        </div>
+
+                    </div>
+            </div>
+         </div>
+        <div id="upload-file" style="display:none;">
+            <label for="id-{{ field.name }}" class="upload-label">
+                <input type="file" name="{{ field.name }}" id="id-{{field.name}}" style="display:none" onchange="updateImage(this)">
+             </label>
+        </div>
+  {% else %}
+      <div class="check" style="display:none;">
+            <div class="initLoading" style="display:none;">
+                <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
+            </div>
+            <div class="show-img">
+                    <a class="remove" href="javascript:void(0)" onclick="removeImg(this)" >
+                        <img src="/static/superadmin/imgs/removeUpload.png" alt="">
+                    </a>
+                    <div class="reupload-hover" onmouseover="displayElement(this)" onmouseout="hideElement(this)">
+                        <a href="javascript:void(0)" class="release-dialog-update" >
+                            <img id='pic' src="{{ url }}">
+                        </a>
+                        <div class="reupload" style="display:none;">
+                                   <!–– input box ––>
+                          <span id="change">Change</span>
+                        </div>
+
+                    </div>
+            </div>
+         </div>
+        <div id="upload-file" style="display:block;">
+
+            <label for="id-{{ field.name }}" class="upload-label">
+                <input type="file" name="{{ field.name }}" id="id-{{field.name}}" style="display:none"  onchange="updateImage(this)">
+             </label>
+
+        </div>
+{% endif %}
+
+</div>

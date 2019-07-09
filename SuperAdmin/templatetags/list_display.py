@@ -240,22 +240,18 @@ def render_image(form_obj, field_name):
         return url
 
 @register.simple_tag
-def render_m2m_imgs(form_obj, field_name):
+def get_selected_m2m_image(form_obj, field_name):
     images = []
     response = False
     if hasattr(form_obj, 'instance'):
         field_obj = form_obj.instance._meta.get_field(field_name)
         field_type = field_obj.get_internal_type()
         if field_type == "ManyToManyField":
-            test = getattr(form_obj.instance, field_name)
-
-            queryset = getattr(test, 'all')()
-
+            queryset = getattr(form_obj.instance, field_name).all()
             response = True
             related_model = field_obj.related_model()
             for field in related_model._meta.get_fields():
                 if field.get_internal_type() == 'FileField':
-                    image_field_name = field.name
                     for i in queryset:
                         image_field = getattr(i, field_name)
                         images.append((i.id, image_field.url))
