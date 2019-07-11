@@ -241,11 +241,18 @@ def render_image(form_obj, field_name):
 
 @register.simple_tag
 def get_selected_m2m_image(form_obj, field_name):
+    """
+    :param form_obj: form object with model instance
+    :param field_name: field name which the name if the field connected to the image model
+    :return: reponse True if the field is many to many type, false if not images is the queryset
+    of all the related image's objects.
+    """
     images = []
-    related_model = None
     response = False
     if hasattr(form_obj, 'instance'):
+        # get field object
         field_obj = form_obj.instance._meta.get_field(field_name)
+        # get field type
         field_type = field_obj.get_internal_type()
         if field_type == "ManyToManyField":
             queryset = getattr(form_obj.instance, field_name).all()
@@ -257,6 +264,25 @@ def get_selected_m2m_image(form_obj, field_name):
                         image_field = getattr(i, field_name)
                         images.append((i.id, image_field.url))
 
-    return (response, images, related_model._meta.model_name, related_model._meta.app_label)
+    return response, images,
+
+
+@register.simple_tag
+def get_model_app(form_obj, field_name):
+    """
+    model and app name is used for get relate queryset
+    :param form_obj: form instance
+    :param field_name: many to many field conected to image table
+    :return:  model name , and app name
+    """
+    image_field = None
+    field_obj = form_obj.instance._meta.get_field(field_name)
+    related_model = field_obj.related_model()
+    model_name = related_model._meta.model_name
+    app_name = related_model._meta.app_label
+    for field in related_model._meta.get_fields():
+        if field.get_internal_type() == 'FileField':
+            image_field = field.name
+    return model_name, app_name, image_field
 
 

@@ -6,7 +6,6 @@ from .utils.paginator import MyPaginator
 from SuperAdmin import app_setup
 from .forms import dynamic_form_generator
 from .utils.image import handelImage
-from django.views.generic import ListView
 
 import json
 from django.conf import settings
@@ -18,9 +17,27 @@ from SuperAdmin.sites import site
 
 
 def imageListView(request):
+    data =[]
     if request.is_ajax():
+        app_name = request.GET.get('app_name')
+        model_name = request.GET.get('model_name')
+        field_name = request.GET.get('field_name')
+        print(request.GET)
+
         admin_class = site.enabled_admins[app_name][model_name]
-    return HttpResponse(json.dumps("thanks"))
+        queryset = admin_class.model.objects.all()
+        for obj in queryset:
+            if hasattr(obj, field_name):
+                image_field =  getattr(obj, field_name)
+                url = image_field.url
+                name = image_field.name
+                if hasattr(obj, 'alt'):
+                    name = getattr(obj, 'alt')
+                elif hasattr(obj, 'name'):
+                    name = getattr(obj, 'name')
+                data.append((url, name))
+
+    return HttpResponse(json.dumps(data))
 
 
 def ajaxUpload(request):

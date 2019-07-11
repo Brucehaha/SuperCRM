@@ -1,7 +1,6 @@
 {% load list_display %}
 {% load static %}
-    {% block css %}
-   {% endblock %}
+
     <form id="fm" method="post" onsubmit="SelectOption()" enctype="multipart/form-data" target="img-preview">{% csrf_token %}
             {{ form.errors }}
             {% if not admin_class.form_add %}
@@ -48,7 +47,8 @@
                 {% elif field.name in admin_class.image_fields %}
                     {% get_selected_m2m_image form_obj field.name as result %}
                     {% if result.0 %}
-                        {% include 'superadmin/components/multi-image-upload-form.html' with form_obj=form_obj field=field result=result %}
+                        {% get_model_app form_obj field.name as model_app %}
+                        {% include 'superadmin/components/multi-image-upload-form.html' with form_obj=form_obj field=field model_app=model_app %}
 
                     {% else %}
                         {% include 'superadmin/components/single-image-upload-form.html' with form_obj=form_obj field=field %}
@@ -75,9 +75,3 @@
         </div>
     </form>
 
-<script>
-
-
-
-
-</script>
