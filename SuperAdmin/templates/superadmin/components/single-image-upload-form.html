@@ -1,6 +1,6 @@
 {% load list_display %}
 
-<div class="pic-postion">
+<div class="pic-position">
     {% render_image form_obj field.name as url %}
     {% if url %}
         <div class="check" style="display:block;">
@@ -34,7 +34,7 @@
                 <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
             </div>
             <div class="show-img">
-                    <a class="remove" href="javascript:void(0)" onclick="removeImg(this)" >
+                    <a class="remove" href="javascript:void(0)" >
                         <img src="/static/superadmin/imgs/removeUpload.png" alt="">
                     </a>
                     <div class="reupload-hover" onmouseover="displayElement(this)" onmouseout="hideElement(this)">

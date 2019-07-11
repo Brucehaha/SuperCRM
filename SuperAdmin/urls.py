@@ -7,6 +7,7 @@ urlpatterns = [
     re_path(r'^signin/', views.acc_signin),
     re_path(r'^logout/$', views.acc_logout),
     re_path(r'^ajax-upload.html/$', views.ajaxUpload),
+    re_path(r'^media-gallery.html/$', views.imageListView),
 
     re_path(r'^(\w+)/$', views.app_models_list, name='models_list'),
 

@@ -6,6 +6,8 @@ from .utils.paginator import MyPaginator
 from SuperAdmin import app_setup
 from .forms import dynamic_form_generator
 from .utils.image import handelImage
+from django.views.generic import ListView
+
 import json
 from django.conf import settings
 
@@ -15,37 +17,16 @@ app_setup.superadmin_auto_discover()
 from SuperAdmin.sites import site
 
 
-# def ajaxUpload(request):
-#     if request.is_ajax(): # 'X-Requested-With' = 'XMLHttpRequest'
-#         root = settings.MEDIA_ROOT
-#         key, file = list(request.FILES.items())[0]
-#         file_name = file.name
-#         file_path = os.path.join(root, str(request.user), 'delete', file_name)
-#         if not os.path.exists(os.path.dirname(file_path)):
-#             try:
-#                 os.makedirs(os.path.dirname(file_path))
-#             except OSError as exc:  # Guard against race condition
-#                 print('file is not found or not accessible')
-#         file_url = os.path.join('media', 'delete', file_name)
-#         with open(file_path, 'wb') as f:
-#             for line in file.chunks():
-#                 f.write(line)
-#
-#         res = {
-#             'file_name': file_name,
-#             'data': file_url,
-#             'key': key
-#         }
-#     else:
-#         return redirect('/')
-#
-#     return HttpResponse(json.dumps(res))
+def imageListView(request):
+    if request.is_ajax():
+        admin_class = site.enabled_admins[app_name][model_name]
+    return HttpResponse(json.dumps("thanks"))
+
 
 def ajaxUpload(request):
     if request.is_ajax():  # 'X-Requested-With' = 'XMLHttpRequest'
         handelImage.register(request, settings.MEDIA_ROOT, settings.MEDIA_URL, 'delete')
         handelImage.create_file()
-
         res = {
             'file_name': handelImage.get_file_name(),
             'data': handelImage.get_media_url(),
@@ -178,3 +159,28 @@ def acc_logout(request):
 
 
 
+# def ajaxUpload(request):
+#     if request.is_ajax(): # 'X-Requested-With' = 'XMLHttpRequest'
+#         root = settings.MEDIA_ROOT
+#         key, file = list(request.FILES.items())[0]
+#         file_name = file.name
+#         file_path = os.path.join(root, str(request.user), 'delete', file_name)
+#         if not os.path.exists(os.path.dirname(file_path)):
+#             try:
+#                 os.makedirs(os.path.dirname(file_path))
+#             except OSError as exc:  # Guard against race condition
+#                 print('file is not found or not accessible')
+#         file_url = os.path.join('media', 'delete', file_name)
+#         with open(file_path, 'wb') as f:
+#             for line in file.chunks():
+#                 f.write(line)
+#
+#         res = {
+#             'file_name': file_name,
+#             'data': file_url,
+#             'key': key
+#         }
+#     else:
+#         return redirect('/')
+#
+#     return HttpResponse(json.dumps(res))

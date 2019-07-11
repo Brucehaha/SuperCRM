@@ -77,6 +77,7 @@ function removeImage() {
     ancestor.parentNode.getElementsByTagName('input')[0].setAttribute('value', '');
 }
 if(singlePic) {
+    console.log('yes')
     singlePic.addEventListener('click', removeImage, false);
 }
 //trigger input when click Change button
@@ -88,6 +89,7 @@ function triggerInput() {
     targetEl.click();
 }
 if(changeEl) {
+    console.log('yes')
     changeEl.addEventListener('click', triggerInput, false)
 
 }

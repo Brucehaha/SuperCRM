@@ -242,6 +242,7 @@ def render_image(form_obj, field_name):
 @register.simple_tag
 def get_selected_m2m_image(form_obj, field_name):
     images = []
+    related_model = None
     response = False
     if hasattr(form_obj, 'instance'):
         field_obj = form_obj.instance._meta.get_field(field_name)
@@ -256,6 +257,6 @@ def get_selected_m2m_image(form_obj, field_name):
                         image_field = getattr(i, field_name)
                         images.append((i.id, image_field.url))
 
-    return response, images
+    return (response, images, related_model._meta.model_name, related_model._meta.app_label)
 
 

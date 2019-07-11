@@ -20,6 +20,8 @@
 
    <div id="upload-file">
    </div>
+        {% include 'superadmin/components/modal.html' with result=result %}
+
    <div class="image-choices">
 
         <select name="{{ field.name }}" id="id_{{ field.name }}_from" multiple class="form-control" style="display: none;" >
