@@ -2,7 +2,7 @@ from django.utils.safestring import mark_safe
 
 
 class MyPaginator(object):
-    def __init__(self, total_items, url="", num_per_page=20, max_num_pages=7, current_page=1):
+    def __init__(self, total_items, url="", num_per_page=5, max_num_pages=7, current_page=1):
         self.total_items = total_items
         self.num_per_page = num_per_page
         self.current_page = current_page if current_page <= self.total_pages() else self.total_pages()

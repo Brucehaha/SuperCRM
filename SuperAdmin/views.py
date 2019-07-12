@@ -113,7 +113,7 @@ def table_list(request, app_name, model_name):
     queryset = get_search_result(request, queryset, admin_class)
     # pagenate the pages
     total = admin_class.model.objects.count()
-    page = MyPaginator(current_page=int(p), total_items=total, num_per_page=50)
+    page = MyPaginator(current_page=int(p), total_items=total, num_per_page=10)
     if queryset.last() is not None:
         queryset = queryset[page.start:page.end]
 

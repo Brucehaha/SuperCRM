@@ -1,34 +1,34 @@
 var photos = document.getElementById('photo-list-tab');
 // ajax
-
-
  if(photos) {
      photos.addEventListener('click',
      function GetImages() {
-        var photos = document.getElementById('photo-list-tab');
-        var model = photos.getAttribute('model');
-        var app = photos.getAttribute('app');
-        var field = photos.getAttribute('field');
-        console.log(model);
-        var params = 'model_name='+model+'&app_name='+app+'&field_name='+field;
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-             if(xhr.readyState == 4) {
-                 var images = JSON.parse(xhr.responseText);
-                 for(var i=0;i<images.length; i++) {
-                     var image = document.createElement('img');
-                     image.setAttribute('src', images[i][0]);
-                     image.setAttribute('alt', images[i][1]);
-                     image.setAttribute('height', '150');
-                     image.setAttribute('width', '150');
+         let photos = document.getElementById('photo-list-tab');
+         let imagList =document.getElementById('show-images');
+         while(imagList.firstChild) {
+             imagList.removeChild(imagList.firstChild)
+         }
+         var model = photos.getAttribute('model');
+         var app = photos.getAttribute('app');
+         var field = photos.getAttribute('field');
+         var params = 'model_name='+model+'&app_name='+app+'&field_name='+field;
+         var xhr = new XMLHttpRequest();
+         xhr.onreadystatechange = function () {
+              if(xhr.readyState == 4) {
+                  var images = JSON.parse(xhr.responseText);
+                  for(var i=0;i<images.length; i++) {
+                      var image = document.createElement('img');
+                      image.setAttribute('src', images[i][0]);
+                      image.setAttribute('alt', images[i][1]);
+                      image.setAttribute('height', '200');
+                      image.setAttribute('width', '200');
+                      image.setAttribute('class', 'image-item');
 
+                      imagList.appendChild(image);
+                  }
 
-                     console.log(image)
-                     document.getElementById('show-images').appendChild(image);
-                 }
-
-            }
-        }
+             }
+         }
         xhr.open('GET', '/superadmin/media-gallery.html'+'?'+params);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
@@ -50,16 +50,22 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
+  // boostrap model-open set the body overflow:hidden
+  document.getElementsByTagName('body')[0].setAttribute('class', 'modal-open');
+
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
+  document.getElementsByTagName('body')[0].removeAttribute('class', 'modal-open');
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    document.getElementsByTagName('body')[0].removeAttribute('class', 'modal-open');
+
   }
 }
