@@ -1,3 +1,83 @@
+.media-frame-content {
+
+    position: absolute;
+    top: 84px;
+    left: 200px;
+    right: 0;
+    bottom: 61px;
+    height: auto;
+    width: auto;
+    margin: 0;
+    overflow: auto;
+    background: #fff;
+    border-top: 1px solid #ddd;
+
+}
+
+.media-modal * {
+    box-sizing: content-box;
+}
+.media-router > a:last-child {
+
+    border-right: 0;
+
+}
+.media-router .active {
+    color: #32373c;
+}
+
+.media-router > a.active,  .media-router > a.active:hover{
+    margin: -1px -1px 0 -1px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-bottom: none;
+
+}
+.media-router  a {
+    float: left;
+    padding: 8px 10px 9px;
+    margin: 0;
+    height: 18px;
+    line-height: 18px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.media-frame a {
+    border-bottom: none;
+    color: #0073aa;
+}
+.media-frame-router{
+    position: absolute;
+    top:50px;
+    left: 0;
+    right:0;
+    height: 36px;
+    z-index: 200;
+}
+.media-router {
+    padding:0 6px;
+    margin: 0;
+    clear: both;
+
+}
+.media-frame-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    z-index: 200;
+
+}
+/* media title */
+.media-frame-title h1 {
+    padding: 0 16px;
+    font-size: 22px;
+    line-height: 50px;
+    margin: 0;
+}
+
+
 /* main content */
 .media-modal-content {
     position:absolute;
