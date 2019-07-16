@@ -10,7 +10,7 @@
             <!-- overflow auto position: absolute;all:0 -->
             <div class="media-modal-content">
                 <!-- overflow hidden  position:absolute-->
-                <div class="media-frame">
+                <div class="attachments-browser">
                     <div class="media-frame-title">
                         <h1>
                             Add images to product gallery
@@ -19,11 +19,33 @@
                    <div class="media-frame-router">
                         <div class="media-router">
                             <a href="#" class="media-menu-item">Upload Files</a>
-                            <a href="#" class="media-menu-item active">Media Library</a>
+                            <a href="#"  id ='medial_library' field={{ model_app.2 }} app="{{ model_app.1 }}" model="{{ model_app.0 }}" class="media-menu-item active">Media Library</a>
                         </div>
                     </div>
+                    <!--overflow: auto;-->
                     <div class="media-frame-content">
-
+                        <div class="media-toolbar">
+                            <div class="media-toolbar-secondary">
+                                <label for="media-attachment-filters" class="screen-reader-text">Filter by type</label>
+                                <select id="media-attachment-filters" class="attachment-filters">
+                                <option value="all">All media items</option><option value="uploaded">Uploaded to this product</option>
+                                <option value="image">Images</option><option value="audio">Audio</option><option value="video">Video</option>
+                                <option value="unattached">Unattached</option><option value="mine">Mine</option></select>
+                                <label for="media-attachment-date-filters" class="screen-reader-text">Filter by date</label>
+                                <select id="media-attachment-date-filters" class="attachment-filters"><option value="all">All dates</option>
+                                <option value="0">July 2019</option><option value="1">June 2019</option><option value="2">May 2019</option>
+                                <option value="3">April 2019</option><option value="4">February 2019</option><option value="5">January 2019
+                                </option><option value="6">November 2018</option><option value="7">October 2018</option><option value="8">September 2018</option>
+                                <option value="9">August 2018</option></select><span class="spinner"></span>
+                                </div>
+                                <div class="media-toolbar-primary search-form">
+                                <label for="media-search-input" class="screen-reader-text">Search Media</label>
+                                <input type="search" placeholder="Search media items..." id="media-search-input" class="search">
+                            </div>
+                        </div>
+                        <ul class="attachments">
+                        </ul>
+                       <div class="media-sidebar"></div>
                     </div>
 
 

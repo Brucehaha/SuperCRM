@@ -28,7 +28,7 @@ def imageListView(request):
         queryset = admin_class.model.objects.all()
         for obj in queryset:
             if hasattr(obj, field_name):
-                image_field =  getattr(obj, field_name)
+                image_field = getattr(obj, field_name)
                 url = image_field.url
                 name = image_field.name
                 if hasattr(obj, 'alt'):
@@ -36,7 +36,6 @@ def imageListView(request):
                 elif hasattr(obj, 'name'):
                     name = getattr(obj, 'name')
                 data.append((url, name))
-
     return HttpResponse(json.dumps(data))
 
 
