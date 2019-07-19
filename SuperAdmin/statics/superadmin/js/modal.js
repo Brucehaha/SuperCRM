@@ -1,3 +1,5 @@
+
+
 /* toggle modal open and close */
 let body = document.getElementsByTagName('body')[0];
 let uploader = document.getElementById('uploader');
@@ -34,7 +36,7 @@ if(x) {
 /* menu button click */
 
 let menus = document.getElementsByClassName('media-menu-item');
-Array.from(menus).forEach(function (el) {
+Array.from(menus).forEach(function(el) {
 
     el.addEventListener('click', function (event) {
         var isActive = el.classList.contains('active')
@@ -80,14 +82,24 @@ var photos = document.getElementById('medial_library');
                       let list = document.createElement('li');
                       list.setAttribute('class', 'attachment');
                       let image = document.createElement('img');
+                      let div  = document.createElement('div');
+                      let button  = document.createElement('button');
+                      let span = document.createElement('span');
+                      span.setAttribute('class', 'media-modal-icon');
+                      button.setAttribute('type', 'button');
+                      button.setAttribute('class', 'checked');
+                      div.setAttribute('class', 'thumbnail');
                       image.setAttribute('src', images[i][0]);
                       image.setAttribute('alt', images[i][1]);
-                      image.setAttribute('height', '200');
-                      image.setAttribute('width', '200');
-                      image.setAttribute('class', 'image-item');
-                      list.appendChild(image)
+                      div.appendChild(image);
+                      list.appendChild(div);
+                      button.appendChild(span);
+                      list.appendChild(button);
                       attachments.appendChild(list);
+
+
                   }
+                  toggleSelectPhoto()
 
              }
          }
@@ -98,3 +110,28 @@ var photos = document.getElementById('medial_library');
  }
      , false)
  }
+
+
+//click photo trigger even
+function toggleSelectPhoto() {
+    var attachments = document.getElementsByClassName('attachment');
+    if(attachments.length>0) {
+        for(var i=0; i < attachments.length;i++){
+            attachments[i].addEventListener('click', function(event){
+                var outer = event.target.parentNode.parentNode;
+                var checkedIcon = outer.getElementsByTagName('button')[0];
+                if(outer.classList.contains('selected')) {
+                    outer.classList.remove('selected')
+                    checkedIcon.style.display = 'none';
+
+                } else {
+                    outer.classList.add('selected');
+                    checkedIcon.style.display = 'block';
+
+                }
+            }, false)
+        }
+
+    }
+
+}

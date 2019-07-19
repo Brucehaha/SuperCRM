@@ -6,7 +6,7 @@ from .utils.paginator import MyPaginator
 from SuperAdmin import app_setup
 from .forms import dynamic_form_generator
 from .utils.image import handelImage
-
+from django.core import serializers
 import json
 from django.conf import settings
 
@@ -22,20 +22,25 @@ def imageListView(request):
         app_name = request.GET.get('app_name')
         model_name = request.GET.get('model_name')
         field_name = request.GET.get('field_name')
-        print(request.GET)
-
         admin_class = site.enabled_admins[app_name][model_name]
         queryset = admin_class.model.objects.all()
+
         for obj in queryset:
+            dic = {}
+
             if hasattr(obj, field_name):
                 image_field = getattr(obj, field_name)
                 url = image_field.url
+                dic['url'] = url
                 name = image_field.name
-                if hasattr(obj, 'alt'):
-                    name = getattr(obj, 'alt')
-                elif hasattr(obj, 'name'):
-                    name = getattr(obj, 'name')
-                data.append((url, name))
+                for field in obj._meta.fields:
+                    type = obj._meta.get_field(field.name).get_internal_type()
+                    if type == 'DateField':
+                        date = getattr(obj, field.name)
+
+
+                dic['name'] = name
+
     return HttpResponse(json.dumps(data))
 
 
