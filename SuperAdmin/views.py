@@ -17,7 +17,7 @@ from SuperAdmin.sites import site
 
 
 def imageListView(request):
-    data =[]
+    data ={}
     if request.is_ajax():
         app_name = request.GET.get('app_name')
         model_name = request.GET.get('model_name')
@@ -27,19 +27,24 @@ def imageListView(request):
 
         for obj in queryset:
             dic = {}
-
+            id = {}
             if hasattr(obj, field_name):
                 image_field = getattr(obj, field_name)
-                url = image_field.url
-                dic['url'] = url
+                dic['dimension'] = '%s x %s' % (image_field.width, image_field.height)
+                dic['url'] = image_field.url
+                dic['size'] = image_field.size
                 name = image_field.name
                 for field in obj._meta.fields:
-                    type = obj._meta.get_field(field.name).get_internal_type()
-                    if type == 'DateField':
+                    field_type = obj._meta.get_field(field.name).get_internal_type()
+                    if field_type == 'DateField':
                         date = getattr(obj, field.name)
-
-
+                        dic['date'] = str(date)
+                    elif field.name == 'name' or field.name == 'alt':
+                        dic['alt'] = getattr(obj, field.name)
+                    elif field.name != field_name:
+                        dic[field.name] = getattr(obj, field.name)
                 dic['name'] = name
+                data[obj.id] = dic
 
     return HttpResponse(json.dumps(data))
 

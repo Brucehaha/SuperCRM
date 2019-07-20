@@ -78,28 +78,8 @@ var photos = document.getElementById('medial_library');
               if(xhr.readyState == 4) {
                   console.log(xhr.responseText);
                   var images = JSON.parse(xhr.responseText);
-                  for(var i=0;i<images.length; i++) {
-                      let list = document.createElement('li');
-                      list.setAttribute('class', 'attachment');
-                      let image = document.createElement('img');
-                      let div  = document.createElement('div');
-                      let button  = document.createElement('button');
-                      let span = document.createElement('span');
-                      span.setAttribute('class', 'media-modal-icon');
-                      button.setAttribute('type', 'button');
-                      button.setAttribute('class', 'checked');
-                      div.setAttribute('class', 'thumbnail');
-                      image.setAttribute('src', images[i][0]);
-                      image.setAttribute('alt', images[i][1]);
-                      div.appendChild(image);
-                      list.appendChild(div);
-                      button.appendChild(span);
-                      list.appendChild(button);
-                      attachments.appendChild(list);
-
-
-                  }
-                  toggleSelectPhoto()
+                  renderImages(images, attachments);
+                  toggleSelectPhoto(images);
 
              }
          }
@@ -111,23 +91,70 @@ var photos = document.getElementById('medial_library');
      , false)
  }
 
+ function renderImages(images, attachments) {
+    for(var key in images) {
+      let list = document.createElement('li');
+      list.setAttribute('class', 'attachment');
+      list.setAttribute('indexTag', key);
+      let image = document.createElement('img');
+      let div  = document.createElement('div');
+      let button  = document.createElement('button');
+      let span = document.createElement('span');
+      span.setAttribute('class', 'media-modal-icon');
+      button.setAttribute('type', 'button');
+      button.setAttribute('class', 'checked');
+      div.setAttribute('class', 'thumbnail');
+      image.setAttribute('src', images[key]['url']);
+      image.setAttribute('alt', images[key]['alt']);
+      div.appendChild(image);
+      list.appendChild(div);
+      button.appendChild(span);
+      list.appendChild(button);
+      attachments.appendChild(list);
+    }
+ }
+
 
 //click photo trigger even
-function toggleSelectPhoto() {
+function toggleSelectPhoto(images) {
     var attachments = document.getElementsByClassName('attachment');
+    var lastChecked = [];
+
     if(attachments.length>0) {
         for(var i=0; i < attachments.length;i++){
-            attachments[i].addEventListener('click', function(event){
-                var outer = event.target.parentNode.parentNode;
-                var checkedIcon = outer.getElementsByTagName('button')[0];
-                if(outer.classList.contains('selected')) {
-                    outer.classList.remove('selected')
+            let attachment = attachments[i];
+            attachment.addEventListener('click', function(event){
+                var key = attachment.getAttribute('indexTag');
+                var checkedIcon = attachment.getElementsByTagName('button')[0];
+                if(attachment.classList.contains('selected')) {
+                    attachment.classList.remove('selected')
                     checkedIcon.style.display = 'none';
+                    const index = lastChecked.indexOf(attachment);
+                    lastChecked.splice(index, 1);
 
-                } else {
-                    outer.classList.add('selected');
+                } else if(event.ctrlKey){
+                    attachment.classList.add('selected');
                     checkedIcon.style.display = 'block';
+                    selectedPhotoDetail(key, images);
+                    lastChecked.push(attachment);
+                } else {
+                    attachment.classList.add('selected');
+                    checkedIcon.style.display = 'block';
+                    selectedPhotoDetail(key, images);
+                    //uncheck last selected
+                    if(lastChecked.length>0) {
+                        for(let i=0; i < lastChecked.length; i++) {
+                            let el = lastChecked.pop();
+                            var lastCheckedIcon =el.getElementsByTagName('button')[0];
+                            el.classList.remove('selected')
+                            lastCheckedIcon.style.display = 'none';
+                            console.log(lastChecked.length)
 
+                        }
+
+                    };
+                    lastChecked.push(attachment);
+                    console.log(lastChecked.length)
                 }
             }, false)
         }
@@ -135,3 +162,29 @@ function toggleSelectPhoto() {
     }
 
 }
+
+function selectedPhotoDetail(key,images) {
+    let image = images[key];
+    let image_detail = document.getElementById('image-detail');
+    let img_url = document.getElementById('thumbnail-image');
+    let filename = document.getElementById('filename');
+    let date = document.getElementById('date-uploaded');
+    let dimension = document.getElementById('dimension');
+    image_detail.indextag = key;
+    img_url.src = image['url'];
+
+    date.innerHTML = image['date'];
+    filename.innerHTML = image['name'];
+    dimension.innerHTML = image['dimension'];
+}
+         //
+         // <div class="thumbnail thumbnail-image">
+         //
+         //                        </div>
+         //                        <div class="details" id="image-detail">
+         //                        <div id="filename"></div>
+         //                        <div id="date-uploaded"></div>
+         //                        <div id="file-size"></div>
+         //                        <div id="dimension"></div>
+         //                        <a href="#" class="edit-attachment" target="_blank">Edit Image</a>
+         //                        <button class="button-link delete-attachment" type="button">Delete Permanently</button>
