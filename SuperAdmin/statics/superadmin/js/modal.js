@@ -114,11 +114,10 @@ var photos = document.getElementById('medial_library');
     }
  }
 
-
+var lastChecked = [];
 //click photo trigger even
 function toggleSelectPhoto(images) {
     var attachments = document.getElementsByClassName('attachment');
-    var lastChecked = [];
 
     if(attachments.length>0) {
         for(var i=0; i < attachments.length;i++){
@@ -127,34 +126,18 @@ function toggleSelectPhoto(images) {
                 var key = attachment.getAttribute('indexTag');
                 var checkedIcon = attachment.getElementsByTagName('button')[0];
                 if(attachment.classList.contains('selected')) {
-                    attachment.classList.remove('selected')
+                    attachment.classList.remove('selected');
                     checkedIcon.style.display = 'none';
-                    const index = lastChecked.indexOf(attachment);
-                    lastChecked.splice(index, 1);
-
+                    removeExistedSinglePhotoFromArray(lastChecked, attachment);
                 } else if(event.ctrlKey){
                     attachment.classList.add('selected');
                     checkedIcon.style.display = 'block';
                     selectedPhotoDetail(key, images);
                     lastChecked.push(attachment);
+                } else if(event.shiftKey) {
+                    rangeSelectPhoto(attachment, checkedIcon, key, images);
                 } else {
-                    attachment.classList.add('selected');
-                    checkedIcon.style.display = 'block';
-                    selectedPhotoDetail(key, images);
-                    //uncheck last selected
-                    if(lastChecked.length>0) {
-                        for(let i=0; i < lastChecked.length; i++) {
-                            let el = lastChecked.pop();
-                            var lastCheckedIcon =el.getElementsByTagName('button')[0];
-                            el.classList.remove('selected')
-                            lastCheckedIcon.style.display = 'none';
-                            console.log(lastChecked.length)
-
-                        }
-
-                    };
-                    lastChecked.push(attachment);
-                    console.log(lastChecked.length)
+                    selectSinglePhoto(attachment, checkedIcon, key, images);
                 }
             }, false)
         }
@@ -163,6 +146,50 @@ function toggleSelectPhoto(images) {
 
 }
 
+Array.prototype.multiIndexOf = function (el) {
+    var idxs = [];
+    for (var i = this.length - 1; i >= 0; i--) {
+        if (this[i] === el) {
+            idxs.unshift(i);
+        }
+    }
+    return idxs;
+};
+
+
+// select single photo can uncheck all others
+function selectSinglePhoto(attachment, checkedIcon, key, images) {
+
+    attachment.classList.add('selected');
+    console.log(attachment)
+    checkedIcon.style.display = 'block';
+    selectedPhotoDetail(key, images);
+    //uncheck last selected
+    if(lastChecked.length>=0) {
+        const total = lastChecked.length;
+        for(let i=0; i<total; i++) {
+            let el = lastChecked[i];
+            let lastCheckedIcon =el.getElementsByTagName('button')[0];
+            el.classList.remove('selected');
+            lastCheckedIcon.style.display = 'none';
+        }
+    };
+    lastChecked = [];
+    lastChecked.push(attachment);
+
+}
+// remove the existing key
+function removeExistedSinglePhotoFromArray(attachment) {
+    const index = lastChecked.multiIndexOf(attachment);
+    // remove the attachment already selected
+    if(index.length>0) {
+        for(let z=0; z<index.length;z++){
+            lastChecked.splice(index[z], 1);
+
+        }
+
+    }
+}
 function selectedPhotoDetail(key,images) {
     let image = images[key];
     let image_detail = document.getElementById('image-detail');
@@ -177,14 +204,41 @@ function selectedPhotoDetail(key,images) {
     filename.innerHTML = image['name'];
     dimension.innerHTML = image['dimension'];
 }
-         //
-         // <div class="thumbnail thumbnail-image">
-         //
-         //                        </div>
-         //                        <div class="details" id="image-detail">
-         //                        <div id="filename"></div>
-         //                        <div id="date-uploaded"></div>
-         //                        <div id="file-size"></div>
-         //                        <div id="dimension"></div>
-         //                        <a href="#" class="edit-attachment" target="_blank">Edit Image</a>
-         //                        <button class="button-link delete-attachment" type="button">Delete Permanently</button>
+
+function rangeSelectPhoto(attachment, checkedIcon, key, images) {
+    if(lastChecked.length == 0){
+        selectSinglePhoto(attachment, checkedIcon, key, images);
+    } else{
+        let indexList = [];
+        for (let index = 0; index < lastChecked.length; index++) {
+            let tagId = lastChecked[index].getAttribute('indextag');
+            indexList.push(parseInt(tagId));
+        }
+        let maxNum = Math.max(...indexList);
+        let minNum = Math.min(...indexList);
+        let currentNum = attachment.getAttribute('indextag');
+        if (parseInt(currentNum) >= maxNum) {
+            rangeSelect(currentNum, minNum, lastChecked)
+        } else if(parseInt(currentNum)<=minNum){
+            rangeSelect(maxNum, currentNum, lastChecked);
+        } else {
+            selectSinglePhoto(attachment, checkedIcon, key, images);
+        }
+    }
+
+ }
+
+ function rangeSelect(max, min) {
+    let el = document.getElementsByClassName('attachments')[0];
+    for (let i = min; i <= max; i++) {
+        let att = el.querySelectorAll('[indextag="'+i+'"]')[0];
+        if(!lastChecked.includes(att)) {
+            let checkedIcon =  att.getElementsByTagName('button')[0];
+            att.classList.add('selected');
+            checkedIcon.style.display = 'block';
+            lastChecked.push(att);
+        }
+
+    }
+
+ }
