@@ -123,6 +123,8 @@ function toggleSelectPhoto(images) {
         for(var i=0; i < attachments.length;i++){
             let attachment = attachments[i];
             attachment.addEventListener('click', function(event){
+                console.log(lastChecked.multiIndexOf(attachment).length)
+
                 var key = attachment.getAttribute('indexTag');
                 var checkedIcon = attachment.getElementsByTagName('button')[0];
                 if(attachment.classList.contains('selected')) {
@@ -134,7 +136,7 @@ function toggleSelectPhoto(images) {
                     checkedIcon.style.display = 'block';
                     selectedPhotoDetail(key, images);
                     lastChecked.push(attachment);
-                } else if(event.shiftKey) {
+                } else if(event.shiftKey && lastChecked.length > 0) {
                     rangeSelectPhoto(attachment, checkedIcon, key, images);
                 } else {
                     selectSinglePhoto(attachment, checkedIcon, key, images);
@@ -161,17 +163,18 @@ Array.prototype.multiIndexOf = function (el) {
 function selectSinglePhoto(attachment, checkedIcon, key, images) {
 
     attachment.classList.add('selected');
-    console.log(attachment)
     checkedIcon.style.display = 'block';
     selectedPhotoDetail(key, images);
-    //uncheck last selected
-    if(lastChecked.length>=0) {
+    if(lastChecked.length>0) {
         const total = lastChecked.length;
         for(let i=0; i<total; i++) {
             let el = lastChecked[i];
-            let lastCheckedIcon =el.getElementsByTagName('button')[0];
-            el.classList.remove('selected');
-            lastCheckedIcon.style.display = 'none';
+            if (el!==attachment) {
+                let lastCheckedIcon =el.getElementsByTagName('button')[0];
+                el.classList.remove('selected');
+                lastCheckedIcon.style.display = 'none';
+            }
+
         }
     };
     lastChecked = [];
@@ -185,11 +188,10 @@ function removeExistedSinglePhotoFromArray(attachment) {
     if(index.length>0) {
         for(let z=0; z<index.length;z++){
             lastChecked.splice(index[z], 1);
-
         }
-
     }
 }
+
 function selectedPhotoDetail(key,images) {
     let image = images[key];
     let image_detail = document.getElementById('image-detail');
@@ -199,35 +201,32 @@ function selectedPhotoDetail(key,images) {
     let dimension = document.getElementById('dimension');
     image_detail.indextag = key;
     img_url.src = image['url'];
-
     date.innerHTML = image['date'];
     filename.innerHTML = image['name'];
     dimension.innerHTML = image['dimension'];
 }
 
 function rangeSelectPhoto(attachment, checkedIcon, key, images) {
-    if(lastChecked.length == 0){
+    let indexList = [];
+    for (let index = 0; index < lastChecked.length; index++) {
+        let tagId = lastChecked[index].getAttribute('indextag');
+        indexList.push(parseInt(tagId));
+    }
+    let maxNum = Math.max(...indexList);
+    let minNum = Math.min(...indexList);
+    let currentNum = attachment.getAttribute('indextag');
+    if (parseInt(currentNum) > maxNum) {
+        rangeSelect(currentNum, minNum, lastChecked)
+    } else if(parseInt(currentNum)<minNum){
+        rangeSelect(maxNum, currentNum, lastChecked);
+    } else {
         selectSinglePhoto(attachment, checkedIcon, key, images);
-    } else{
-        let indexList = [];
-        for (let index = 0; index < lastChecked.length; index++) {
-            let tagId = lastChecked[index].getAttribute('indextag');
-            indexList.push(parseInt(tagId));
-        }
-        let maxNum = Math.max(...indexList);
-        let minNum = Math.min(...indexList);
-        let currentNum = attachment.getAttribute('indextag');
-        if (parseInt(currentNum) >= maxNum) {
-            rangeSelect(currentNum, minNum, lastChecked)
-        } else if(parseInt(currentNum)<=minNum){
-            rangeSelect(maxNum, currentNum, lastChecked);
-        } else {
-            selectSinglePhoto(attachment, checkedIcon, key, images);
-        }
+
+         }
+
     }
 
- }
-
+// select range by pressing shift
  function rangeSelect(max, min) {
     let el = document.getElementsByClassName('attachments')[0];
     for (let i = min; i <= max; i++) {
