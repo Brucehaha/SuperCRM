@@ -1,16 +1,20 @@
 // many to many image field remove photo
-var images = document.getElementsByClassName('remove');
-function removeImageOption() {
-    var id = this.getAttribute('tag');
-    var ancestor =  this.parentNode.parentNode;
-    ancestor.style.display = 'none';
-    var option = document.getElementById(id);
-    option.removeAttribute('selected');
-}
-for ( var i = 0; i <images.length; i++) {
-    images[i].addEventListener('click',removeImageOption, false);
+function removeImageOption(e) {
+    var target = e.target.parentNode
 
+    if(target.className === 'remove') {
+        console.log(e.target.value)
+        var id = target.getAttribute('tag');
+        var ancestor = target.parentNode.parentNode;
+        ancestor.style.display = 'none';
+        var option = document.getElementById(id);
+        option.parentNode.removeChild(option);
+  }
 }
+
+document.addEventListener('click',removeImageOption);
+
+
 
 // get cookie from form
 function getCookie(name) {

@@ -1,4 +1,5 @@
 {% load list_display %}
+
 <div class="pic-postion">
     {% for id, url in result.1 %}
         <div class="check" style="display:block;">
@@ -11,15 +12,15 @@
                     </a>
                     <div class="reupload-hover">
                         <a href="javascript:void(0)" class="release-dialog-update" >
-                            <img id='pic' src="{{ url }}">
+                            <img class='pic' src="{{ url }}">
                         </a>
                     </div>
             </div>
          </div>
     {% endfor %}
 
-   <div id="upload-file">
-   </div>
+
+   <div id="upload-files"> </div>
         {% include 'superadmin/components/modal.html' with model_app=model_app %}
 
    <div class="image-choices">

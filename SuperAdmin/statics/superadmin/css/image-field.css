@@ -29,7 +29,7 @@
     z-index: 1;
 }
 
- .upload-file, #upload-file {
+ #upload-files, #upload-file {
     position: relative;
     width: 140px;
     height: 140px;
@@ -41,7 +41,7 @@
 
  }
 
- #pic{
+ .pic, #pic{
     width:100%;
     height: 100%;
  }
