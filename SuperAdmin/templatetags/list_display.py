@@ -255,8 +255,13 @@ def get_selected_m2m_image(form_obj, field_name):
         # get field type
         field_type = field_obj.get_internal_type()
         if field_type == "ManyToManyField":
-            queryset = getattr(form_obj.instance, field_name).all()
             response = True
+            try:
+                queryset = getattr(form_obj.instance, field_name).all()
+            except ValueError:
+                print('Value error because no many to many item created')
+                return response, images
+
             related_model = field_obj.related_model()
             for field in related_model._meta.get_fields():
                 if field.get_internal_type() == 'FileField':
@@ -264,7 +269,7 @@ def get_selected_m2m_image(form_obj, field_name):
                         image_field = getattr(i, field_name)
                         images.append((i.id, image_field.url))
 
-    return response, images,
+    return response, images
 
 
 @register.simple_tag
