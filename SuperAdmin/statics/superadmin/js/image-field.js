@@ -116,4 +116,15 @@ function MoveOption(that, id) {
     $(that).remove();
 }
 
+function VerificationBeforeFormSubmit() {
+    var select = document.getElementsByTagName('select');
+    for(var x =0; x < select.length; x++) {
+        if(select[x].hasAttribute('tag')){
+            var options = select[x].getElementsByTagName('option');
+            for(var i =0; x < options.length; i++) {
+                options[i].setAttribute('selected', true);
 
+        }
+    }
+
+}

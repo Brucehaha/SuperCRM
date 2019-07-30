@@ -113,7 +113,7 @@ class Product(models.Model):
     """Product Table"""
     name = models.CharField(max_length=64)
     image = models.ManyToManyField('Image', blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)  # foreign key
+    category = models.ManyToManyField(Category, blank=True, null=True)  # foreign key
     description = models.TextField(blank=True, null=True)
     color = models.CharField(max_length=16)
     width = models.PositiveIntegerField( default=0)

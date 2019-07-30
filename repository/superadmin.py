@@ -15,10 +15,12 @@ class ProductAdmin(BaseAdminSite):
         'thickness',
         'category',
         ]
+
     list_filter = ['category']
     search_fields = ['sku', 'name']
     readonly_fields = ['name', 'description']
     image_fields = ['image']
+    filter_horizontal = ['category']
 
 
 class CustomerAdmin(BaseAdminSite):

@@ -260,7 +260,7 @@
     var addToGallery = document.getElementById('add-to-gallary');
     if(addToGallery){
         addToGallery.addEventListener('click', function (event) {
-            event.preventDefault()
+            closeModal()
             let idList = ImageIdList(lastChecked);
             console.log(idList)
 
@@ -299,7 +299,8 @@
             newPic.classList.add('check');
             newPic.innerHTML = photoHTML1 + images[key]['url'] +photoHTML2;
             newPic.getElementsByClassName('remove')[0].setAttribute('tag', id);
-            document.getElementsByClassName('pic-postion')[0].appendChild(newPic);
+            var modal = document.getElementsByClassName('pic-postion')[0]
+            modal.insertBefore(newPic, document.getElementById('upload-files'));
             // append select option
             var option = document.createElement('option');
             option.setAttribute('id', id);

@@ -1,7 +1,7 @@
 {% load list_display %}
 {% load static %}
 
-    <form id="fm" method="post" onsubmit="SelectOption()" enctype="multipart/form-data" target="img-preview">{% csrf_token %}
+    <form id="fm" method="post" onsubmit="VerificationBeforeFormSubmit()" enctype="multipart/form-data" target="img-preview">{% csrf_token %}
             {{ form.errors }}
             {% if not admin_class.form_add %}
                 {% for field_name in admin_class.readonly_fields %}
@@ -19,7 +19,7 @@
 
             {% for field in form_obj %}
                 {% if field.name in admin_class.filter_horizontal %}
-                    <div class="form-group">
+                    <div class="form-group" style="clear:both">
                         <label for="id_{{ field.name }}">{{ field.label }}</label>
 
                         <div class="row">
@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <select tag="selected_value" name="{{ field.name }}" id="id_{{ field.name }}_to" multiple class="form-control">
-                                {% get_selected_m2m_data field.name form_obj as selected_data %}
+                                {% get_selected_m2m_data field.name form_obj admin_class as selected_data %}
                                  {% for v in selected_data %}
                                   <option ondblclick="MoveOption(this, 'id_{{ field.name }}_from')"  value="{{ v.id }}">{{ v }}</option>
                                 {% endfor %}
@@ -45,16 +45,24 @@
                     </div>
 
                 {% elif field.name in admin_class.image_fields %}
+                   <div class="form-group">
+                    <div class="col-lg-8">
+
+                    <label> {{ field.name|title }}</label>
                     {% get_selected_m2m_image form_obj field.name as result %}
+
                     {% if result.0 %}
                         {% get_model_app form_obj field.name as model_app %}
+
                         {% include 'superadmin/components/multi-image-upload-form.html' with form_obj=form_obj field=field model_app=model_app %}
 
                     {% else %}
                         {% include 'superadmin/components/single-image-upload-form.html' with form_obj=form_obj field=field %}
 
                     {% endif %}
+                    </div>
 
+                    </div>
                 {% else %}
                     <div class="form-group"  style="clear:left;">
                         <div class="row">

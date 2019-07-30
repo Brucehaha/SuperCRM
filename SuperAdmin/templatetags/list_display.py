@@ -20,31 +20,21 @@ def table_list(obj, admin_class):
 
     if admin_class.list_display:
         for col in admin_class.list_display:
-
-            if "__" in col:
+            field_obj = admin_class.model._meta.get_field(col)
+            field_type = field_obj.get_internal_type()
+            if field_type == 'ManyToManyField':
                 colNameList = []
-                list_obj = None
-                #  model name and field name of model with foreignkey pointed to ojb model class
-                model_name, col_name = col.split('__')
-                # model instance id
+                #  model name and field name of model with foreignkey pointed to obj model class
+                #  model instance id
                 obj_id = obj.id
                 # filer condition to get he instance set by id
-                condition = {'%s_id' % obj._meta.model_name: obj_id}
+                condition = {'%s__id' % obj._meta.model_name: obj_id}
                 # get the tables which have foreign key point to obj model class
-                for m in obj._meta._relation_tree:
-                    if m.model._meta.model_name == model_name:
-                        list_obj = m.model.objects.filter(**condition)
-                        break
-
-                if list_obj is not None:
-                    for x in list_obj:
-                        choice = x._meta.get_field(col_name).choices
-                        if any(choice):
-                            colNameList.append(getattr(x, "get_%s_display" % col_name)())
-                            continue
-                        colNameList.append(getattr(x, col_name))
+                queryset = field_obj.related_model.objects.filter(**condition)
+                for x in queryset:
+                    print(x)
                 if any(colNameList):
-                    cell = "/".join([str(x) for x in colNameList])
+                    cell = "|".join([str(x) for x in queryset])
             elif col == 'image_tag':
                 cell = getattr(obj, col)()
 
@@ -186,16 +176,16 @@ def get_m2m_avalaible_data(field_name, form_obj,  admin_class):
     """
     field_obj = admin_class.model._meta.get_field(field_name)
     obj_list = set(field_obj.related_model.objects.all())
-    try:
+    for x in obj_list:
+        print(x.id)
+    selected_data = set()
+    if not admin_class.form_add:
         selected_data = set(getattr(form_obj.instance, field_name).all())
-    except TypeError:
-        selected_data = set()
-
     return obj_list - selected_data
 
 
 @register.simple_tag
-def get_selected_m2m_data(field_name, form_obj):
+def get_selected_m2m_data(field_name, form_obj, admin_class):
     """
     find all the m2m available values of that field
     :param field: form field object
@@ -203,10 +193,9 @@ def get_selected_m2m_data(field_name, form_obj):
     :param admin_class: admin_class with model object
     :return: value list the related m2m value selected
     """
-    try:
+    selected_data = set()
+    if not admin_class.form_add:
         selected_data = set(getattr(form_obj.instance, field_name).all())
-    except TypeError:
-        selected_data = set()
     return selected_data
 
 
