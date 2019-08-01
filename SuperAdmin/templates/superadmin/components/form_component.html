@@ -19,48 +19,18 @@
 
             {% for field in form_obj %}
                 {% if field.name in admin_class.filter_horizontal %}
-                    <div class="form-group" style="clear:both">
-                        <label for="id_{{ field.name }}">{{ field.label }}</label>
-
-                        <div class="row">
-
-                            <div class="col-lg-5">
-                                <select id="id_{{ field.name }}_from" multiple class="form-control">
-                                    {% get_m2m_avalaible_data field.name form_obj admin_class as avl_data %}
-                                    {% for v in avl_data %}
-                                      <option ondblclick="MoveOption(this, 'id_{{ field.name }}_to')" value="{{ v.id }}">{{ v }}</option>
-                                    {% endfor %}
-
-                                </select>
-                            </div>
-                            <div class="col-lg-5">
-                                <select tag="selected_value" name="{{ field.name }}" id="id_{{ field.name }}_to" multiple class="form-control">
-                                {% get_selected_m2m_data field.name form_obj admin_class as selected_data %}
-                                 {% for v in selected_data %}
-                                  <option ondblclick="MoveOption(this, 'id_{{ field.name }}_from')"  value="{{ v.id }}">{{ v }}</option>
-                                {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
+                    {% include 'superadmin/components/filter-horizontal.html' %}
                 {% elif field.name in admin_class.image_fields %}
                    <div class="form-group">
-                    <div class="col-lg-8">
 
                     <label> {{ field.name|title }}</label>
                     {% get_selected_m2m_image form_obj field.name as result %}
-
                     {% if result.0 %}
                         {% get_model_app form_obj field.name as model_app %}
-
                         {% include 'superadmin/components/multi-image-upload-form.html' with form_obj=form_obj field=field model_app=model_app %}
-
                     {% else %}
                         {% include 'superadmin/components/single-image-upload-form.html' with form_obj=form_obj field=field %}
-
                     {% endif %}
-                    </div>
 
                     </div>
                 {% else %}
@@ -82,4 +52,18 @@
             </div>
         </div>
     </form>
+<script>
+function VerificationBeforeFormSubmit() {
+    var select = document.getElementsByTagName('select');
+    for (var x = 0; x < select.length; x++) {
+        if (select[x].hasAttribute('tag')) {
+            var options = select[x].getElementsByTagName('option');
+            for (var i = 0; x < options.length; i++) {
+                options[i].setAttribute('selected', true);
 
+            }
+        }
+
+    }
+}
+</script>

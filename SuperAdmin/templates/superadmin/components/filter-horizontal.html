@@ -1,0 +1,91 @@
+{% load list_display %}
+
+<div class="form-group" style="clear:both">
+    <label for="id_{{ field.name }}">{{ field.label }}</label>
+
+    <div class="row">
+
+        <div class="col-lg-5">
+            <input autocomplete="off" id='_search_{{ field.name }}' oninput="FuzzySearch('{{ field.name }}')" type="text" class="form-control" placeholder="Search..">
+
+            <select id="id_{{ field.name }}_from" multiple class="form-control">
+                {% get_m2m_avalaible_data field.name form_obj admin_class as avl_data %}
+                {% for v in avl_data %}
+                  <option ondblclick="MoveOption(this, 'id_{{ field.name }}_to')" value="{{ v.id }}">{{ v }}</option>
+                {% endfor %}
+
+            </select>
+             <p class="btn-link" onclick="ChooseAllOptions('id_{{ field.name }}_from','id_{{ field.name }}_to','{{ field.name }}')" align="center" style="cursor:pointer;font-weight:bold;margin-top:10px">
+                 Choose all <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+             </p>
+             </div>
+        <div class="col-lg-5">
+            <select tag="selected_value" name="{{ field.name }}" id="id_{{ field.name }}_to" multiple class="form-control">
+            {% get_selected_m2m_data field.name form_obj admin_class as selected_data %}
+             {% for v in selected_data %}
+              <option ondblclick="MoveOption(this, 'id_{{ field.name }}_from')"  value="{{ v.id }}">{{ v }}</option>
+            {% endfor %}
+            </select>
+         <p class="btn-link" onclick="ChooseAllOptions('id_{{ field.name }}_to','id_{{ field.name }}_from','{{ field.name }}')" align="center" style="cursor:pointer;font-weight:bold;margin-top:10px">
+         <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>Remove all
+     </p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+"user strict"
+ var _temp_data={};
+// toggle selected photo
+function MoveOption(that, id) {
+    var to_parent_id = $(that).parent().attr('id');
+    var option = "<option value='" + $(that).val() +"'ondblclick=MoveOption(this,'"+ to_parent_id +"') >" + $(that).text() +"</option>";
+    $('#'+ id).append(option);
+    $(that).remove();
+}
+
+function FuzzySearch(field_name) {
+    var search_ele = document.getElementById('_search_'+field_name);
+
+    var matched_options = [];
+    if(! _temp_data.hasOwnProperty(field_name)) {
+        _temp_data[field_name] = [];
+        var options = document.getElementById('id_'+ field_name + '_from').getElementsByTagName('option');
+        for(var i=0; i<options.length; i++){
+            _temp_data[field_name].push(options[i])
+        }
+
+    }
+    var search_text = search_ele.value;
+    console.log(search_text)
+    for (var x=0; x<_temp_data[field_name].length; x++) {
+        if(_temp_data[field_name][x].text.indexOf(search_text) != -1){
+           console.log(_temp_data[field_name][x])
+            matched_options.push(_temp_data[field_name][x]);
+
+        }
+
+    }
+
+    var select = document.getElementById('id_' + field_name + '_from');
+    select.innerHTML = '';
+    for(var h=0; h<matched_options.length; h++) {
+        select.appendChild(matched_options[h]);
+    }
+
+}
+ function ChooseAllOptions(from_id, target_id, field_name) {
+    var select_options = document.getElementById(from_id).getElementsByTagName('option');
+    if(from_id.endsWith('from')) {
+        _temp_data[field_name] = []
+    } else {
+        for(var i=0; i<select_options.length; i++){
+           _temp_data[field_name].push(select_options[i]);
+        }
+    }
+    for (var x = 0; x < select_options.length;x++) {
+        document.getElementById(target_id).appendChild(select_options[x])
+    }
+ }
+</script>

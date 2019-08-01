@@ -8,15 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1664acb3-7f7a-4848-9a3c-b99b844acc33" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/filter-horizontal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/image-field.js" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/image-field.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/form_component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/form_component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/modal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py" beforeDir="false" afterPath="$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/repository/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/superadmin.py" beforeDir="false" afterPath="$PROJECT_DIR$/repository/superadmin.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/SuperCRM$list_display.coverage" NAME="list_display Coverage Results" MODIFIED="1564460135294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SuperAdmin/templatetags" />
+    <SUITE FILE_PATH="coverage/SuperCRM$list_display.coverage" NAME="list_display Coverage Results" MODIFIED="1564628476322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SuperAdmin/templatetags" />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" module-name="SuperCRM" is-module-sdk="true" working-directory="$PROJECT_DIR$">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -38,8 +34,8 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="1813" />
-          <entry key="html" value="1688" />
-          <entry key="js" value="10024" />
+          <entry key="html" value="3495" />
+          <entry key="js" value="10027" />
           <entry key="py" value="1737" />
         </counts>
       </usages-collector>
@@ -47,27 +43,28 @@
         <counts>
           <entry key="CSS" value="1813" />
           <entry key="HTML" value="3" />
-          <entry key="JavaScript" value="10021" />
+          <entry key="JavaScript" value="10024" />
           <entry key="Python" value="1737" />
-          <entry key="Svelte" value="1688" />
+          <entry key="Svelte" value="3495" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="3" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="html" value="33" />
+          <entry key="html" value="34" />
           <entry key="js" value="13" />
           <entry key="py" value="14" />
           <entry key="ts" value="4" />
@@ -78,7 +75,7 @@
           <entry key="CSS" value="3" />
           <entry key="JavaScript" value="13" />
           <entry key="Python" value="14" />
-          <entry key="Svelte" value="33" />
+          <entry key="Svelte" value="34" />
           <entry key="TypeScript" value="4" />
         </counts>
       </usages-collector>
@@ -90,22 +87,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="216" column="8" lean-forward="true" selection-start-line="216" selection-start-column="8" selection-end-line="216" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/modal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="834">
-              <caret line="305" column="42" lean-forward="true" selection-start-line="305" selection-start-column="42" selection-end-line="305" selection-end-column="42" />
+            <state relative-caret-position="406">
+              <caret line="321" column="28" lean-forward="true" selection-start-line="321" selection-start-column="28" selection-end-line="321" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -113,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/repository/superadmin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="34">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -125,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/repository/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1887">
-              <caret line="111" column="28" lean-forward="true" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
+            <state relative-caret-position="556">
+              <caret line="111" column="28" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -143,13 +128,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/form_component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="70" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
+            <state relative-caret-position="561">
+              <caret line="39" column="84" lean-forward="true" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/filter-horizontal.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="854">
+              <caret line="72" column="49" lean-forward="true" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,8 +154,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="879">
-              <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
+            <state relative-caret-position="2482">
+              <caret line="156" selection-start-line="156" selection-end-line="156" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -170,8 +166,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/image-field.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="118" column="37" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="37" />
+            <state relative-caret-position="216">
+              <caret line="93" column="1" lean-forward="true" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -180,7 +176,7 @@
         <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/multi-image-upload-form.html">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -188,8 +184,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-799">
-              <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+            <state relative-caret-position="68">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -200,9 +196,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -250,7 +246,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/crm/admin.py" />
         <option value="$PROJECT_DIR$/crm/superadmin.py" />
         <option value="$PROJECT_DIR$/crm/views.py" />
         <option value="$PROJECT_DIR$/customer/models.py" />
@@ -301,6 +296,7 @@
         <option value="$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py" />
         <option value="$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/image-field.js" />
         <option value="$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/form_component.html" />
+        <option value="$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/filter-horizontal.html" />
       </list>
     </option>
   </component>
@@ -310,9 +306,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1876" />
+    <option name="y" value="3" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -322,6 +318,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -338,28 +335,33 @@
               <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
               <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
-              <item name="statics" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
               <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
-              <item name="statics" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="superadmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
               <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
               <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
-              <item name="statics" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="superadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SuperCRM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SuperCRM" type="462c0819:PsiDirectoryNode" />
+              <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
+              <item name="templatetags" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -410,7 +412,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.list_display">
+  <component name="RunManager" selected="Django server.SuperCRM">
     <configuration name="list_display" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SuperCRM" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -496,16 +498,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1876" y="3" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49870467" visible="true" weight="0.2249467" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49870467" visible="true" weight="0.22707888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5012953" side_tool="true" weight="0.15938166" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" weight="0.32925472" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.13568985" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48773986" visible="true" weight="0.29032257" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48773986" weight="0.1512792" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -516,6 +517,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.51226014" side_tool="true" weight="0.32925472" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.90724945" weight="0.32925472" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49733475" weight="0.32925472" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32925472" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -628,7 +630,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../be_challenge/env/Lib/site-packages/django/db/models/fields/related.py" />
     <entry file="file://$PROJECT_DIR$/SuperAdmin/spotted gum" />
     <entry file="file://$PROJECT_DIR$/SuperAdmin/statics/superadmin/plugins/bootstrap-4.3.1/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor" />
@@ -823,26 +824,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/multi-image-upload-form.html">
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-799">
-          <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="879">
-          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
+        <state relative-caret-position="3621">
+          <caret line="216" column="8" selection-start-line="216" selection-start-column="8" selection-end-line="216" selection-end-column="8" />
           <folding>
-            <element signature="e#0#59#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repository/superadmin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -854,56 +851,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="156" selection-start-line="156" selection-end-line="156" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/multi-image-upload-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/repository/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="111" column="28" lean-forward="true" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
+        <state relative-caret-position="556">
+          <caret line="111" column="28" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/repository/superadmin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SuperAdmin/templatetags/list_display.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="216" column="8" lean-forward="true" selection-start-line="216" selection-start-column="8" selection-end-line="216" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/modal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="834">
-          <caret line="305" column="42" lean-forward="true" selection-start-line="305" selection-start-column="42" selection-end-line="305" selection-end-column="42" />
+        <state relative-caret-position="406">
+          <caret line="321" column="28" lean-forward="true" selection-start-line="321" selection-start-column="28" selection-end-line="321" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuperAdmin/statics/superadmin/js/image-field.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="118" column="37" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="37" />
+        <state relative-caret-position="216">
+          <caret line="93" column="1" lean-forward="true" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/form_component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="70" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
+        <state relative-caret-position="561">
+          <caret line="39" column="84" lean-forward="true" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperAdmin/templates/superadmin/components/filter-horizontal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="854">
+          <caret line="72" column="49" lean-forward="true" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

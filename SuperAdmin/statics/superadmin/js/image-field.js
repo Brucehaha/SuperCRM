@@ -107,24 +107,3 @@ function hideElement(ths) {
 }
 
 
-// toggle selected photo
-function MoveOption(that, id) {
-    var to_parent_id = $(that).parent().attr('id');
-    console.log(to_parent_id)
-    var option = "<option value='" + $(that).val() +"'ondblclick=MoveOption(this,'"+ to_parent_id +"') >" + $(that).text() +"</option>";
-    $('#'+ id).append(option);
-    $(that).remove();
-}
-
-function VerificationBeforeFormSubmit() {
-    var select = document.getElementsByTagName('select');
-    for(var x =0; x < select.length; x++) {
-        if(select[x].hasAttribute('tag')){
-            var options = select[x].getElementsByTagName('option');
-            for(var i =0; x < options.length; i++) {
-                options[i].setAttribute('selected', true);
-
-        }
-    }
-
-}
