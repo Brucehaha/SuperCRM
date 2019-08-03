@@ -52,7 +52,19 @@ document.getElementById("id_{{ field.name }}_to").addEventListener("click", func
 
 // toggle selected photo
 function moveClickedOption(ele, target_select_ele_id,field_name) {
-    console.log()
+    if(ele.target.type !== 'select-multiple') {
+        var clone_ele = ele.target;
+        clone_ele.parentNode.removeChild(clone_ele);
+        document.getElementById('target_select_ele_id').appendChild(clone_ele);
+
+        var search_ele = document.getElementsByClassName('_search_'+field_name);
+        if (! _temp_data.hasOwnProperty(field_name) ){
+            _temp_data[field_name] = []; //set a empty arrry first
+
+        }
+
+
+    }
 }
 
 
