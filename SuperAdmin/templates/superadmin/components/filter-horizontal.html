@@ -46,70 +46,80 @@ document.getElementById("id_{{ field.name }}_to").addEventListener("dblclick", f
 });
 
 document.getElementById("id_{{ field.name }}_to").addEventListener("click", function (ele) {
-    $(ele).preventDefault;
+    ele.preventDefault;
 
 });
 
 // toggle selected photo
 function moveClickedOption(ele, target_select_ele_id,field_name) {
     if(ele.target.type !== 'select-multiple') {
-        var clone_ele = ele.target;
+        let clone_ele = ele.target;
         clone_ele.parentNode.removeChild(clone_ele);
-        document.getElementById('target_select_ele_id').appendChild(clone_ele);
-
-        var search_ele = document.getElementsByClassName('_search_'+field_name);
+        document.getElementById(target_select_ele_id).appendChild(clone_ele);
         if (! _temp_data.hasOwnProperty(field_name) ){
-            _temp_data[field_name] = []; //set a empty arrry first
-
+            _temp_data[field_name] = []; //set a empty array first
+            let options = document.getElementById('id_' + field_name + '_from').getElementsByTagName('option');
+            for(let option=0; option<options.length; option++) {
+                _temp_data[field_name].push(options[option]);
+            }
         }
 
-
+        let ele_id_needs_to_be_deleted = null;
+        if(target_select_ele_id.endsWith('_from')) { //move ele from right to left
+            _temp_data[field_name].push(clone_ele);
+        }else { //move ele from left to right
+            let field_value = _temp_data[field_name];
+            for(let index=0; index < field_value.length; index++){
+                if(field_value.value === clone_ele.value) {
+                    ele_id_needs_to_be_deleted = index;
+                }
+            }
+        }
+        if (ele_id_needs_to_be_deleted !== null){
+            _temp_data[field_name].splice(ele_id_needs_to_be_deleted, 1);
+        }
+        $("#id_{{ field.name }}_to option").prop("selected",true); //set the right items to be select by JQuery.
     }
 }
 
-
-
 function FuzzySearch(field_name) {
-    var search_ele = document.getElementById('_search_'+field_name);
+    let search_ele = document.getElementById('_search_'+field_name);
 
-    var matched_options = [];
+    let matched_options = [];
     if(! _temp_data.hasOwnProperty(field_name)) {
         _temp_data[field_name] = [];
-        var options = document.getElementById('id_'+ field_name + '_from').getElementsByTagName('option');
-        for(var i=0; i<options.length; i++){
-            _temp_data[field_name].push(options[i])
+        let options = document.getElementById('id_'+ field_name + '_from').getElementsByTagName('option');
+        for(let i=0; i<options.length; i++){
+            _temp_data[field_name].push(options[i]);
         }
-
     }
-    var search_text = search_ele.value;
-    console.log(search_text)
-    for (var x=0; x<_temp_data[field_name].length; x++) {
-        if(_temp_data[field_name][x].text.indexOf(search_text) != -1){
-           console.log(_temp_data[field_name][x])
+
+    let search_text = search_ele.value;
+    for (let x=0; x<_temp_data[field_name].length; x++) {
+        if(_temp_data[field_name][x].text.indexOf(search_text) !== -1){
             matched_options.push(_temp_data[field_name][x]);
-
         }
-
     }
 
-    var select = document.getElementById('id_' + field_name + '_from');
+    let select = document.getElementById('id_' + field_name + '_from');
     select.innerHTML = '';
-    for(var h=0; h<matched_options.length; h++) {
+    for(let h=0; h < matched_options.length; h++) {
         select.appendChild(matched_options[h]);
     }
 
 }
  function ChooseAllOptions(from_id, target_id, field_name) {
-    var select_options = document.getElementById(from_id).getElementsByTagName('option');
+    FuzzySearch(field_name); // search again, if right item has been moved to the left, include it in the search result
+    let select_options = document.getElementById(from_id).getElementsByTagName('option');
     if(from_id.endsWith('from')) {
-        _temp_data[field_name] = []
+        _temp_data[field_name] = [];
     } else {
-        for(var i=0; i<select_options.length; i++){
+        for(let i=0; i<select_options.length; i++){
            _temp_data[field_name].push(select_options[i]);
         }
     }
-    for (var x = 0; x < select_options.length;x++) {
-        document.getElementById(target_id).appendChild(select_options[x])
+    for (let x = 0; x < select_options.length;x++) {
+        document.getElementById(target_id).appendChild(select_options[x]);
     }
  }
 </script>
