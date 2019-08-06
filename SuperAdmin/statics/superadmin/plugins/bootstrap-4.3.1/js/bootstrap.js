@@ -2034,7 +2034,7 @@
    * ------------------------------------------------------------------------
    */
 
-  var NAME$5 = 'backupmodal';
+  var NAME$5 = 'modal';
   var VERSION$5 = '4.3.1';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
@@ -2068,18 +2068,18 @@
     CLICK_DATA_API: "click" + EVENT_KEY$5 + DATA_API_KEY$5
   };
   var ClassName$5 = {
-    SCROLLABLE: 'backupmodal-dialog-scrollable',
-    SCROLLBAR_MEASURER: 'backupmodal-scrollbar-measure',
-    BACKDROP: 'backupmodal-backdrop',
-    OPEN: 'backupmodal-open',
+    SCROLLABLE: 'modal-dialog-scrollable',
+    SCROLLBAR_MEASURER: 'modal-scrollbar-measure',
+    BACKDROP: 'modal-backdrop',
+    OPEN: 'modal-open',
     FADE: 'fade',
     SHOW: 'show'
   };
   var Selector$5 = {
-    DIALOG: '.backupmodal-dialog',
-    MODAL_BODY: '.backupmodal-body',
-    DATA_TOGGLE: '[data-toggle="backupmodal"]',
-    DATA_DISMISS: '[data-dismiss="backupmodal"]',
+    DIALOG: '.modal-dialog',
+    MODAL_BODY: '.modal-body',
+    DATA_TOGGLE: '[data-toggle="modal"]',
+    DATA_DISMISS: '[data-dismiss="modal"]',
     FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
     STICKY_CONTENT: '.sticky-top'
     /**
@@ -2245,7 +2245,7 @@
       var transition = $(this._element).hasClass(ClassName$5.FADE);
 
       if (!this._element.parentNode || this._element.parentNode.nodeType !== Node.ELEMENT_NODE) {
-        // Don't move backupmodal's DOM position
+        // Don't move modal's DOM position
         document.body.appendChild(this._element);
       }
 
@@ -2253,7 +2253,7 @@
 
       this._element.removeAttribute('aria-hidden');
 
-      this._element.setAttribute('aria-backupmodal', true);
+      this._element.setAttribute('aria-modal', true);
 
       if ($(this._dialog).hasClass(ClassName$5.SCROLLABLE)) {
         this._dialog.querySelector(Selector$5.MODAL_BODY).scrollTop = 0;
@@ -2338,7 +2338,7 @@
 
       this._element.setAttribute('aria-hidden', true);
 
-      this._element.removeAttribute('aria-backupmodal');
+      this._element.removeAttribute('aria-modal');
 
       this._isTransitioning = false;
 
@@ -2431,7 +2431,7 @@
       }
     } // ----------------------------------------------------------------------
     // the following methods are used to handle overflowing modals
-    // todo (fat): these should probably be refactored out of backupmodalpmodal.js
+    // todo (fat): these should probably be refactored out of modal.js
     // ----------------------------------------------------------------------
     ;
 
@@ -2583,7 +2583,7 @@
 
     var $target = $(target).one(Event$5.SHOW, function (showEvent) {
       if (showEvent.isDefaultPrevented()) {
-        // Only register focus restorer if backupmodal will actually get shown
+        // Only register focus restorer if modal will actually get shown
         return;
       }
 
@@ -2902,7 +2902,7 @@
       clearTimeout(this._timeout);
       $.removeData(this.element, this.constructor.DATA_KEY);
       $(this.element).off(this.constructor.EVENT_KEY);
-      $(this.element).closest('.backupmodal').off('hide.bs.modal');
+      $(this.element).closest('.modal').off('hide.bs.modal');
 
       if (this.tip) {
         $(this.tip).remove();
@@ -3188,7 +3188,7 @@
           });
         }
       });
-      $(this.element).closest('.backupmodal').on('hide.bs.modal', function () {
+      $(this.element).closest('.modal').on('hide.bs.modal', function () {
         if (_this4.element) {
           _this4.hide();
         }

@@ -229,7 +229,6 @@ class Menu(models.Model):
 
     """dynamic menu"""
     name = models.CharField(max_length=64)
-
     URL_TYPE_CHOICES = ((0, 'absolute'), (1, 'dynamic'))
     url_type = models.SmallIntegerField(choices=URL_TYPE_CHOICES, default=0)
     url_name = models.CharField(max_length=128)

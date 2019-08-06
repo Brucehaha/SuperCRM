@@ -65,7 +65,8 @@
     var modal = document.getElementById('upload-files');
 
 // xhr loading photos
-    modal.addEventListener('click',
+    if(modal){
+        modal.addEventListener('click',
         function GetImages(e) {
             console.log(e.target);
             var photos = document.getElementById('medial_library');
@@ -93,6 +94,10 @@
             xhr.send(null)
         }
         , false)
+
+
+    }
+
 
 
     function renderImages(images, attachments) {

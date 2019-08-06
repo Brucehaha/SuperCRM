@@ -6,12 +6,10 @@
             {% if not admin_class.form_add %}
                 {% for field_name in admin_class.readonly_fields %}
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label for="id_{{ field_name }}">{{ field_name|title }}</label>
-                                <input class="form-control" disabled id= "id_{{ field_name }}" value="{% get_readonly_value form_obj field_name %}"/>
-                             </div>
-                        </div>
+
+                        <label for="id_{{ field_name }}">{{ field_name|title }}</label>
+                        <input class="form-control" disabled id= "id_{{ field_name }}" value="{% get_readonly_value form_obj field_name %}"/>
+
                     </div>
 
                 {% endfor %}
@@ -35,21 +33,14 @@
                     </div>
                 {% else %}
                     <div class="form-group"  style="clear:left;">
-                        <div class="row">
-                        <div class="col-lg-4">
                             <label for="id_{{ field.name }}">{{ field.label }}</label>
                                 {{ field }}
-                        </div>
-                        </div>
                      </div>
                 {% endif %}
             <span style="color: red">{{ field.errors.0 }} </span>
         {% endfor %}
         <div class="form-group">
-
-            <div class="col-sm-offset-4 col-sm-2" style="clear:left;">
               <button type="submit" class="btn btn-info">Save</button>
-            </div>
         </div>
     </form>
 <script>

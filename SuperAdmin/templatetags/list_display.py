@@ -15,9 +15,9 @@ def table_list(obj, admin_class):
     '''
     _html = ''
     cell = ''
+    _html += "<td><input type='checkbox' tag='row-check' value='%s' > </td>" % obj.id
     app_name = admin_class.model._meta.app_label
     model_name = admin_class.model._meta.model_name
-
     if admin_class.list_display:
         for col in admin_class.list_display:
             field_obj = admin_class.model._meta.get_field(col)
@@ -32,7 +32,7 @@ def table_list(obj, admin_class):
                 # get the tables which have foreign key point to obj model class
                 queryset = field_obj.related_model.objects.filter(**condition)
                 for x in queryset:
-                    print(x)
+                    colNameList.append(x)
                 if any(colNameList):
                     cell = "|".join([str(x) for x in queryset])
             elif col == 'image_tag':
