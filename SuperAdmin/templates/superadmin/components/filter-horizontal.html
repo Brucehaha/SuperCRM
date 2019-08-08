@@ -110,7 +110,8 @@ function FuzzySearch(field_name) {
 }
  function ChooseAllOptions(from_id, target_id, field_name) {
     FuzzySearch(field_name); // search again, if right item has been moved to the left, include it in the search result
-    let select_options = document.getElementById(from_id).getElementsByTagName('option');
+    let select_options = Array.prototype.slice.call(document.getElementById(from_id).getElementsByTagName('option'));
+
     if(from_id.endsWith('from')) {
         _temp_data[field_name] = [];
     } else {
