@@ -34,26 +34,23 @@
 
 
     /* menu button click */
+    $(".media-menu-item").click(function() {
+        console.log($(this));
+        let isActive = $(this).hasClass('active')
+        if (!isActive) {
+            $(this).addClass('active');
+            removeActive(this)
+        }
+    }
+    );
 
-    let menus = document.getElementsByClassName('media-menu-item');
-    Array.from(menus).forEach(function (el) {
 
-        el.addEventListener('click', function (event) {
-            var isActive = el.classList.contains('active')
-            if (!isActive) {
-                el.classList.add('active');
-                removeActive(menus, el)
+    function removeActive(el) {
+        $(".media-menu-item").each(function() {
+            let isActive = $(this).hasClass('active');
+            if (isActive && this !== el) {
+                 $(this).removeClass('active');
             }
-        }, false);
-    });
-
-    function removeActive(menus, el) {
-        Array.from(menus).filter(element => element != el).forEach(function (element) {
-            var isActive = el.classList.contains('active');
-            if (isActive) {
-                element.classList.remove('active');
-            }
-
         });
 
     }
@@ -97,8 +94,6 @@
 
 
     }
-
-
 
     function renderImages(images, attachments) {
         for (var key in images) {
