@@ -138,8 +138,10 @@ class Image(models.Model):
         return mark_safe('<img src="%s" width="50" height="50" />' % self.image.url)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
+
     def __str__(self):
         return self.name
+
 
 class Cart(models.Model):
     """Cart Table"""
