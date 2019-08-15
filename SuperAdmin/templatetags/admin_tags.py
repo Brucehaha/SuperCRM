@@ -20,8 +20,12 @@ def table_list(obj, admin_class):
     model_name = admin_class.model._meta.model_name
     if admin_class.list_display:
         for col in admin_class.list_display:
-            field_obj = admin_class.model._meta.get_field(col)
-            field_type = field_obj.get_internal_type()
+            model_meta = admin_class.model._meta
+            fields_list = [f.name for f in model_meta.get_fields()]
+            field_type = None
+            if col in fields_list:
+                field_obj = model_meta.get_field(col)
+                field_type = field_obj.get_internal_type()
             if field_type == 'ManyToManyField':
                 colNameList = []
                 #  model name and field name of model with foreignkey pointed to obj model class
@@ -95,6 +99,9 @@ def list_filter(f, kls):
             ]
         )
     elif column_obj.get_internal_type() == "ForeignKey":
+        new_opts = column_obj.related_model.objects.values_list('id', 'name')
+        options.extend(list(new_opts))
+    elif column_obj.get_internal_type() == "ManyToManyField":
         new_opts = column_obj.related_model.objects.values_list('id', 'name')
         options.extend(list(new_opts))
     else:

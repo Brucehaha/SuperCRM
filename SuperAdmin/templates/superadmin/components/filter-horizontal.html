@@ -35,25 +35,32 @@
 <script>
 "user strict"
 
-var _temp_data={};
+let _temp_data={};
 
-document.getElementById("id_{{ field.name }}_from").addEventListener("dblclick", function (ele) {
-    moveClickedOption(ele,"id_{{ field.name }}_to","{{ field.name }}");
+document.getElementById("id_{{ field.name }}_from").addEventListener("dblclick", function (event) {
+    moveClickedOption(event,"id_{{ field.name }}_to","{{ field.name }}");
 });
 
-document.getElementById("id_{{ field.name }}_to").addEventListener("dblclick", function (ele) {
-    moveClickedOption(ele,"id_{{ field.name }}_from","{{ field.name }}");
+document.getElementById("id_{{ field.name }}_to").addEventListener("dblclick", function (event) {
+    moveClickedOption(event,"id_{{ field.name }}_from","{{ field.name }}");
 });
 
-document.getElementById("id_{{ field.name }}_to").addEventListener("click", function (ele) {
-    ele.preventDefault;
+document.getElementById("id_{{ field.name }}_to").addEventListener("click", function (event) {
+    event.preventDefault;
 
 });
-
+// for supporting IE browser
+ if (!String.prototype.endsWith) {
+   String.prototype.endsWith = function(suffix) {
+     console.log(this)
+     return this.indexOf(suffix, this.length - suffix.length) !== -1;
+   };
+ }
 // toggle selected photo
-function moveClickedOption(ele, target_select_ele_id,field_name) {
-    if(ele.target.type !== 'select-multiple') {
-        let clone_ele = ele.target;
+function moveClickedOption(event, target_select_ele_id,field_name) {
+     console.log(event.currentTarget);
+    if(event.srcElement.type !== 'select-multiple') {
+        let clone_ele = event.target;
         clone_ele.parentNode.removeChild(clone_ele);
         document.getElementById(target_select_ele_id).appendChild(clone_ele);
         if (! _temp_data.hasOwnProperty(field_name) ){
@@ -65,6 +72,7 @@ function moveClickedOption(ele, target_select_ele_id,field_name) {
         }
 
         let ele_id_needs_to_be_deleted = null;
+
         if(target_select_ele_id.endsWith('_from')) { //move ele from right to left
             _temp_data[field_name].push(clone_ele);
         }else { //move ele from left to right

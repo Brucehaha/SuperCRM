@@ -228,8 +228,8 @@
 
     function rangeSelectPhoto(attachment, checkedIcon, key, images) {
         var indexList = ImageIdList(lastChecked);
-        let maxNum = Math.max(...indexList);
-        let minNum = Math.min(...indexList);
+        let maxNum = Math.max(indexList);
+        let minNum = Math.min(indexList);
         let currentNum = attachment.getAttribute('indextag');
         if (parseInt(currentNum) > maxNum) {
             rangeSelect(currentNum, minNum, lastChecked)
@@ -271,24 +271,21 @@
     }
 
 
-    var photoHTML1 = `
-        
-            <div class="initLoading" style="display:none;">
-                <img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">
-            </div>
-            <div class="show-img">
-                    <a class="remove" href="javascript:void(0)" tag="image-{{ id }}">
-                        <img src="/static/superadmin/imgs/removeUpload.png" alt="">
-                    </a>
-                    <div class="reupload-hover">
-                        <a href="javascript:void(0)" class="release-dialog-update" >
-                            <img class='pic' src="`;
+    var photoHTML1 =['<div class="initLoading" style="display:none;">',
+                    '<img src="/static/superadmin/imgs/img_loading.gif" alt="" class="loading-img">',
+                    '</div>',
+                    '<div class="show-img">',
+                    '<a class="remove" href="javascript:void(0)" tag="image-{{ id }}">',
+                    '<img src="/static/superadmin/imgs/removeUpload.png" alt="">',
+                    '</a>',
+                    '<div class="reupload-hover">',
+                    '<a href="javascript:void(0)" class="release-dialog-update">',
+                    '<img class="pic" src="'].join('\n');
 
-     var photoHTML2 =  `">
-                        </a>
-                    </div>
-            </div>
-         `;
+     var photoHTML2 =  ['>',
+                        '</a>',
+                        '</div>',
+                        '</div>'].join('\n');
 
     function getSelectedImages(key) {
         var selectedOptions = getExistedPhotos();

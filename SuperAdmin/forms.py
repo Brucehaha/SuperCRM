@@ -22,6 +22,6 @@ def dynamic_form_generator(admin_class, form_add=False):
                 field_obj.widget.attrs.update({'class': 'form-control', "id": 'id-%s' % field_name})
         return ModelForm.__new__(cls)
 
-    dynamic_form = type('DynamicModelForm', (ModelForm, ), {'field_order':field_order,'Meta': Meta, '__new__': __new__})
+    dynamic_form = type('DynamicModelForm', (ModelForm, ), {'field_order': field_order, 'Meta': Meta, '__new__': __new__})
     return dynamic_form
 

@@ -1,5 +1,5 @@
 {% extends 'superadmin/index.html' %}
-{% load list_display %}
+{% load admin_tags %}
 
 {% block content-title %}
 <nav aria-label="breadcrumb" class="pt-3 pb-2 mb-3 border-bottom">
@@ -33,6 +33,20 @@
                 {% list_filter i admin_class %}
             {% endfor %}
                 <input type="submit" value="Filter">
+        </form>
+    {% endif %}
+      {% if not admin_class.readonly_table %}
+        <form method="POST">
+            {% csrf_token %}
+            <select name="action">
+                <option selected>No action</option>
+                {% for i in admin_class.actions %}
+                    <option value="{{ i }}">{{ i|title }}: </option>
+            {% endfor %}
+
+            </select>
+
+                <input type="submit" value="GO">
         </form>
     {% endif %}
     </div>

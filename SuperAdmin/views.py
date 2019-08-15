@@ -108,6 +108,8 @@ def get_search_result(request, querysets, admin_class):
 
 def table_list(request, app_name, model_name):
     ''' return all the instances given model name and app_name'''
+
+    print(request.POST)
     admin_class = site.enabled_admins[app_name][model_name]
     p = request.GET.get('p', 1)
     # get query set

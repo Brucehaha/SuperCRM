@@ -9,5 +9,11 @@ class BaseAdminSite(object):
     image_fields = []
     field_order = []
     form_type = None
+    actions = ["delete_selected_objs",]
+    readonly_table = False
+
+    def delete_selected_objs(self, request, querysets):
+        pass
+
 
 
