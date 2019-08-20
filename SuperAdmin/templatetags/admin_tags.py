@@ -287,3 +287,10 @@ def get_model_app(form_obj, field_name):
     return model_name, app_name, image_field
 
 
+@register.simple_tag ()
+def render_deleted_relations(objs):
+    return render_deleted_relations(objs)
+
+def deleted_relations(objs):
+    pass
+

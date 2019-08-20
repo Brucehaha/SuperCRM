@@ -9,15 +9,19 @@ from .utils.image import handelImage
 from django.core import serializers
 import json
 from django.conf import settings
+from SuperAdmin.sites import site
 
 
 app_setup.superadmin_auto_discover()
 
-from SuperAdmin.sites import site
-
 
 def imageListView(request):
-    data ={}
+    """
+    xhrrequest send back image list
+    :param request:
+    :return:
+    """
+    data = {}
     if request.is_ajax():
         app_name = request.GET.get('app_name')
         model_name = request.GET.get('model_name')
@@ -27,7 +31,6 @@ def imageListView(request):
 
         for obj in queryset:
             dic = {}
-            id = {}
             if hasattr(obj, field_name):
                 image_field = getattr(obj, field_name)
                 dic['dimension'] = '%s x %s' % (image_field.width, image_field.height)
@@ -152,19 +155,43 @@ def add_instance(request, app_name, model_name):
     return render(request, 'superadmin/add.html', locals())
 
 
-def edit_instance(request, app_name, model_name, obj_id):
-    admin_class = site.enabled_admins[app_name][model_name]
-    obj = admin_class.model.objects.get(id=obj_id)
-    model_form = dynamic_form_generator(admin_class)
+def edit_instance(request, app_name, table_name, obj_id):
+    if app_name in site.enabled_admins:
+        if table_name in site.enabled_admins[app_name]:
+            admin_class = site.enabled_admins[app_name][table_name]
+            obj = admin_class.model.objects.get(id=obj_id)
+            model_form = dynamic_form_generator(admin_class)
 
-    if request.method == 'POST':
-        form_obj = model_form(request.POST, request.FILES, instance=obj)
-        if form_obj.is_valid():
-            form_obj.save()
-            return redirect("/superadmin/%s/%s/" %(app_name, model_name))
-    else:
-        form_obj = model_form(instance=obj)
-    return render(request, 'superadmin/edit.html', locals())
+            if request.method == 'POST':
+                form_obj = model_form(request.POST, request.FILES, instance=obj)
+                if form_obj.is_valid():
+                    form_obj.save()
+                    return redirect("/superadmin/%s/%s/" %(app_name, table_name))
+            else:
+                form_obj = model_form(instance=obj)
+        return render(request, 'superadmin/edit.html', locals())
+
+
+def delete_instance(request, app_name, table_name, obj_id):
+    if app_name in site.enabled_admins:
+        if table_name in site.enabled_admins[app_name]:
+            admin_class = site.enabled_admins[app_name][table_name]
+            obj = admin_class.model.objects.filter(id=obj_id)
+            if request.method == "POST":
+                delete_key = request.POST.get("_delete_confirm")
+                if delete_key == 'yes':
+                    obj.delete()
+                    return redirect('/superadmin/%s/%s/'%(app_name, table_name))
+            if admin_class.readonly_table is True:
+                return redirect('/')
+
+            return render(request, 'superadmin/table_objs_delete.html', {
+                'model_verbose_name': admin_class.model._meta.verbose_name,
+                'model_name': admin_class.model._meta.model_name,
+                'model_db_table': admin_class.model._meta.db_table,
+                'objs': obj,
+                'app_name': app_name,
+            })
 
 
 def acc_signin(request):

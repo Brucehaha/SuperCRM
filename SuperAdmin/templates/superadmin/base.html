@@ -1,6 +1,7 @@
-{% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <!-- saved from url=(0054)https://getbootstrap.com/docs/4.3/examples/dashboard/# -->
+{% load static %}
+
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,13 +17,12 @@
     {% block css %} {% endblock %}
 </head>
 <body>
-   {% block body %}
-   {% endblock %}
+    {% block body %}
+    {% endblock %}
 
-{% block js %} {% endblock %}
-
-
-{% include './components/footer.html' %}
+    {% block js %}
+    {% endblock %}
+    {% include './components/footer.html' %}
 
 </body>
 </html>

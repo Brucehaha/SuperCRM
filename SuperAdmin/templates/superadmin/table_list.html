@@ -4,8 +4,8 @@
 {% block content-title %}
 <nav aria-label="breadcrumb" class="pt-3 pb-2 mb-3 border-bottom">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/superadmin">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><a href="/superadmin/{{ app_name }}">{{ app_name|title }}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="{% url  'models_list' app_name %}">{{ app_name|title }}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ model_name|title }}</li>
 
   </ol>
