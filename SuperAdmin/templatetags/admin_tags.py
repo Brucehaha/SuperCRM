@@ -287,10 +287,30 @@ def get_model_app(form_obj, field_name):
     return model_name, app_name, image_field
 
 
-@register.simple_tag ()
+@register.simple_tag()
 def render_deleted_relations(objs):
-    return render_deleted_relations(objs)
+    return mark_safe(deleted_relations(objs))
+
 
 def deleted_relations(objs):
-    pass
+    ul_el = '<ul>'
+    for obj in objs:
+        m2m = obj._meta.local_many_to_many
+        for t in m2m:
+            ul_el += '<h2>%s</h2><ul>' % t.verbose_name
+            field_name = t.name
+            if hasattr(obj, field_name):
+                field_obj = getattr(obj, field_name)
+                for q in field_obj.select_related():
+                    ul_el += '<li>%s</li>' % q
+                ul_el +='</ul>'
+
+
+    ul_el += '</ul>'
+    return ul_el
+
+
+
+
+
 

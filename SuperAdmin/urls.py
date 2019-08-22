@@ -13,7 +13,7 @@ urlpatterns = [
 
     re_path(r'^(\w+)/(\w+)/(\d+)/edit/$', views.edit_instance, name='edit_instance'),
     re_path(r'^(\w+)/(\w+)/add/$', views.add_instance, name='add_instance'),
-    re_path(r'^(\w+)/(\w+)/(\d+)/delete/$', views.add_instance, name='delete_instance'),
+    re_path(r'^(\w+)/(\w+)/(\d+)/delete/$', views.delete_instance, name='delete_instance'),
     re_path(r'^(\w+)/(\w+)/$', views.table_list, name='table_list'),
 
 ]
