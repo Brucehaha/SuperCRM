@@ -1,5 +1,5 @@
 import datetime
-
+import string
 from django import template
 from django.utils.safestring import mark_safe
 register = template.Library()
@@ -293,21 +293,56 @@ def render_deleted_relations(objs):
 
 
 def deleted_relations(objs):
-    ul_el = '<ul>'
+    ul_al = ""
     for obj in objs:
+        # list many to many field
         m2m = obj._meta.local_many_to_many
         for t in m2m:
-            ul_el += '<h2>%s</h2><ul>' % t.verbose_name
+            ul_el = '<span style="font-weight:bold">%s-%s many to many relationship</span>' % (t.model._meta.verbose_name, t.verbose_name)
+            ul_el += '<ul>'
             field_name = t.name
             if hasattr(obj, field_name):
-                field_obj = getattr(obj, field_name)
+                # obj.field_name is manager not field object
+                field_obj = getattr(obj, field_name)  # getattr(product, 'image')
                 for q in field_obj.select_related():
                     ul_el += '<li>%s</li>' % q
-                ul_el +='</ul>'
+            ul_el += '</ul>'
+            ul_al += ul_el
 
+        # list related model
+        related_objs = obj._meta.related_objects
+        for related_obj in related_objs:
+            if 'ManyToManyRel' in related_obj.__str__():
+                if hasattr(obj, related_obj.get_accessor_name()):  # hasattr(product,'image_set')
+                    accessor_obj = getattr(obj, related_obj.get_accessor_name())
+                    if hasattr(accessor_obj, 'select_related'):
+                        target_objs = getattr(accessor_obj, 'select_related')()
+                        if len(target_objs) > 0:
+                            ul_title = '<span style="font-weight:bold">%s-%s many to many relationship</span>' % (related_obj.name, obj._meta.verbose_name)
+                            sub_ul = ul_title+'<ul>'
+                            for target_obj in target_objs:
+                                sub_li = '<li style="color-red">%s</li>' % target_obj
+                                sub_ul += sub_li
+                            sub_ul += '<ul>'
+                            ul_al += sub_ul
+                elif hasattr(obj, related_obj.get_accessor_name()):
+                    accessor_obj = getattr(obj, related_obj.get_accessor_name())
+                    if hasattr(accessor_obj, 'select_related'):
+                        target_objs = getattr(accessor_obj, 'select_related')()
+                    else:  # if there is one to relationship
+                        target_objs = [accessor_obj]
+                    if len(target_objs) > 0:
+                        ul_title = '<span style="font-weight:bold">%s-%s relationship</span>' % (
+                        related_obj.name, obj._meta.model_name)
+                        sub_ul = ul_title + '<ul>'
+                        for target_obj in target_objs:
+                            recursive_node = deleted_relations(target_obj)
+                            sub_ul += recursive_node
+                        sub_ul += '<ul>'
+                    ul_al += sub_ul
 
-    ul_el += '</ul>'
-    return ul_el
+        ul_al += '</ul>'
+    return ul_al
 
 
 

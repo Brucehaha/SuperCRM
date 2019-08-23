@@ -48,8 +48,11 @@ class CustomerInfo(models.Model):
     consultant = models.ForeignKey("UserProfile", related_name="consultant", null=True, blank=True, on_delete=models.SET_NULL)
     timestamp = models.DateField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "CustomerInfo"
     def __str__(self):
         return self.name
+
 
 
 class CustomerFollowUp(models.Model):
