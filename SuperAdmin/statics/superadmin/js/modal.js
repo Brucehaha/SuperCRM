@@ -282,7 +282,7 @@
                     '<a href="javascript:void(0)" class="release-dialog-update">',
                     '<img class="pic" src="'].join('\n');
 
-     var photoHTML2 =  ['>',
+     var photoHTML2 =  ['">',
                         '</a>',
                         '</div>',
                         '</div>'].join('\n');

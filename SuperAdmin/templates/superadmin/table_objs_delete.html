@@ -14,7 +14,21 @@
     </nav>
 {% endblock %}
 {% block content %}
-
+<h3>Are you sure to delete them? It will affect the relations below</h3>
 {% render_deleted_relations objs %}
-
+<style>
+form {
+    display: inline-block
+    }
+</style>
+<form method="POST">
+{% csrf_token %}
+<input type="hidden" value="yes" name="_delete_confirm">
+<button type="submit" class="btn btn-danger">Yes, I am sure</button>
+</form>
+<form method="POST">
+{% csrf_token %}
+<input type="hidden" value="no" name="_delete_confirm">
+<button type="submit" class="btn btn-info">No, I will cancel it</button>
+</form>
 {% endblock %}

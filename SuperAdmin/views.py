@@ -182,6 +182,9 @@ def delete_instance(request, app_name, table_name, obj_id):
                 if delete_key == 'yes':
                     obj.delete()
                     return redirect('/superadmin/%s/%s/'%(app_name, table_name))
+                else:
+                    return redirect('/superadmin/%s/%s/%s/edit/'%(app_name, table_name, obj_id))
+
             if admin_class.readonly_table is True:
                 return redirect('/')
 

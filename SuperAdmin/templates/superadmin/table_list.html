@@ -36,12 +36,14 @@
         </form>
     {% endif %}
       {% if not admin_class.readonly_table %}
-        <form method="POST">
+        <form method="POST" id="action_form">
             {% csrf_token %}
+            <input type="hidden" value=""  name='_item_list'>
+
             <select name="action">
                 <option selected>No action</option>
                 {% for i in admin_class.actions %}
-                    <option value="{{ i }}">{{ i|title }}: </option>
+                <option value="{{ i }}">{{ i|title }}: </option>
             {% endfor %}
 
             </select>
@@ -96,6 +98,9 @@
         </tbody>
     </table>
     {{ page.paginator }}
+
+
+
 {% endblock %}
 
 
@@ -117,4 +122,29 @@ input[type=search], input[type=text], select{
     }
 </style>
 
+
 {% endblock %}
+
+
+    {% block js %}
+     <script>
+ $('#action_form').submit(function(event) {
+     event.preventDefault();
+     let values = getSelectedValue();
+     console.log(values)
+     $('input[name="_item_list"]').attr('value', values);
+     event.currentTarget.submit();
+
+ })
+ function getSelectedValue(){
+     let valueList = [];
+    $('input[tag="row-check"]').filter(function(){
+        if($(this).prop('checked') == true){
+            console.log($(this).prop('value'))
+            valueList.push($(this).prop('value'))
+        }
+    })
+    return valueList
+ }
+</script>
+    {% endblock %}
