@@ -16,3 +16,4 @@ class AdminSite(object):
         self.enabled_admins[app_name][model_name] = admin_class
 
 site = AdminSite()
+

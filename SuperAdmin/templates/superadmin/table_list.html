@@ -42,8 +42,8 @@
 
             <select name="action">
                 <option selected>No action</option>
-                {% for i in admin_class.actions %}
-                <option value="{{ i }}">{{ i|title }}: </option>
+                {% for k, v in admin_class.actions.items %}
+                <option value="{{ k }}"> {{ v|title }} </option>
             {% endfor %}
 
             </select>
@@ -54,19 +54,7 @@
     </div>
     <div><a style="float:right;" href="{% url 'add_instance' app_name model_name %}"> Add new</a></div>
     <table id='table-responsive' class="table table-striped table-borderless border-bottom">
-    <script>
-        function SelectAllRows() {
-            $("#table-responsive input[tag='row-check']").each(function (index, ele) {
-                console.log($(ele).prop('check'));
-                if($(ele).prop('checked') == false) {
-                    $(ele).prop('checked', true);
-                }else {
-                    $(ele).prop('checked', false);
-                }
 
-          })
-        }
-    </script>
         <thead>
         <tr>
 
@@ -127,7 +115,19 @@ input[type=search], input[type=text], select{
 
 
     {% block js %}
-     <script>
+
+<script>
+function SelectAllRows() {
+    $("#table-responsive input[tag='row-check']").each(function (index, ele) {
+        console.log($(ele).prop('check'));
+        if($(ele).prop('checked') == false) {
+            $(ele).prop('checked', true);
+        }else {
+            $(ele).prop('checked', false);
+        }
+
+  })
+}
  $('#action_form').submit(function(event) {
      event.preventDefault();
      let values = getSelectedValue();

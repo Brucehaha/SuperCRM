@@ -111,9 +111,17 @@ def get_search_result(request, querysets, admin_class):
 
 def table_list(request, app_name, model_name):
     ''' return all the instances given model name and app_name'''
-
-    print(request.POST)
     admin_class = site.enabled_admins[app_name][model_name]
+    if request.method == "POST":
+        action = request.POST.get('action', '')
+        items = request.POST.get('_item_list', '')
+        items_list = []
+        if len(items) > 0:
+            items_list = items.split(',')
+        queryset = admin_class.model.objects.filter(id__in=map(int, items_list))
+        if hasattr(admin_class, action):
+            func = getattr(admin_class, action)
+            func(admin_class, request, queryset)
     p = request.GET.get('p', 1)
     # get query set
     queryset = admin_class.model.objects.all()
@@ -182,8 +190,6 @@ def delete_instance(request, app_name, table_name, obj_id):
                 if delete_key == 'yes':
                     obj.delete()
                     return redirect('/superadmin/%s/%s/'%(app_name, table_name))
-                else:
-                    return redirect('/superadmin/%s/%s/%s/edit/'%(app_name, table_name, obj_id))
 
             if admin_class.readonly_table is True:
                 return redirect('/')
